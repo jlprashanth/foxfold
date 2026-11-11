@@ -3,8 +3,15 @@
   "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
   "folds": [
     { "type": "say", "text": "A **token** is a small piece of text, often a word or part of a word. Claude reads and writes in tokens." },
-    { "type": "say", "text": "The **context window** is Claude's desk for one chat. Everything in the chat has to fit on it." },
-    { "type": "say", "text": "When the desk is full, older parts get squeezed into a summary. Details can get lost, so restate anything important." },
-    { "type": "pick", "question": "Why do very long chats use up your limits faster?", "options": ["Claude re-reads the whole chat each time", "Claude gets tired", "Long chats are billed double"], "answer": 0, "why": "Each new message brings the earlier chat along with it." }
+    { "type": "say", "text": "Your message, Claude's reply and any files it reads all count as tokens. Usage limits are counted in them too." },
+    { "type": "say", "text": "The **context window** is Claude's desk for one chat. Everything in the chat has to fit on it, and Claude re-reads it all with each message." },
+    { "type": "say", "text": "When the desk is full, older parts get squeezed into a summary. Details can get lost, so restate anything important or start a fresh chat." },
+    { "type": "meter", "prompt": "Drag to fill Claude's desk and watch what happens.",
+      "data": { "label": "Desk full", "unit": "%", "min": 0, "max": 100,
+        "stages": [
+          { "from": 0, "text": "Plenty of room. Claude can see the whole chat." },
+          { "from": 60, "text": "Getting crowded. Each message now carries a lot of old chat along." },
+          { "from": 90, "text": "Full! Older parts get squeezed into a summary and small details may be lost." }
+        ] } }
   ]
 }

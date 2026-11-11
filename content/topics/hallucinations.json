@@ -1,0 +1,18 @@
+{
+  "id": "hallucinations", "track": 1, "title": "Hallucinations and checking answers",
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Sometimes Claude gives an answer that sounds sure but is wrong. This is called a **hallucination**." },
+    { "type": "say", "text": "Typical culprits are made-up quotes, invented web links, wrong dates and books or studies that do not exist. Odd details are the riskiest." },
+    { "type": "steps", "items": ["Ask Claude where a fact comes from, then open that source yourself.", "Ask \"are you sure? Check again.\"", "Compare with a trusted website or a second source.", "Check names, numbers and quotes first."] },
+    { "type": "say", "text": "Treat Claude like a smart colleague, not a source of truth. The more it matters, the more you check: health, money, legal and school work." },
+    { "type": "spot", "prompt": "One part of this answer is made up. Tap it.",
+      "segments": [
+        { "text": "Paris is the capital of France." },
+        { "text": "The Eiffel Tower is in Paris." },
+        { "text": "It was designed by Leonardo da Vinci.", "fake": true },
+        { "text": "It is made mostly of iron." }
+      ],
+      "why": "The tower was built by Gustave Eiffel's company, not da Vinci. Claude can sound sure and still be wrong." }
+  ]
+}

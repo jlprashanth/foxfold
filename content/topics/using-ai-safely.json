@@ -1,0 +1,19 @@
+{
+  "id": "using-ai-safely", "track": 1, "title": "Using AI safely",
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Be careful what you paste into any AI tool. Treat a chat box like a public postcard, not a private diary." },
+    { "type": "say", "text": "Never paste passwords, API keys or secret tokens. If Claude needs to see the shape of one, use a placeholder like `YOUR_API_KEY`." },
+    { "type": "say", "text": "Think twice about other people's private details, customer data and company documents. Check your workplace or school rules first." },
+    { "type": "say", "text": "Safe habits: remove names and numbers you do not need, check settings for how your chats are used, and verify answers that matter." },
+    { "type": "sort", "prompt": "Fine to paste, or never paste?",
+      "baskets": ["Fine to paste", "Never paste"],
+      "items": [
+        { "text": "A paragraph from my own blog post", "basket": "Fine to paste", "why": "It is your own text and not private." },
+        { "text": "My bank password", "basket": "Never paste", "why": "Passwords never belong in a chat." },
+        { "text": "A recipe I want scaled for 6 people", "basket": "Fine to paste" },
+        { "text": "A key like sk-12345 from my app", "basket": "Never paste", "why": "Keys give others access. Use a placeholder." },
+        { "text": "A customer list with phone numbers", "basket": "Never paste", "why": "It holds other people's private data." }
+      ] }
+  ]
+}

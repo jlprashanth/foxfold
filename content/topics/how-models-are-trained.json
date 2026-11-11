@@ -1,0 +1,16 @@
+{
+  "id": "how-models-are-trained", "track": 1, "title": "How models are trained",
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Training starts with a model reading a huge amount of text and practising one task: guess the next word, again and again." },
+    { "type": "say", "text": "Each wrong guess nudges the model's settings a little. After many rounds, it picks up grammar, facts and how people write." },
+    { "type": "say", "text": "Then comes more training with human feedback, so the model learns to be helpful, honest and careful instead of just continuing text." },
+    { "type": "say", "text": "Once training is done, the model is fixed. It does not learn from your chat on its own. New knowledge needs new training or a search." },
+    { "type": "flip", "prompt": "Tap each card to flip a myth into what really happens.",
+      "cards": [
+        { "weak": "Myth: Claude is searching a giant database of answers.", "strong": "It predicts new text from patterns it learned.", "note": "Nothing is copied out of a stored answer list." },
+        { "weak": "Myth: Claude learns from me live as we chat.", "strong": "It only uses the chat as context. The model itself stays the same." },
+        { "weak": "Myth: Claude knows everything.", "strong": "It knows what was in its training, which has a cutoff and gaps." }
+      ] }
+  ]
+}

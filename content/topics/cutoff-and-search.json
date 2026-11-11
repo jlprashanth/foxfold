@@ -1,0 +1,19 @@
+{
+  "id": "cutoff-and-search", "track": 1, "title": "Knowledge cutoff and web search",
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Claude learned from text collected up to a certain date, called its **knowledge cutoff**. Anything newer is not in its head." },
+    { "type": "say", "text": "So it may not know about last week's news, a new phone, or the latest version of an app or tool." },
+    { "type": "say", "text": "When **web search** is available, Claude can look things up and read current pages. Without it, Claude only has what it learned." },
+    { "type": "say", "text": "For anything that changes, ask it to search, or tell it the version or date you mean. Then check the sources it gives." },
+    { "type": "sort", "prompt": "Does this need a web search, or can Claude just answer?",
+      "baskets": ["Needs search", "Fine without"],
+      "items": [
+        { "text": "Today's weather in my town", "basket": "Needs search", "why": "Weather changes by the hour." },
+        { "text": "Explain how photosynthesis works", "basket": "Fine without", "why": "This knowledge is old and stable." },
+        { "text": "Who won last night's match?", "basket": "Needs search" },
+        { "text": "Rewrite my email to sound friendlier", "basket": "Fine without" },
+        { "text": "Is this shop open right now?", "basket": "Needs search" }
+      ] }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "tracks": [
-    { "id": 1, "title": "AI foundations", "topics": ["what-is-a-model", "tokens-context", "widget-demo"] },
+    { "id": 1, "title": "AI foundations", "topics": ["what-is-a-model", "tokens-context", "hallucinations", "cutoff-and-search", "how-models-are-trained", "using-ai-safely"] },
     { "id": 2, "title": "Using Claude", "topics": [] },
     { "id": 3, "title": "Prompting", "topics": [] },
     { "id": 4, "title": "Extending Claude", "topics": [] },
