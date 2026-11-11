@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foxfold content check</title>
+<style>
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 16px; }
+  .ok { color: #1a7f37; } .bad { color: #b42318; } .warn { color: #9a6700; }
+  li { margin: 2px 0; } h3 { margin: 18px 0 4px; }
+  #sum { padding: 10px; border: 2px solid; font-weight: 700; }
+</style>
+</head>
+<body>
+<h1>Content check</h1>
+<p>Open <code>check.html?broken=1</code> to include a deliberately broken file and prove the checker catches it.</p>
+<div id="sum">Checking…</div>
+<div id="out"></div>
+<script type="module">
+import { getJSON, topicPath } from './app/content.js';
+import { validateTopic, validateFacts, validateIndex } from './app/schema.js';
+
+const out = document.getElementById('out');
+let failures = 0, dueCount = 0;
+
+function report(name, errors, warnings = [], expectBroken = false) {
+  const h = document.createElement('h3');
+  const bad = errors.length > 0;
+  if (!expectBroken && bad) failures++;
+  if (expectBroken && !bad) failures++; // the broken sample must be caught
+  h.className = (bad !== expectBroken) ? 'bad' : 'ok';
+  h.textContent = `${bad ? '✗' : '✓'} ${name}${expectBroken ? (bad ? ' (broken on purpose, caught)' : ' (SHOULD HAVE FAILED)') : ''}`;
+  const ul = document.createElement('ul');
+  for (const m of errors) ul.append(Object.assign(document.createElement('li'), { className: 'bad', textContent: m }));
+  for (const m of warnings) {
+    if (m.startsWith('DUE')) dueCount++;
+    ul.append(Object.assign(document.createElement('li'), { className: 'warn', textContent: m }));
+  }
+  out.append(h, ul);
+}
+
+try {
+  const [index, facts] = await Promise.all([getJSON('content/index.json'), getJSON('content/facts.json')]);
+  const ids = index.tracks.flatMap((t) => t.topics);
+  report('content/index.json', validateIndex(index, ids));
+  report('content/facts.json', validateFacts(facts));
+  for (const id of ids) {
+    try { const r = validateTopic(await getJSON(topicPath(id)), facts, id); report(`topics/${id}.json`, r.errors, r.warnings); }
+    catch (e) { report(`topics/${id}.json`, [e.message]); }
+  }
+  if (new URLSearchParams(location.search).has('broken')) {
+    const r = validateTopic(await getJSON('content/_broken-sample.json'), facts, '_broken-sample');
+    report('content/_broken-sample.json', r.errors, r.warnings, true);
+  }
+} catch (e) {
+  failures++;
+  report('startup', [e.message]);
+}
+const sum = document.getElementById('sum');
+sum.className = failures ? 'bad' : 'ok';
+sum.textContent = failures ? `${failures} problem file(s)` : `All clean.${dueCount ? ` ${dueCount} topic(s) due for review.` : ''}`;
+</script>
+</body>
+</html>

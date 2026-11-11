@@ -1,0 +1,17 @@
+{
+  "reviewed": "2026-11-11",
+  "note": "Placeholder entries so the widgets can be built. Milestone 4 replaces these from the official models and help pages.",
+  "models": [
+    { "name": "Haiku", "strength": "Quick and light", "cost": "lowest" },
+    { "name": "Sonnet", "strength": "Everyday all-rounder", "cost": "middle" },
+    { "name": "Opus", "strength": "Heavier thinking", "cost": "higher" },
+    { "name": "Fable", "strength": "Most capable", "cost": "highest" }
+  ],
+  "apps": [
+    { "name": "Web", "job": "Chat in a browser" },
+    { "name": "Desktop", "job": "Chat with your computer's files and apps" },
+    { "name": "Mobile", "job": "Chat on the go" },
+    { "name": "Claude Code", "job": "Work on code projects" }
+  ],
+  "limits": ["Session limit", "Weekly limit"]
+}

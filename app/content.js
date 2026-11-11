@@ -1,7 +1,9 @@
 // Content loader: fetches JSON from content/ (network first; offline cache comes in milestone 6).
+import { resolveFacts } from './facts.js';
+
 const cache = new Map();
 
-async function getJSON(path) {
+export async function getJSON(path) {
   if (cache.has(path)) return cache.get(path);
   const res = await fetch(path, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Could not load ${path} (${res.status})`);
@@ -11,4 +13,12 @@ async function getJSON(path) {
 }
 
 export const loadIndex = () => getJSON('content/index.json');
-export const loadTopic = (id) => getJSON(`content/topics/${id}.json`);
+export const loadFacts = () => getJSON('content/facts.json');
+export const topicPath = (id) => `content/topics/${id}.json`;
+export const loadRawTopic = (id) => getJSON(topicPath(id));
+
+// A topic with {{facts...}} references filled in.
+export async function loadTopic(id) {
+  const [topic, facts] = await Promise.all([loadRawTopic(id), loadFacts()]);
+  return { ...topic, folds: resolveFacts(topic.folds, facts) };
+}

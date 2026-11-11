@@ -38,3 +38,27 @@ button { font: inherit; color: inherit; cursor: pointer; }
 code { background: rgba(0,0,0,.08); padding: 0 4px; }
 [hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .screen { animation: none; } }
+
+/* Widgets (plain form) */
+.steps { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; }
+.plane { background: #fff; border: 2px solid var(--ink); padding: 14px; margin: 10px 0; text-align: center; font-weight: 700; clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%, 0 88%); }
+.baskets { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+.basket { background: var(--t2); border: 0; border-bottom: 4px solid rgba(0,0,0,.25); min-height: 48px; padding: 8px; font-weight: 700; }
+.shake { animation: shake .3s; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.flip { display: grid; gap: 10px; }
+.card { background: #fff; border: 2px solid var(--ink); border-left: 8px solid var(--t3); padding: 12px; text-align: left; min-height: 64px; width: 100%; }
+.card.strong { border-left-color: var(--t4); }
+.face { display: grid; gap: 4px; } .face small { text-transform: uppercase; letter-spacing: .05em; opacity: .7; }
+.meter { display: grid; gap: 10px; }
+.bar { height: 22px; background: #fff; border: 2px solid var(--ink); } .fill { height: 100%; background: var(--t1); }
+.meter input { width: 100%; min-height: 44px; }
+.slots { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 6px; }
+.slots li { border: 2px dashed var(--ink); padding: 6px 10px; min-height: 48px; display: grid; }
+.slots li.filled { border-style: solid; background: #fff; }
+.slots small { opacity: .6; text-transform: uppercase; }
+.tray { display: flex; flex-wrap: wrap; gap: 8px; }
+.piece { background: var(--t3); border: 0; border-bottom: 4px solid rgba(0,0,0,.25); padding: 8px 12px; min-height: 44px; text-align: left; }
+.seg { background: #fff; border: 1px solid var(--ink); padding: 4px 8px; min-height: 44px; margin: 2px 0; text-align: left; }
+.seg.right { background: #f7c4c4; } .seg.wrong { background: #e6e6e6; opacity: .6; }
+@media (prefers-reduced-motion: reduce) { .shake { animation: none; } }

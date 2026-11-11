@@ -1,6 +1,7 @@
 import { APP_NAME, MASCOT_NAME } from './config.js';
 import { loadIndex, loadTopic } from './content.js';
-import { el, richText } from './dom.js';
+import { el } from './dom.js';
+import { foldView } from './widgets.js';
 
 const app = document.getElementById('app');
 document.title = APP_NAME;
@@ -96,30 +97,6 @@ async function topicView(s, id) {
     else if (dx > 50 && i > 0) { i--; draw(); }
   });
   draw();
-}
-
-function foldView(f) {
-  if (f.type === 'say') return el('div', { class: 'say' }, el('span', { class: 'mini-fox' }, '🦊'), el('p', {}, ...richText(f.text)));
-  if (f.type === 'pick') return pickView(f);
-  return el('p', {}, `(Fold type "${f.type}" is not built yet.)`);
-}
-
-function pickView(f) {
-  const box = el('div', { class: 'pick' }, el('p', { class: 'q' }, ...richText(f.question)));
-  const why = el('p', { class: 'why', hidden: '' }, ...richText(f.why || ''));
-  const opts = f.options.map((opt, n) => {
-    const b = el('button', { class: 'opt' }, ...richText(opt));
-    b.onclick = () => {
-      if (box.dataset.done) return;
-      box.dataset.done = '1';
-      b.classList.add(n === f.answer ? 'right' : 'wrong');
-      opts[f.answer].classList.add('right');
-      why.hidden = false;
-    };
-    return b;
-  });
-  box.append(...opts, why);
-  return box;
 }
 
 (async function start() {

@@ -1,0 +1,40 @@
+{
+  "id": "widget-demo", "track": 1, "title": "Widget demo (all games)", "demo": true,
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Models in the family: {{facts.models}}. This list comes from `facts.json`, so one edit updates every topic." },
+    { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
+      "items": [
+        { "text": "Tidy a quick text message", "basket": "Haiku", "why": "Small jobs suit the light model." },
+        { "text": "Summarise a normal article", "basket": "Sonnet" },
+        { "text": "Untangle a hard puzzle with many steps", "basket": "Opus" }
+      ] },
+    { "type": "flip", "prompt": "Tap each card to see the stronger prompt.",
+      "cards": [
+        { "weak": "Write about dogs.", "strong": "Write 3 friendly sentences about dogs for a child.", "note": "Say who it is for and how long." },
+        { "weak": "Fix this.", "strong": "This email sounds rude. Make it polite but keep it short." }
+      ] },
+    { "type": "meter", "prompt": "Drag to fill the desk.",
+      "data": { "label": "Desk full", "unit": "%", "min": 0, "max": 100,
+        "stages": [
+          { "from": 0, "text": "Plenty of room. Claude sees everything." },
+          { "from": 60, "text": "Getting crowded. Old details may slip." },
+          { "from": 90, "text": "Full. Older parts get squeezed into a summary." }
+        ] } },
+    { "type": "build", "prompt": "Put the prompt together in order.",
+      "parts": [
+        { "label": "What", "text": "Write a short email" },
+        { "label": "Context", "text": "to my landlord about a broken heater" },
+        { "label": "Constraints", "text": "polite, under 100 words" },
+        { "label": "Format", "text": "with a subject line" }
+      ],
+      "extras": ["make it good"] },
+    { "type": "spot", "prompt": "One part of this answer is made up. Tap it.",
+      "segments": [
+        { "text": "Paris is the capital of France." },
+        { "text": "The Eiffel Tower is in Paris." },
+        { "text": "It was designed by Leonardo da Vinci.", "fake": true }
+      ],
+      "why": "Claude can sound sure and still be wrong. Check names and facts." }
+  ]
+}
