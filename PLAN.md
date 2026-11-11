@@ -125,6 +125,8 @@ the facts change (S stable, M medium, F fast) and drives the review schedule in 
 | Projects, memory, artifacts and skills | `sort`: which feature fits this need | M |
 | Research and web search | `pick`: quick question or research job | M |
 
+Not covered yet: styles (the official article returned a 404) and voice (until an official page confirms it).
+
 **Track 3, Prompting**
 
 | Topic | Hook | Vol. |
