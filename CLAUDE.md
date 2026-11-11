@@ -8,5 +8,5 @@ Playful PWA for beginners learning Claude and AI. Full plan: `PLAN.md` (one mile
 - Content text allows only `**bold**` and `` `code` ``; no HTML. Max 45 words per fold.
 - No exact prices, limits or dates in fold text; fast-changing facts go in `facts.json` (milestone 2).
 - Windows: `python` and `python3` are Microsoft Store stubs and fail. Use `py` (e.g. `py -m http.server 8000`, `py -I script.py`).
-- Run: `python -m http.server 8000` in the repo root, then open in Chrome phone view.
+- Run: `py -m http.server 8000` in the repo root, then open in Chrome phone view.
 - Don't use Anthropic logos or brand colours.
