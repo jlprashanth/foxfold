@@ -1,25 +1,77 @@
 {
-  "id": "claude-apps", "track": 2, "title": "The Claude apps",
-  "reviewed": "2026-11-11", "volatility": "fast",
+  "id": "claude-apps",
+  "track": 2,
+  "title": "The Claude apps",
+  "reviewed": "2026-11-11",
+  "volatility": "fast",
   "sources": [
-    { "title": "Download Claude", "url": "https://claude.com/download" },
-    { "title": "Get started with Claude Cowork", "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" },
-    { "title": "Get started with Claude in Chrome", "url": "https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome" },
-    { "title": "Use Claude in Google Docs, Sheets, and Slides", "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides" }
+    {
+      "title": "Download Claude",
+      "url": "https://claude.com/download"
+    },
+    {
+      "title": "Get started with Claude Cowork",
+      "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork"
+    },
+    {
+      "title": "Get started with Claude in Chrome",
+      "url": "https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome"
+    },
+    {
+      "title": "Use Claude in Google Docs, Sheets, and Slides",
+      "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+    }
   ],
   "folds": [
-    { "type": "say", "text": "Claude is not one app. It shows up in many places, and one account works across them. Right now: {{facts.apps}}." },
-    { "type": "say", "text": "**Web, desktop and mobile** are the everyday chat. Start here. The phone app is handy for quick questions and talking out loud." },
-    { "type": "say", "text": "**Claude Code** is for working on code, and **Cowork** takes bigger tasks with many steps. The desktop app gives them the most reach into your own files." },
-    { "type": "say", "text": "**Chrome, Excel, PowerPoint and Google Workspace** put Claude beside the page or file you already have open, so you do not copy and paste." },
-    { "type": "sort", "prompt": "Which app fits the job? Tap the basket.",
-      "baskets": ["Mobile", "Claude Code", "Chrome", "Excel and PowerPoint"],
+    {
+      "type": "say",
+      "text": "Claude is not one app. It shows up in many places, and your chats, projects and memory sync across web, desktop and mobile. Right now: {{facts.apps}}."
+    },
+    {
+      "type": "say",
+      "text": "**Web, desktop and mobile** are the everyday chat. Start here. The phone app goes where you go, and can hand a task to Cowork on your computer."
+    },
+    {
+      "type": "say",
+      "text": "**Claude Code** is for working on code, and **Cowork** takes bigger tasks with many steps. Cowork needs the desktop app to reach files, and only in folders you connect."
+    },
+    {
+      "type": "say",
+      "text": "**Chrome and Google Workspace** put Claude beside the page or file you have open, so you do not copy and paste. **Excel and PowerPoint** have Claude extensions too."
+    },
+    {
+      "type": "sort",
+      "prompt": "Which app fits the job? Tap the basket.",
+      "baskets": [
+        "{{facts.apps.mobile}}",
+        "{{facts.apps.code}}",
+        "{{facts.apps.chrome}}",
+        "{{facts.apps.office}}"
+      ],
       "items": [
-        { "text": "Ask a quick question while out walking", "basket": "Mobile", "why": "The phone app is made for on-the-go chat." },
-        { "text": "Fix a bug in a software project", "basket": "Claude Code" },
-        { "text": "Have Claude work on the web page I am viewing", "basket": "Chrome", "why": "The extension works inside your browser." },
-        { "text": "Explain the formulas in my budget spreadsheet", "basket": "Excel and PowerPoint", "why": "It sits in a sidebar next to the file." },
-        { "text": "Chat by voice about dinner ideas", "basket": "Mobile" }
-      ] }
+        {
+          "text": "Hand a task from my phone to Cowork on my computer",
+          "basket": "{{facts.apps.mobile}}",
+          "why": "The phone app can pair with the desktop app."
+        },
+        {
+          "text": "Fix a bug in a software project",
+          "basket": "{{facts.apps.code}}"
+        },
+        {
+          "text": "Have Claude work on the web page I am viewing",
+          "basket": "{{facts.apps.chrome}}",
+          "why": "The extension works inside your browser."
+        },
+        {
+          "text": "Get Claude's help inside my Excel budget file",
+          "basket": "{{facts.apps.office}}"
+        },
+        {
+          "text": "Carry Claude with me and chat on my phone",
+          "basket": "{{facts.apps.mobile}}"
+        }
+      ]
+    }
   ]
 }

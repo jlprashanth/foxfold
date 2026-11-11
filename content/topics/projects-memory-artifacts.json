@@ -1,23 +1,78 @@
 {
-  "id": "projects-memory-artifacts", "track": 2, "title": "Projects, memory and artifacts",
-  "reviewed": "2026-11-11", "volatility": "medium",
+  "id": "projects-memory-artifacts",
+  "track": 2,
+  "title": "Projects, memory, artifacts and styles",
+  "reviewed": "2026-11-11",
+  "volatility": "medium",
   "sources": [
-    { "title": "Use Claude's chat search and memory", "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context" },
-    { "title": "What are artifacts and how do I use them?", "url": "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" },
-    { "title": "Understanding Claude's personalization features", "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features" }
+    {
+      "title": "Use Claude's chat search and memory",
+      "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    },
+    {
+      "title": "What are artifacts and how do I use them?",
+      "url": "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them"
+    },
+    {
+      "title": "Understanding Claude's personalization features",
+      "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features"
+    }
   ],
   "folds": [
-    { "type": "say", "text": "A **project** is a workspace for one ongoing effort, like a trip or a thesis. Files and instructions you add are there at the start of every chat inside it." },
-    { "type": "say", "text": "**Memory** lets Claude keep short notes about you from your chats. You can read, edit or delete them in settings, or switch memory off." },
-    { "type": "say", "text": "**Instructions for Claude** are account-wide preferences, like \"keep answers short\". **Project instructions** apply only inside one project." },
-    { "type": "say", "text": "An **artifact** is something Claude makes for you to keep: a document, a small tool, a page. It opens beside the chat. You can edit it and share it later." },
-    { "type": "sort", "prompt": "Which feature fits this need? Tap the basket.",
-      "baskets": ["Project", "Memory", "Artifact"],
+    {
+      "type": "say",
+      "text": "A **project** is a workspace for one ongoing effort, like a trip or a thesis. Files and instructions you add are there at the start of every chat inside it."
+    },
+    {
+      "type": "say",
+      "text": "**Memory** lets Claude keep short notes about you from your chats. You can read, edit or delete them in settings, or switch memory off."
+    },
+    {
+      "type": "say",
+      "text": "**Instructions for Claude** are account-wide preferences, like \"keep answers short\". **Project instructions** apply only inside one project."
+    },
+    {
+      "type": "say",
+      "text": "An **artifact** is something Claude makes for you to keep: a document, a small tool, a page. It opens beside the chat. You can edit it and share it later."
+    },
+    {
+      "type": "say",
+      "text": "To change how Claude sounds, use **skills**. Claude's help page lists them for adjusting the tone and format of replies, or following your own writing patterns."
+    },
+    {
+      "type": "sort",
+      "prompt": "Which feature fits this need? Tap the basket.",
+      "baskets": [
+        "Project",
+        "Memory",
+        "Artifact",
+        "Skill"
+      ],
       "items": [
-        { "text": "Keep my trip plans and notes together for weeks", "basket": "Project", "why": "A project holds files and context for one effort." },
-        { "text": "Claude should remember I am vegetarian", "basket": "Memory" },
-        { "text": "Make me a printable packing checklist to keep", "basket": "Artifact", "why": "Artifacts are things Claude makes for you to keep." },
-        { "text": "Reuse the same study guide in many chats", "basket": "Project" }
-      ] }
+        {
+          "text": "Keep my trip plans and notes together for weeks",
+          "basket": "Project",
+          "why": "A project holds files and context for one effort."
+        },
+        {
+          "text": "Claude should remember I am vegetarian",
+          "basket": "Memory"
+        },
+        {
+          "text": "Make me a printable packing checklist to keep",
+          "basket": "Artifact",
+          "why": "Artifacts are things Claude makes for you to keep."
+        },
+        {
+          "text": "Reuse the same study guide in many chats",
+          "basket": "Project"
+        },
+        {
+          "text": "Make Claude's replies shorter and more casual",
+          "basket": "Skill",
+          "why": "Skills adjust the tone and format of replies."
+        }
+      ]
+    }
   ]
 }

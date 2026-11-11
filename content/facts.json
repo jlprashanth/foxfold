@@ -1,24 +1,93 @@
 {
   "reviewed": "2026-11-11",
   "sources": [
-    { "title": "Models overview", "url": "https://platform.claude.com/docs/en/models/overview" },
-    { "title": "Download Claude", "url": "https://claude.com/download" }
+    {
+      "title": "Models overview",
+      "url": "https://platform.claude.com/docs/en/models/overview"
+    },
+    {
+      "title": "Download Claude",
+      "url": "https://claude.com/download"
+    },
+    {
+      "title": "Get started with Claude Cowork",
+      "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork"
+    },
+    {
+      "title": "Get started with Claude in Chrome",
+      "url": "https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome"
+    },
+    {
+      "title": "Use Claude in Google Docs, Sheets, and Slides",
+      "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+    }
   ],
   "models": [
-    { "name": "Haiku", "strength": "Fastest, for high-volume quick tasks", "cost": "lowest" },
-    { "name": "Sonnet", "strength": "Best mix of speed and intelligence", "cost": "middle" },
-    { "name": "Opus", "strength": "Long-running coding and knowledge work", "cost": "higher" },
-    { "name": "Fable", "strength": "Demanding reasoning and long, multi-step work", "cost": "highest" }
+    {
+      "name": "Haiku",
+      "strength": "Fastest, for high-volume quick tasks",
+      "cost": "lowest"
+    },
+    {
+      "name": "Sonnet",
+      "strength": "Best mix of speed and intelligence",
+      "cost": "middle"
+    },
+    {
+      "name": "Opus",
+      "strength": "Long-running coding and knowledge work",
+      "cost": "higher"
+    },
+    {
+      "name": "Fable",
+      "strength": "Demanding reasoning and long, multi-step work",
+      "cost": "highest"
+    }
   ],
   "apps": [
-    { "name": "Web", "job": "Chat in a browser at claude.ai" },
-    { "name": "Desktop", "job": "Chat on Mac or Windows, with Claude Code and Cowork built in" },
-    { "name": "Mobile", "job": "Chat and voice on iPhone and Android" },
-    { "name": "Claude Code", "job": "Work on code in the terminal, an editor or the desktop app" },
-    { "name": "Cowork", "job": "Hand off multi-step tasks, with full file access on desktop" },
-    { "name": "Chrome", "job": "A browser extension that works on web pages for you" },
-    { "name": "Excel and PowerPoint", "job": "A sidebar inside the Office apps" },
-    { "name": "Google Workspace", "job": "A sidebar in Docs, Sheets and Slides" }
+    {
+      "id": "web",
+      "name": "Web",
+      "job": "Chat in a browser at claude.ai"
+    },
+    {
+      "id": "desktop",
+      "name": "Desktop",
+      "job": "Chat on Mac or Windows, with Claude Code and Cowork inside"
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile",
+      "job": "Chat on your phone, and hand tasks to Cowork"
+    },
+    {
+      "id": "code",
+      "name": "Claude Code",
+      "job": "Work on code in the terminal, an editor or the desktop app"
+    },
+    {
+      "id": "cowork",
+      "name": "Cowork",
+      "job": "Hand off multi-step tasks, using folders you connect on desktop"
+    },
+    {
+      "id": "chrome",
+      "name": "Chrome",
+      "job": "A browser extension that works on web pages for you"
+    },
+    {
+      "id": "office",
+      "name": "Excel and PowerPoint",
+      "job": "Extensions for Excel and PowerPoint"
+    },
+    {
+      "id": "google",
+      "name": "Google Workspace",
+      "job": "A sidebar in Docs, Sheets and Slides"
+    }
   ],
-  "limits": ["Session limit", "Weekly limit"]
+  "limits": [
+    "Session limit",
+    "Weekly limit"
+  ]
 }
