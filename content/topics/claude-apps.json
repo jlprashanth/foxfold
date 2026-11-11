@@ -1,0 +1,25 @@
+{
+  "id": "claude-apps", "track": 2, "title": "The Claude apps",
+  "reviewed": "2026-11-11", "volatility": "fast",
+  "sources": [
+    { "title": "Download Claude", "url": "https://claude.com/download" },
+    { "title": "Get started with Claude Cowork", "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" },
+    { "title": "Get started with Claude in Chrome", "url": "https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome" },
+    { "title": "Use Claude in Google Docs, Sheets, and Slides", "url": "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Claude is not one app. It shows up in many places, and one account works across them. Right now: {{facts.apps}}." },
+    { "type": "say", "text": "**Web, desktop and mobile** are the everyday chat. Start here. The phone app is handy for quick questions and talking out loud." },
+    { "type": "say", "text": "**Claude Code** is for working on code, and **Cowork** takes bigger tasks with many steps. The desktop app gives them the most reach into your own files." },
+    { "type": "say", "text": "**Chrome, Excel, PowerPoint and Google Workspace** put Claude beside the page or file you already have open, so you do not copy and paste." },
+    { "type": "sort", "prompt": "Which app fits the job? Tap the basket.",
+      "baskets": ["Mobile", "Claude Code", "Chrome", "Excel and PowerPoint"],
+      "items": [
+        { "text": "Ask a quick question while out walking", "basket": "Mobile", "why": "The phone app is made for on-the-go chat." },
+        { "text": "Fix a bug in a software project", "basket": "Claude Code" },
+        { "text": "Have Claude work on the web page I am viewing", "basket": "Chrome", "why": "The extension works inside your browser." },
+        { "text": "Explain the formulas in my budget spreadsheet", "basket": "Excel and PowerPoint", "why": "It sits in a sidebar next to the file." },
+        { "text": "Chat by voice about dinner ideas", "basket": "Mobile" }
+      ] }
+  ]
+}

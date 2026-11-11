@@ -1,0 +1,18 @@
+{
+  "id": "research-and-search", "track": 2, "title": "Research and web search",
+  "reviewed": "2026-11-11", "volatility": "medium",
+  "sources": [
+    { "title": "When should I use web search, extended thinking, and research?", "url": "https://support.claude.com/en/articles/11095361-when-should-i-use-web-search-extended-thinking-and-research" },
+    { "title": "Use research on Claude", "url": "https://support.claude.com/en/articles/11088861-use-research-on-claude" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Claude has three ways to dig deeper, and each suits a different job. Picking the right one saves time and usage." },
+    { "type": "say", "text": "**Web search** is for quick facts that change: the news, a company, opening hours. Claude looks it up and answers." },
+    { "type": "say", "text": "**Extended thinking** is for hard reasoning that needs no web: maths, debugging, weighing up a tough choice. Claude works it through carefully first." },
+    { "type": "say", "text": "**Research** is for big questions. Claude runs many searches, follows leads and writes a report with sources. It takes minutes, so save it for jobs that need it." },
+    { "type": "pick", "question": "You want a detailed comparison of several phone plans from many sources. What fits best?",
+      "options": ["Web search", "Extended thinking", "Research"],
+      "answer": 2,
+      "why": "A broad question across many sources is a research job. Web search suits one quick fact." }
+  ]
+}

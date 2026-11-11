@@ -1,0 +1,21 @@
+{
+  "id": "models-effort", "track": 2, "title": "Models and effort",
+  "reviewed": "2026-11-11", "volatility": "fast",
+  "sources": [
+    { "title": "Models overview", "url": "https://platform.claude.com/docs/en/models/overview" },
+    { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Claude comes in a family of models. From lightest to most capable: {{facts.models}}. Each is a different trade of speed, depth and usage." },
+    { "type": "say", "text": "**Haiku** is the fastest and lightest. **Sonnet** is the best mix of speed and smarts, a good default for most jobs." },
+    { "type": "say", "text": "**Opus** suits long coding and knowledge work. **Fable** is for the hardest reasoning and long multi-step jobs. Bigger models usually use more of your allowance." },
+    { "type": "say", "text": "**Effort** is how hard Claude thinks before it answers. Higher effort helps on tricky problems, but takes longer and uses more. Simple jobs do not need it." },
+    { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
+      "items": [
+        { "text": "Sort a pile of messages into groups, fast", "basket": "Haiku", "why": "Quick, repetitive jobs suit the lightest model." },
+        { "text": "Summarise an article and tidy an email", "basket": "Sonnet", "why": "Everyday work suits the all-rounder." },
+        { "text": "Work through a big coding task over a long session", "basket": "Opus" },
+        { "text": "Untangle a very hard problem with many steps", "basket": "Fable", "why": "Save the most capable model for the toughest jobs." }
+      ] }
+  ]
+}

@@ -1,17 +1,24 @@
 {
   "reviewed": "2026-11-11",
-  "note": "Placeholder entries so the widgets can be built. Milestone 4 replaces these from the official models and help pages.",
+  "sources": [
+    { "title": "Models overview", "url": "https://platform.claude.com/docs/en/models/overview" },
+    { "title": "Download Claude", "url": "https://claude.com/download" }
+  ],
   "models": [
-    { "name": "Haiku", "strength": "Quick and light", "cost": "lowest" },
-    { "name": "Sonnet", "strength": "Everyday all-rounder", "cost": "middle" },
-    { "name": "Opus", "strength": "Heavier thinking", "cost": "higher" },
-    { "name": "Fable", "strength": "Most capable", "cost": "highest" }
+    { "name": "Haiku", "strength": "Fastest, for high-volume quick tasks", "cost": "lowest" },
+    { "name": "Sonnet", "strength": "Best mix of speed and intelligence", "cost": "middle" },
+    { "name": "Opus", "strength": "Long-running coding and knowledge work", "cost": "higher" },
+    { "name": "Fable", "strength": "Demanding reasoning and long, multi-step work", "cost": "highest" }
   ],
   "apps": [
-    { "name": "Web", "job": "Chat in a browser" },
-    { "name": "Desktop", "job": "Chat with your computer's files and apps" },
-    { "name": "Mobile", "job": "Chat on the go" },
-    { "name": "Claude Code", "job": "Work on code projects" }
+    { "name": "Web", "job": "Chat in a browser at claude.ai" },
+    { "name": "Desktop", "job": "Chat on Mac or Windows, with Claude Code and Cowork built in" },
+    { "name": "Mobile", "job": "Chat and voice on iPhone and Android" },
+    { "name": "Claude Code", "job": "Work on code in the terminal, an editor or the desktop app" },
+    { "name": "Cowork", "job": "Hand off multi-step tasks, with full file access on desktop" },
+    { "name": "Chrome", "job": "A browser extension that works on web pages for you" },
+    { "name": "Excel and PowerPoint", "job": "A sidebar inside the Office apps" },
+    { "name": "Google Workspace", "job": "A sidebar in Docs, Sheets and Slides" }
   ],
   "limits": ["Session limit", "Weekly limit"]
 }
