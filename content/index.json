@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "tracks": [
+    { "id": 1, "title": "AI foundations", "topics": ["what-is-a-model", "tokens-context"] },
+    { "id": 2, "title": "Using Claude", "topics": [] },
+    { "id": 3, "title": "Prompting", "topics": [] },
+    { "id": 4, "title": "Extending Claude", "topics": [] },
+    { "id": 5, "title": "Claude Code", "topics": [] },
+    { "id": 6, "title": "Beyond the basics", "topics": [] }
+  ]
+}

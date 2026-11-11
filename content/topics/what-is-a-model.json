@@ -1,0 +1,9 @@
+{
+  "id": "what-is-a-model", "track": 1, "title": "What an AI model is",
+  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "An **AI model** is a program that learned patterns from huge amounts of text. It does not look answers up. It predicts what fits next." },
+    { "type": "say", "text": "Type \"The sky is\" and the most likely next word is probably `blue`. Claude does this one small piece at a time, very fast." },
+    { "type": "pick", "question": "Complete it: \"Peanut butter and ...\"", "options": ["jelly", "tyres", "Tuesday"], "answer": 0, "why": "Right! The model picks what is most likely, based on patterns it learned." }
+  ]
+}
