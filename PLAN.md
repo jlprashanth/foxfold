@@ -119,10 +119,10 @@ the facts change (S stable, M medium, F fast) and drives the review schedule in 
 
 | Topic | Hook | Vol. |
 |---|---|---|
-| The Claude apps (web, desktop, mobile and voice, Claude Code, Cowork, Chrome, Excel, PowerPoint, Google Workspace) | `sort`: match the job to the app | F |
+| The Claude apps (web, desktop, mobile, Claude Code, Cowork, Chrome, Excel, PowerPoint, Google Workspace) | `sort`: match the job to the app | F |
 | Models and effort, Haiku to Fable | `sort`: the "which model for which task" game | F |
 | Usage limits and habits that save usage | `pick`: which habit saves more | F |
-| Projects, memory, artifacts and styles | `sort`: which feature fits this need | M |
+| Projects, memory, artifacts and skills | `sort`: which feature fits this need | M |
 | Research and web search | `pick`: quick question or research job | M |
 
 **Track 3, Prompting**
