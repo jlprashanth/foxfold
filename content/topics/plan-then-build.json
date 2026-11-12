@@ -1,0 +1,27 @@
+{
+  "id": "plan-then-build",
+  "track": 5,
+  "title": "The plan-then-build workflow",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "Common workflows: plan before editing", "url": "https://code.claude.com/docs/en/common-workflows" },
+    { "title": "Best practices for Claude Code", "url": "https://code.claude.com/docs/en/best-practices" },
+    { "title": "Choose a permission mode", "url": "https://code.claude.com/docs/en/permission-modes" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Big changes go better in two steps: **plan**, then **build**. Planning first lets you catch a wrong direction while it is still cheap to fix." },
+    { "type": "say", "text": "Not sure what you want yet? Ask Claude to interview you until it could write a spec, and save that to a file. Then start a fresh session to build from it." },
+    { "type": "say", "text": "To review before anything changes, switch to **plan mode**. Claude reads files and proposes a plan. It makes no edits until you approve." },
+    { "type": "say", "text": "Give Claude a way to check its own work, such as tests to run. Without a check, it may say it is done when it is not." },
+    { "type": "say", "text": "Watch the first minute and press `Esc` if Claude drifts. Small changes in plain steps need no plan, but bigger ones are worth it." },
+    { "type": "build", "prompt": "Put the workflow in order.",
+      "parts": [
+        { "label": "Explore", "text": "Let Claude read the code and answer questions" },
+        { "label": "Plan", "text": "Review a proposed plan in plan mode" },
+        { "label": "Build", "text": "Approve it and let Claude make the changes" },
+        { "label": "Check", "text": "Run the tests to verify the result" }
+      ],
+      "extras": ["Skip straight to deleting files"] }
+  ]
+}

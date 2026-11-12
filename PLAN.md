@@ -135,8 +135,7 @@ Not covered yet: styles (the official article returned a 404) and voice (until a
 | Prompting techniques (examples, step-by-step, structure, iterating) | `flip`: before and after | S |
 | Fixing bad answers | `pick`: choose the best follow-up | S |
 
-**Track 4, Extending Claude:** skills (M), connectors and MCP (M), CLAUDE.md and project
-instructions (M).
+**Track 4, Extending Claude:** skills (M), connectors and MCP (M), CLAUDE.md, standing instructions (M).
 
 **Track 5, Claude Code:** what it is and a first session (M), plan mode, permissions and auto
 mode (F), essential commands (F), the plan-then-build workflow (M), hooks (M), subagents and

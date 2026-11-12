@@ -1,0 +1,23 @@
+{
+  "id": "claude-code-first-session",
+  "track": 5,
+  "title": "What Claude Code is, and a first session",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "Claude Code overview", "url": "https://code.claude.com/docs/en/overview" },
+    { "title": "Claude Code quickstart", "url": "https://code.claude.com/docs/en/quickstart" },
+    { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
+  ],
+  "folds": [
+    { "type": "say", "text": "**Claude Code** is an agentic coding tool. It reads your project, edits files and runs commands, instead of only chatting. You describe a goal in plain language and it does the legwork." },
+    { "type": "say", "text": "It works in a loop: **gather context**, **take action**, **verify the result**. You can step in at any point to steer it. It can use tools like file editing, search and running commands." },
+    { "type": "say", "text": "You can use it in a terminal, in editor extensions, in a desktop app and on the web. The same engine sits underneath, so your instructions carry across." },
+    { "type": "say", "text": "A first session: open your project folder, type `claude`, and log in when asked. Then start with a question, like what the project does, before you ask for changes." },
+    { "type": "say", "text": "When Claude wants to change something, it may show you the change and ask. Approve it if it looks right. Each new session starts fresh, so keep lasting notes in **CLAUDE.md**." },
+    { "type": "pick", "question": "You open Claude Code in a project you have never seen. What is a good first prompt?",
+      "options": ["what does this project do?", "rewrite everything in a new language", "delete the old files"],
+      "answer": 0,
+      "why": "Let Claude explore and explain first. Then ask for small changes." }
+  ]
+}

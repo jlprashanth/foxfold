@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "tracks": [
     {
       "id": 1,
@@ -45,7 +45,12 @@
     {
       "id": 5,
       "title": "Claude Code",
-      "topics": []
+      "topics": [
+        "claude-code-first-session",
+        "plan-permissions-auto",
+        "essential-commands",
+        "plan-then-build"
+      ]
     },
     {
       "id": 6,

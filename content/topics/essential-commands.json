@@ -1,0 +1,27 @@
+{
+  "id": "essential-commands",
+  "track": 5,
+  "title": "Essential commands",
+  "reviewed": "2026-11-12",
+  "volatility": "fast",
+  "sources": [
+    { "title": "Commands reference", "url": "https://code.claude.com/docs/en/commands" },
+    { "title": "Claude Code quickstart", "url": "https://code.claude.com/docs/en/quickstart" },
+    { "title": "Best practices for Claude Code", "url": "https://code.claude.com/docs/en/best-practices" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Inside a session, type `/` to see the commands available. You do not need to memorise them. `/help` lists what you can use." },
+    { "type": "say", "text": "`/clear` starts a new conversation with empty context. Use it between unrelated tasks. `/resume` brings back an earlier conversation if you need it." },
+    { "type": "say", "text": "`/compact` frees up space by summarising the conversation so far, and you can tell it what to keep. `/context` shows what is using space." },
+    { "type": "say", "text": "`/init` creates a starter **CLAUDE.md** for your project. `/memory` lets you edit those files. `/plan` jumps straight into plan mode." },
+    { "type": "say", "text": "Made a mess? `/rewind` rolls the code, the conversation, or both back to an earlier point. Press `Esc` twice for the same menu. It works alongside git, not instead of it." },
+    { "type": "sort", "prompt": "Which command fits? Tap the basket.",
+      "baskets": ["/clear", "/compact", "/rewind"],
+      "items": [
+        { "text": "Starting a brand new, unrelated task", "basket": "/clear", "why": "A fresh start keeps old history out of the new task." },
+        { "text": "Same task, but the conversation is getting long", "basket": "/compact", "why": "It summarises and keeps going." },
+        { "text": "The last edit broke something", "basket": "/rewind" },
+        { "text": "Stuck after two failed corrections", "basket": "/clear", "why": "Clear and write one better prompt." }
+      ] }
+  ]
+}
