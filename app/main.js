@@ -1,8 +1,9 @@
 import { APP_NAME, MASCOT_NAME } from './config.js';
-import { loadIndex, loadTopic } from './content.js';
+import { loadIndex, loadFacts, loadRawTopic, loadTopic } from './content.js';
 import { el } from './dom.js';
 import { foldView } from './widgets.js';
 import { addStar, hasStar, getStars } from './progress.js';
+import { daysSince, REVIEW_DAYS } from './schema.js';
 
 const app = document.getElementById('app');
 document.title = APP_NAME;
@@ -72,6 +73,22 @@ function topicsView(s, trackId) {
   s.append(list);
 }
 
+// Postage stamp with the review month, source links, and a note when the topic is overdue.
+function stampView(topic) {
+  const d = new Date(topic.reviewed);
+  const month = Number.isNaN(d.getTime()) ? topic.reviewed : d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const box = el('footer', { class: 'stamp-row' }, el('span', { class: 'stamp' }, `Checked ${month}`));
+  const age = daysSince(topic.reviewed);
+  if (age > (REVIEW_DAYS[topic.volatility] ?? REVIEW_DAYS.fast)) {
+    box.append(el('p', { class: 'stale' }, 'This may have changed. Check the official page.'));
+  }
+  if (topic.sources.length) {
+    box.append(el('ul', { class: 'sources' }, ...topic.sources.map((s) =>
+      el('li', {}, el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.title)))));
+  }
+  return box;
+}
+
 async function topicView(s, id) {
   const topic = await loadTopic(id);
   let i = 0;
@@ -83,6 +100,7 @@ async function topicView(s, id) {
 
   const draw = () => {
     body.replaceChildren(foldView(topic.folds[i], earn));
+    if (i === topic.folds.length - 1) body.append(stampView(topic));
     nav.replaceChildren(
       el('button', { class: 'tab', disabled: i === 0 ? '' : null, onclick: () => { i--; draw(); } }, '‹ Prev'),
       el('span', {}, `${i + 1} / ${topic.folds.length}`),
@@ -114,4 +132,14 @@ async function topicView(s, id) {
   }
   history.replaceState({ view: 'home' }, '');
   render({ view: 'home' });
+  warmOfflineCopy();
 })();
+
+// After the first online visit, quietly fetch every topic so it is saved for aeroplane mode.
+// The service worker stores each response; failures (offline) are ignored.
+async function warmOfflineCopy() {
+  try {
+    await loadFacts();
+    for (const id of index.tracks.flatMap((t) => t.topics)) await loadRawTopic(id).catch(() => {});
+  } catch { /* offline or blocked: nothing to do */ }
+}

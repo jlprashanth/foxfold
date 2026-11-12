@@ -1,4 +1,4 @@
-// Content loader: fetches JSON from content/ (network first; offline cache comes in milestone 6).
+// Content loader: fetches JSON from content/. The service worker (sw.js) serves the saved copy when offline.
 import { resolveFacts } from './facts.js';
 
 const cache = new Map();
