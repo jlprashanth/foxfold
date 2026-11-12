@@ -14,3 +14,5 @@ Playful PWA for beginners learning Claude and AI. Full plan: `PLAN.md` (one mile
 - Offline: `sw.js` caches app code (bump `APP_VERSION` and the `SHELL` list when app files change) and serves content network-first.
 - Fonts: `assets/fonts/` holds Latin-subset WOFF2 files of Baloo 2 and Nunito (SIL OFL, licences alongside). Add new files to `SHELL` in `sw.js`.
 - Testing locally: the service worker serves app code cache-first, so after editing app files in Chrome, unregister it (DevTools > Application) or you will see stale code.
+- Unfolding moves live in `app/flow.js` (four moves between Tracks, Topics and a topic page); `app/fx.js` has the shared helpers and `app/topics.js` the topics sheet. The outgoing screen rides in a fixed overlay while the new one is in place. With "reduce motion" on, none of these run and screens just fade.
+- Testing moves in Chrome: if the OS has reduce motion on, `matchMedia` reports it, so the moves are skipped.
