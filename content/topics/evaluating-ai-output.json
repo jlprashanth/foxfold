@@ -1,0 +1,22 @@
+{
+  "id": "evaluating-ai-output",
+  "track": 6,
+  "title": "Evaluating AI output",
+  "reviewed": "2026-11-12",
+  "volatility": "stable",
+  "sources": [
+    { "title": "Define success criteria and build evaluations", "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" },
+    { "title": "Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents" }
+  ],
+  "folds": [
+    { "type": "say", "text": "An **evaluation**, or eval, is a repeatable test of how good AI output is. It beats a gut feeling, because you can run it again after every change." },
+    { "type": "say", "text": "Start by deciding what good means. Criteria should be **specific** and **measurable**. \"Good performance\" is vague. \"Gets the sentiment right\" can be checked." },
+    { "type": "say", "text": "Build tests that mirror real use. Include odd cases too, like very long input, unclear requests and things people should not ask." },
+    { "type": "say", "text": "Grade automatically when you can: an exact match, a code check, or another model as the grader. Use a different model from the one that wrote the answer." },
+    { "type": "say", "text": "More tests, even roughly graded, beat a few perfect ones. Judge on several things at once, such as accuracy, tone, and speed." },
+    { "type": "pick", "question": "Which success criterion is the best one?",
+      "options": ["Make it good", "Correct label on nearly every item in a labelled test set", "Users should feel nice"],
+      "answer": 1,
+      "why": "It is specific and measurable, so you can test it again and again." }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "rag-embeddings",
+  "track": 6,
+  "title": "RAG and embeddings",
+  "reviewed": "2026-11-12",
+  "volatility": "stable",
+  "sources": [
+    { "title": "Embeddings", "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings" },
+    { "title": "Tool use with Claude", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
+  ],
+  "folds": [
+    { "type": "say", "text": "A model only knows what it learned in training plus what is in front of it. To answer from your own documents, you must put the right pieces in front of it." },
+    { "type": "say", "text": "An **embedding** turns text into a list of numbers that capture its meaning. Texts with similar meaning get similar numbers, so a program can measure how close two texts are." },
+    { "type": "say", "text": "That allows search by meaning, not just matching words. A question like \"when is the call?\" can find a note about a scheduled conference call." },
+    { "type": "say", "text": "**RAG** means retrieval-augmented generation. First retrieve the most relevant pieces of your documents, then give them to the model along with the question." },
+    { "type": "say", "text": "RAG helps with private or fresh information the model never saw. It can still go wrong if retrieval misses, so check important answers against the source." },
+    { "type": "sort", "prompt": "Which step is it? Tap the basket.",
+      "baskets": ["Retrieve", "Generate"],
+      "items": [
+        { "text": "Find the notes closest in meaning to the question", "basket": "Retrieve", "why": "Embeddings are used to find relevant text." },
+        { "text": "Write the answer using the notes found", "basket": "Generate" },
+        { "text": "Compare numbers to see which text is nearest", "basket": "Retrieve" },
+        { "text": "Turn the found notes into a clear reply", "basket": "Generate" }
+      ] }
+  ]
+}

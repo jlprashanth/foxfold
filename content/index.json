@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "tracks": [
     {
       "id": 1,
@@ -58,7 +58,12 @@
     {
       "id": 6,
       "title": "Beyond the basics",
-      "topics": []
+      "topics": [
+        "what-is-an-agent",
+        "api-tool-use",
+        "rag-embeddings",
+        "evaluating-ai-output"
+      ]
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "id": "api-tool-use",
+  "track": 6,
+  "title": "The API and tool use",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "API overview", "url": "https://platform.claude.com/docs/en/api/overview" },
+    { "title": "Tool use with Claude", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
+  ],
+  "folds": [
+    { "type": "say", "text": "An **API** lets a program talk to Claude directly, with no chat window. Developers use it to put Claude inside their own apps and tools. You need an account and a key to use it." },
+    { "type": "say", "text": "The main job is sending **messages** to Claude and getting a reply back. The apps you use are different products, but the idea is the same: you send text, Claude answers." },
+    { "type": "say", "text": "**Tool use** lets Claude ask for help. You describe a tool, such as a weather lookup. Claude decides when it is needed and returns a structured request for it." },
+    { "type": "say", "text": "Claude does not run your tool itself. The app runs it, sends the result back, and Claude uses it to answer. Some tools, like web search, are run for you." },
+    { "type": "say", "text": "This is why Claude can seem to check things or take actions. It is following a loop of asking, getting results, and replying." },
+    { "type": "build", "prompt": "Put the tool use loop in order.",
+      "parts": [
+        { "label": "Ask", "text": "You ask a question that needs outside data" },
+        { "label": "Request", "text": "Claude returns a request to use a tool" },
+        { "label": "Run", "text": "The app runs the tool and gets a result" },
+        { "label": "Answer", "text": "Claude uses the result to reply" }
+      ],
+      "extras": ["Claude secretly runs your code"] }
+  ]
+}

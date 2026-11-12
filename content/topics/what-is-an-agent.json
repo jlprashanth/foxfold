@@ -1,0 +1,26 @@
+{
+  "id": "what-is-an-agent",
+  "track": 6,
+  "title": "What an AI agent is",
+  "reviewed": "2026-11-12",
+  "volatility": "stable",
+  "sources": [
+    { "title": "Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
+    { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
+  ],
+  "folds": [
+    { "type": "say", "text": "A chatbot answers and stops. An **AI agent** keeps going: it decides its own steps, uses tools, looks at the results, and carries on until the job is done." },
+    { "type": "say", "text": "Anthropic separates two kinds of system. In a **workflow**, code lays out the steps in advance. In an **agent**, the model directs its own process and its use of tools." },
+    { "type": "say", "text": "Claude Code is an example. It gathers context, takes an action, checks the result, and repeats. You can interrupt it at any point to steer." },
+    { "type": "say", "text": "Agents suit open-ended jobs where you cannot predict the steps. They cost more in time and money, and mistakes can pile up, so test them with guardrails." },
+    { "type": "say", "text": "Anthropic's advice is to start simple. Use the plainest solution that works, and add an agent only when simpler options fall short." },
+    { "type": "sort", "prompt": "Workflow or agent? Tap the basket.",
+      "baskets": ["Workflow", "Agent"],
+      "items": [
+        { "text": "Every email goes through the same three fixed steps", "basket": "Workflow", "why": "Fixed steps laid out in advance make a workflow." },
+        { "text": "Fix this bug, however many steps it takes", "basket": "Agent", "why": "The steps cannot be known in advance." },
+        { "text": "Translate a sentence", "basket": "Workflow" },
+        { "text": "Research a topic, choosing where to look as it goes", "basket": "Agent" }
+      ] }
+  ]
+}
