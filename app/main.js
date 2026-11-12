@@ -1,8 +1,9 @@
-import { APP_NAME, MASCOT_NAME } from './config.js';
+import { APP_NAME } from './config.js';
 import { loadIndex, loadFacts, loadRawTopic, loadTopic } from './content.js';
 import { el } from './dom.js';
 import { foldView } from './widgets.js';
-import { addStar, hasStar, getStars } from './progress.js';
+import { addStar, hasStar, getStars, takeIntro } from './progress.js';
+import { createStage } from './stage.js';
 import { daysSince, REVIEW_DAYS } from './schema.js';
 
 const app = document.getElementById('app');
@@ -10,20 +11,35 @@ document.title = APP_NAME;
 
 // States: home | tracks | topics | topic. Each is a history entry so the
 // phone's back gesture steps back one state.
+// Home and tracks share one stage (Nib plus the ring of shapes), so moving between
+// them animates the same drawing instead of rebuilding the page.
 let index;
+let stage = null;
+let drawHead = () => {};
 
 function go(state) {
   history.pushState(state, '');
-  render(state);
+  show(state);
 }
-window.addEventListener('popstate', (e) => render(e.state || { view: 'home' }));
+window.addEventListener('popstate', (e) => show(e.state || { view: 'home' }));
+
+function show(state) {
+  const view = state.view || 'home';
+  if (stage && stage.node.isConnected && (view === 'home' || view === 'tracks')) {
+    stage.setMode(view);
+    drawHead(view);
+    return;
+  }
+  return render(state);
+}
 
 async function render(state) {
   const view = state.view || 'home';
   const screen = el('section', { class: `screen ${view}` });
+  stage = null;
+  let intro = false;
   try {
-    if (view === 'home') homeView(screen);
-    else if (view === 'tracks') tracksView(screen);
+    if (view === 'home' || view === 'tracks') intro = stageView(screen, view);
     else if (view === 'topics') topicsView(screen, state.track);
     else if (view === 'topic') await topicView(screen, state.topic);
   } catch (err) {
@@ -31,32 +47,29 @@ async function render(state) {
   }
   app.replaceChildren(screen); // CSS fade-in handles the transition
   window.scrollTo(0, 0);
+  if (intro) stage.foldUp();
 }
 
 const backBtn = () => el('button', { class: 'tab back', onclick: () => history.back() }, '← Back');
 
-function homeView(s) {
-  s.append(
-    el('h1', {}, APP_NAME),
-    el('button', { class: 'fox', 'aria-label': `Tap ${MASCOT_NAME}`, onclick: () => go({ view: 'tracks' }) }, '🦊'),
-    el('span', { class: 'tag' }, 'tap me'),
-  );
-}
-
-function tracksView(s) {
-  s.append(backBtn(), el('h2', {}, 'Pick a track'));
-  const stars = getStars();
-  const grid = el('div', { class: 'grid' });
-  for (const t of index.tracks) {
-    const ready = t.topics.length > 0;
-    const earned = t.topics.filter((id) => stars.includes(id)).length;
-    grid.append(el('button', {
-      class: `shape track-${t.id}${ready ? '' : ' soon'}`,
-      disabled: ready ? null : '',
-      onclick: () => go({ view: 'topics', track: t.id }),
-    }, el('strong', {}, `${t.id}. ${t.title}`), el('small', {}, ready ? `${t.topics.length} topics · ★ ${earned}/${t.topics.length}` : 'coming soon')));
-  }
-  s.append(grid);
+// Returns true when this is the first ever visit (the caller then plays Nib's fold-up).
+function stageView(s, view) {
+  const head = el('div', { class: 'stage-head' });
+  const tag = el('span', { class: 'tag' }, 'tap me');
+  stage = createStage({
+    tracks: index.tracks, stars: getStars(), mode: view,
+    onTracks: () => go({ view: 'tracks' }),
+    onPick: (id) => go({ view: 'topics', track: id }),
+  });
+  drawHead = (v) => {
+    s.className = `screen ${v}`;
+    head.replaceChildren(...(v === 'home' ? [el('h1', {}, APP_NAME)] : [backBtn(), el('h2', {}, 'Pick a track')]));
+  };
+  drawHead(view);
+  s.append(head, stage.node, tag);
+  const intro = view === 'home' && takeIntro();
+  if (intro) tag.classList.add('late');
+  return intro;
 }
 
 function topicsView(s, trackId) {

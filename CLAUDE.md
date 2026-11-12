@@ -12,3 +12,5 @@ Playful PWA for beginners learning Claude and AI. Full plan: `PLAN.md` (one mile
 - Don't use Anthropic logos or brand colours.
 - Hosted at https://jlprashanth.github.io/foxfold/ (a subfolder): use only relative paths, never a leading `/`.
 - Offline: `sw.js` caches app code (bump `APP_VERSION` and the `SHELL` list when app files change) and serves content network-first.
+- Fonts: `assets/fonts/` holds Latin-subset WOFF2 files of Baloo 2 and Nunito (SIL OFL, licences alongside). Add new files to `SHELL` in `sw.js`.
+- Testing locally: the service worker serves app code cache-first, so after editing app files in Chrome, unregister it (DevTools > Application) or you will see stale code.

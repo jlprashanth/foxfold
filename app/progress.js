@@ -9,6 +9,19 @@ export function getStars() {
   } catch { return []; }
 }
 
+// First-visit intro (Nib folds up from a square). Remembered in memory too, so a
+// blocked localStorage still plays it only once per session.
+let introThisSession = false;
+export function takeIntro() {
+  if (introThisSession) return false;
+  introThisSession = true;
+  try {
+    if (localStorage.getItem('foxfold-intro')) return false;
+    localStorage.setItem('foxfold-intro', '1');
+  } catch { /* blocked: fall through and play it once */ }
+  return true;
+}
+
 export const hasStar = (id) => getStars().includes(id);
 
 export function addStar(id) {
