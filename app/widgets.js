@@ -26,11 +26,15 @@ function pick(f, done) {
     const b = el('button', { class: 'opt' }, ...richText(opt));
     b.onclick = () => {
       if (box.dataset.done) return;
-      box.dataset.done = '1';
-      b.classList.add(n === f.answer ? 'right' : 'wrong');
-      opts[f.answer].classList.add('right');
-      if (f.why) show(why, f.why);
-      done();
+      if (n === f.answer) {
+        box.dataset.done = '1';
+        b.classList.add('right');
+        show(why, f.why || 'Correct.');
+        done();
+      } else {
+        b.classList.add('wrong'); b.disabled = true; // retry as often as you like
+        show(why, 'Not quite. Try another answer.');
+      }
     };
     return b;
   });
@@ -47,22 +51,30 @@ function sort(f, done) {
   let n = 0, misses = 0;
   const next = () => {
     if (n >= f.items.length) {
-      card.textContent = '✓ All sorted';
-      done();
       baskets.replaceChildren();
-      show(note, misses ? `Done, with ${misses} slip${misses > 1 ? 's' : ''}. Try again later to get them all first time.` : 'Done, with no slips.');
+      if (misses) {
+        card.textContent = 'All sorted, but with slips';
+        show(note, `${misses} slip${misses > 1 ? 's' : ''} this time. Get every item right in one go to earn the star.`);
+        baskets.append(el('button', { class: 'basket', onclick: restart }, 'Try again'));
+      } else {
+        card.textContent = '✓ All sorted';
+        show(note, 'Done, with no slips.');
+        done();
+      }
       return;
     }
     card.replaceChildren(...richText(f.items[n].text));
   };
-  for (const name of f.baskets) {
-    baskets.append(el('button', { class: 'basket', onclick: () => {
+  const restart = () => { n = 0; misses = 0; note.hidden = true; fill(); next(); };
+  const fill = () => {
+    baskets.replaceChildren(...f.baskets.map((name) => el('button', { class: 'basket', onclick: () => {
       const item = f.items[n];
       if (!item) return;
       if (item.basket === name) { n++; note.hidden = true; if (item.why) show(note, item.why); next(); }
-      else { misses++; card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); show(note, `Not quite. Try another basket.`); }
-    } }, name));
-  }
+      else { misses++; card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); show(note, 'Not quite. Try another basket.'); }
+    } }, name)));
+  };
+  fill();
   next();
   box.append(card, baskets, note);
   return box;
