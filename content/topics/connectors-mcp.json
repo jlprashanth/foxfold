@@ -1,0 +1,23 @@
+{
+  "id": "connectors-mcp",
+  "track": 4,
+  "title": "Connectors and MCP",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "Use connectors to extend Claude's capabilities", "url": "https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" },
+    { "title": "Get started with custom connectors using remote MCP", "url": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" }
+  ],
+  "folds": [
+    { "type": "say", "text": "A **connector** lets Claude reach your apps and services, find your data and take actions in them, like searching your files or sending a message." },
+    { "type": "say", "text": "**MCP**, the Model Context Protocol, is an open standard created by Anthropic for AI apps to connect to tools and data. Think of it as a shared plug shape." },
+    { "type": "say", "text": "To connect one, browse the connectors directory from a chat or from Customize, then choose Connect and sign in. Switch it on in a chat from the plus menu." },
+    { "type": "say", "text": "Claude inherits your permissions in each service, so it cannot see what you could not. But connecting lets it read, and possibly change, your data there." },
+    { "type": "say", "text": "Only connect services you trust and need. Read the permissions at sign-in, turn off tools you do not need, and disconnect services you no longer use." },
+    { "type": "say", "text": "A **custom connector** points to a remote MCP server. Anthropic does not verify those, so use only servers from organisations you trust." },
+    { "type": "pick", "question": "A tool asks for permission to change data in a service you barely use. What is the safest choice?",
+      "options": ["Allow always, to save time", "Deny it, or turn that tool off", "Connect it and hope for the best"],
+      "answer": 1,
+      "why": "Only connect what you trust and need, and be careful with tools that write or change things." }
+  ]
+}

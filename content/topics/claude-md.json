@@ -1,0 +1,25 @@
+{
+  "id": "claude-md",
+  "track": 4,
+  "title": "CLAUDE.md, standing instructions",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "How Claude remembers your project", "url": "https://code.claude.com/docs/en/memory" }
+  ],
+  "folds": [
+    { "type": "say", "text": "Each Claude Code session starts with a fresh context window. A **CLAUDE.md** file is a note you write once so Claude reads your standing instructions every session." },
+    { "type": "say", "text": "It can live in your project folder, shared with your team, or in your own home folder for every project. A private local version is just for you." },
+    { "type": "say", "text": "Good contents: how to run and test the project, your conventions, and things Claude could not guess. Run `/init` to get a starter file, then refine it." },
+    { "type": "say", "text": "Keep it short and specific. Aim for under 200 lines, because longer files use more context and Claude follows them less reliably." },
+    { "type": "say", "text": "Claude treats CLAUDE.md as guidance, not a hard rule. To block an action for certain, use a hook instead. Claude also writes its own notes, called **auto memory**." },
+    { "type": "sort", "prompt": "Does it belong in CLAUDE.md? Tap the basket.",
+      "baskets": ["Put it in", "Leave it out"],
+      "items": [
+        { "text": "Run the tests with the project's test command", "basket": "Put it in", "why": "Commands Claude cannot guess are ideal." },
+        { "text": "A 500-line essay on company history", "basket": "Leave it out", "why": "Long files cost context and reduce how well Claude follows them." },
+        { "text": "Use two-space indents in this project", "basket": "Put it in" },
+        { "text": "A rule that must never be broken, no exceptions", "basket": "Leave it out", "why": "CLAUDE.md is guidance. Use a hook to enforce a rule." }
+      ] }
+  ]
+}

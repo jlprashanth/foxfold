@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "tracks": [
     {
       "id": 1,
@@ -36,7 +36,11 @@
     {
       "id": 4,
       "title": "Extending Claude",
-      "topics": []
+      "topics": [
+        "skills",
+        "connectors-mcp",
+        "claude-md"
+      ]
     },
     {
       "id": 5,
