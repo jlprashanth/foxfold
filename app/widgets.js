@@ -19,7 +19,7 @@ function steps(f) {
   return el('ol', { class: 'steps' }, ...f.items.map((t) => el('li', {}, ...richText(t))));
 }
 
-function pick(f) {
+function pick(f, done) {
   const box = el('div', { class: 'pick' }, el('p', { class: 'q' }, ...richText(f.question)));
   const why = msg();
   const opts = f.options.map((opt, n) => {
@@ -30,6 +30,7 @@ function pick(f) {
       b.classList.add(n === f.answer ? 'right' : 'wrong');
       opts[f.answer].classList.add('right');
       if (f.why) show(why, f.why);
+      done();
     };
     return b;
   });
@@ -38,7 +39,7 @@ function pick(f) {
 }
 
 // sort: one item at a time; tap the basket it belongs in.
-function sort(f) {
+function sort(f, done) {
   const box = el('div', { class: 'sort' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const card = el('div', { class: 'plane' });
   const note = msg();
@@ -47,6 +48,7 @@ function sort(f) {
   const next = () => {
     if (n >= f.items.length) {
       card.textContent = '✓ All sorted';
+      done();
       baskets.replaceChildren();
       show(note, misses ? `Done, with ${misses} slip${misses > 1 ? 's' : ''}. Try again later to get them all first time.` : 'Done, with no slips.');
       return;
@@ -67,8 +69,9 @@ function sort(f) {
 }
 
 // flip: tap a card to turn it from weak to strong.
-function flip(f) {
+function flip(f, done) {
   const box = el('div', { class: 'flip' }, el('p', { class: 'q' }, ...richText(f.prompt)));
+  const seen = new Set();
   for (const c of f.cards) {
     const face = el('div', { class: 'face' });
     const draw = (strong) => face.replaceChildren(
@@ -80,13 +83,14 @@ function flip(f) {
     draw(false);
     box.append(el('button', { class: 'card', 'aria-label': 'Flip card', onclick: (e) => {
       strong = !strong; draw(strong); e.currentTarget.classList.toggle('strong', strong);
+      if (strong) { seen.add(c); if (seen.size === f.cards.length) done(); }
     } }, face));
   }
   return box;
 }
 
 // meter: drag a slider; the text changes with the stage reached.
-function meter(f) {
+function meter(f, done) {
   const d = f.data;
   const min = d.min ?? 0;
   const stages = [...d.stages].sort((a, b) => a.from - b.from);
@@ -100,6 +104,7 @@ function meter(f) {
     readout.textContent = `${d.label}: ${v}${d.unit ? ' ' + d.unit : ''}`;
     const stage = [...stages].reverse().find((s) => v >= s.from) || stages[0];
     text.replaceChildren(...richText(stage.text));
+    if (v >= d.max) done();
   };
   slider.oninput = update;
   update();
@@ -107,7 +112,7 @@ function meter(f) {
 }
 
 // build: tap pieces in the right order; the correct next piece snaps into place.
-function build(f) {
+function build(f, done) {
   const box = el('div', { class: 'build' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const slots = el('ol', { class: 'slots' }, ...f.parts.map((p) => el('li', {}, el('small', {}, p.label))));
   const tray = el('div', { class: 'tray' });
@@ -121,7 +126,7 @@ function build(f) {
         slots.children[n].append(el('span', {}, ...richText(p.text)));
         slots.children[n].classList.add('filled');
         b.remove(); n++; note.hidden = true;
-        if (n === f.parts.length) { tray.remove(); show(note, f.done || 'Built. That is the whole prompt.'); }
+        if (n === f.parts.length) { tray.remove(); done(); show(note, f.done || 'Built. That is the whole prompt.'); }
       } else {
         b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
         show(note, p.i === -1 ? 'That piece does not belong here.' : `Not yet. Which part comes next: ${f.parts[n].label}?`);
@@ -134,7 +139,7 @@ function build(f) {
 }
 
 // spot: tap the one made-up part.
-function spot(f) {
+function spot(f, done) {
   const box = el('div', { class: 'spot' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const note = msg();
   const wrap = el('p', { class: 'segments' });
@@ -143,7 +148,7 @@ function spot(f) {
     b.onclick = () => {
       if (box.dataset.done) return;
       if (s.fake) {
-        box.dataset.done = '1'; b.classList.add('right');
+        box.dataset.done = '1'; b.classList.add('right'); done();
         show(note, f.why || 'Yes, that is the made-up part.');
       } else { b.classList.add('wrong'); b.disabled = true; show(note, 'That part checks out. Keep looking.'); }
     };
@@ -155,7 +160,8 @@ function spot(f) {
 
 const WIDGETS = { say, steps, pick, sort, flip, meter, build, spot };
 
-export function foldView(f) {
+// `done` is called when a game fold is completed (it earns the topic's star).
+export function foldView(f, done = () => {}) {
   const make = WIDGETS[f.type];
-  return make ? make(f) : el('p', {}, `(Unknown fold type "${f.type}".)`);
+  return make ? make(f, done) : el('p', {}, `(Unknown fold type "${f.type}".)`);
 }

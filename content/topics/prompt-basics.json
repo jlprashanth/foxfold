@@ -1,0 +1,19 @@
+{
+  "id": "prompt-basics", "track": 3, "title": "Prompt basics",
+  "reviewed": "2026-11-12", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "A **prompt** is simply what you type to Claude. Casual language, typos and your own style are all fine." },
+    { "type": "say", "text": "Writing a good prompt is like briefing a helpful new colleague. They are smart, but they do not know your situation unless you say so." },
+    { "type": "steps", "items": ["**What** you want: plan a trip, write an email, summarise a page.", "**Context**: who it is for, and what Claude should know.", "**Constraints**: length, tone, things to avoid.", "**Format**: a list, a table, short paragraphs."] },
+    { "type": "say", "text": "Vague: \"Help me with my trip.\" Clear: \"Plan a 3-day trip to Lisbon for two adults who love food and hate crowds. Give me a day-by-day list.\" Clear prompts need fewer follow-ups." },
+    { "type": "build", "prompt": "Build a prompt. Tap the pieces in order: what, context, constraints, format.",
+      "parts": [
+        { "label": "What", "text": "Write a thank-you email to my neighbour." },
+        { "label": "Context", "text": "She watered my plants while I was away for a week." },
+        { "label": "Constraints", "text": "Keep it warm and under 100 words." },
+        { "label": "Format", "text": "Give me the email text only, ready to send." }
+      ],
+      "extras": ["Make it good."],
+      "done": "Built. Four small parts turned a vague wish into a prompt Claude can nail first time." }
+  ]
+}

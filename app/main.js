@@ -2,6 +2,7 @@ import { APP_NAME, MASCOT_NAME } from './config.js';
 import { loadIndex, loadTopic } from './content.js';
 import { el } from './dom.js';
 import { foldView } from './widgets.js';
+import { addStar, hasStar, getStars } from './progress.js';
 
 const app = document.getElementById('app');
 document.title = APP_NAME;
@@ -43,14 +44,16 @@ function homeView(s) {
 
 function tracksView(s) {
   s.append(backBtn(), el('h2', {}, 'Pick a track'));
+  const stars = getStars();
   const grid = el('div', { class: 'grid' });
   for (const t of index.tracks) {
     const ready = t.topics.length > 0;
+    const earned = t.topics.filter((id) => stars.includes(id)).length;
     grid.append(el('button', {
       class: `shape track-${t.id}${ready ? '' : ' soon'}`,
       disabled: ready ? null : '',
       onclick: () => go({ view: 'topics', track: t.id }),
-    }, el('strong', {}, `${t.id}. ${t.title}`), el('small', {}, ready ? `${t.topics.length} topics` : 'coming soon')));
+    }, el('strong', {}, `${t.id}. ${t.title}`), el('small', {}, ready ? `${t.topics.length} topics · ★ ${earned}/${t.topics.length}` : 'coming soon')));
   }
   s.append(grid);
 }
@@ -63,7 +66,8 @@ function topicsView(s, trackId) {
   for (const id of t.topics) {
     const btn = el('button', { class: `tab track-${t.id}`, onclick: () => go({ view: 'topic', track: t.id, topic: id }) }, id);
     list.append(btn);
-    loadTopic(id).then((tp) => (btn.textContent = tp.title)).catch(() => {});
+    const mark = () => (hasStar(id) ? ' ★' : '');
+    loadTopic(id).then((tp) => (btn.textContent = tp.title + mark())).catch(() => {});
   }
   s.append(list);
 }
@@ -73,10 +77,12 @@ async function topicView(s, id) {
   let i = 0;
   const body = el('div', { class: 'fold' });
   const nav = el('div', { class: 'nav' });
-  s.append(backBtn(), el('h2', {}, topic.title), body, nav);
+  const star = el('span', { class: 'star', title: 'Star earned', hidden: hasStar(id) ? null : '' }, '★');
+  s.append(backBtn(), el('h2', {}, topic.title, ' ', star), body, nav);
+  const earn = () => { addStar(id); star.hidden = false; };
 
   const draw = () => {
-    body.replaceChildren(foldView(topic.folds[i]));
+    body.replaceChildren(foldView(topic.folds[i], earn));
     nav.replaceChildren(
       el('button', { class: 'tab', disabled: i === 0 ? '' : null, onclick: () => { i--; draw(); } }, '‹ Prev'),
       el('span', {}, `${i + 1} / ${topic.folds.length}`),

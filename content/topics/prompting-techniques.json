@@ -1,0 +1,16 @@
+{
+  "id": "prompting-techniques", "track": 3, "title": "Prompting techniques",
+  "reviewed": "2026-11-12", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "A few simple habits make most prompts better. None needs special words or tricks." },
+    { "type": "say", "text": "**Show an example.** Paste one sample of what you like, such as a past email, and say \"write it like this\". Claude copies the style far better than a description." },
+    { "type": "say", "text": "**Ask for steps.** For a tricky question or a budget, say \"work through it step by step\". Claude shows its working, so you can spot a wrong turn." },
+    { "type": "say", "text": "**Add structure.** Put long material in clear labelled blocks, such as \"Here is my draft:\" then \"Here is what I want changed:\". It stops Claude mixing them up." },
+    { "type": "say", "text": "**Iterate.** Your first prompt is a first try. Read the answer, then say what to change. Chatting back and forth is the normal way to work." },
+    { "type": "flip", "prompt": "Tap each card to flip it from weak to strong.",
+      "cards": [
+        { "weak": "Write an email to my landlord.", "strong": "Write a polite email to my landlord about a leaking tap. Here is an email I wrote before, copy its friendly tone: ...", "note": "Adds an example." },
+        { "weak": "Is my budget okay?", "strong": "Here is my monthly budget: ... Go through it step by step and tell me where I overspend.", "note": "Asks for steps and labels the material." }
+      ] }
+  ]
+}

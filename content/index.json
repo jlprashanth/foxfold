@@ -1,11 +1,52 @@
 {
-  "version": 3,
+  "version": 4,
   "tracks": [
-    { "id": 1, "title": "AI foundations", "topics": ["what-is-a-model", "tokens-context", "hallucinations", "cutoff-and-search", "how-models-are-trained", "using-ai-safely"] },
-    { "id": 2, "title": "Using Claude", "topics": ["claude-apps", "models-effort", "usage-limits", "projects-memory-artifacts", "research-and-search"] },
-    { "id": 3, "title": "Prompting", "topics": [] },
-    { "id": 4, "title": "Extending Claude", "topics": [] },
-    { "id": 5, "title": "Claude Code", "topics": [] },
-    { "id": 6, "title": "Beyond the basics", "topics": [] }
+    {
+      "id": 1,
+      "title": "AI foundations",
+      "topics": [
+        "what-is-a-model",
+        "tokens-context",
+        "hallucinations",
+        "cutoff-and-search",
+        "how-models-are-trained",
+        "using-ai-safely"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Using Claude",
+      "topics": [
+        "claude-apps",
+        "models-effort",
+        "usage-limits",
+        "projects-memory-artifacts",
+        "research-and-search"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Prompting",
+      "topics": [
+        "prompt-basics",
+        "prompting-techniques",
+        "fixing-bad-answers"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Extending Claude",
+      "topics": []
+    },
+    {
+      "id": 5,
+      "title": "Claude Code",
+      "topics": []
+    },
+    {
+      "id": 6,
+      "title": "Beyond the basics",
+      "topics": []
+    }
   ]
 }

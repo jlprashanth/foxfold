@@ -62,3 +62,6 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .seg { background: #fff; border: 1px solid var(--ink); padding: 4px 8px; min-height: 44px; margin: 2px 0; text-align: left; }
 .seg.right { background: #f7c4c4; } .seg.wrong { background: #e6e6e6; opacity: .6; }
 @media (prefers-reduced-motion: reduce) { .shake { animation: none; } }
+
+/* Stars (saved progress) */
+.star { color: #f6c23e; text-shadow: 0 2px 0 rgba(0,0,0,.25); }

@@ -1,0 +1,14 @@
+{
+  "id": "fixing-bad-answers", "track": 3, "title": "Fixing bad answers",
+  "reviewed": "2026-11-12", "volatility": "stable", "sources": [],
+  "folds": [
+    { "type": "say", "text": "Sometimes the answer misses. That is normal, and it is rarely a reason to give up. Most misses can be fixed with one good follow-up." },
+    { "type": "say", "text": "First, work out what went wrong. Was it the wrong tone, too long, missing something, or just incorrect? Naming the problem is half the fix." },
+    { "type": "steps", "items": ["Say exactly what is wrong: \"too formal\", \"you skipped the second question\".", "Say what you want instead.", "Add the context you left out the first time.", "Still stuck? Start a fresh chat with a better first prompt."] },
+    { "type": "say", "text": "If an answer seems factually wrong, ask Claude to check again and give its source, then verify it yourself. Do not just ask for the same thing a third time." },
+    { "type": "pick", "question": "Claude wrote a 500-word summary, but you wanted something short. Which follow-up is best?",
+      "options": ["That is wrong. Try again.", "Too long. Cut it to three bullet points, keeping the main decision.", "Summarise.", "Why did you write so much?"],
+      "answer": 1,
+      "why": "It names the problem and says what you want instead. Vague complaints make Claude guess." }
+  ]
+}
