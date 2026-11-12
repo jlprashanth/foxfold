@@ -18,3 +18,4 @@ Playful PWA for beginners learning Claude and AI. Full plan: `PLAN.md` (one mile
 - Testing moves in Chrome: if the OS has reduce motion on, `matchMedia` reports it, so the moves are skipped.
 - Topic page polish: `turnPage()` in `app/fx.js` flips between folds; `app/reward.js` is the star burst; widgets take a `react` helper (`yes`/`no`) so Nib nods or tilts. `pose()` in `fx.js` assumes a top-centre origin, so `.fold` sets `transform-origin: 50% 0`. The page-to-tab and tab-to-page folds show a loose copy of the tab (`ghostTab` in `flow.js`) so its label never pops in or out.
 - No Nunito italic file is shipped and `font-synthesis: none` is set, so do not use italics (use a left border for notes).
+- Content sources: only cite pages you actually opened and read, never search-result summaries. If an official page won’t load, leave the claim out.
