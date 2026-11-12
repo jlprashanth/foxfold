@@ -10,7 +10,7 @@
 // ctx = { from: {screen, stage, ctl, page}, to: {screen, stage, ctl, page}, state, prev, install, alive }
 import { svg, el } from './dom.js';
 import { shapeArt } from './shapes.js';
-import { play, rectOf, lift, addToLayer, settle, wait, coverFlap, threeFolds, SPRING, SOFT } from './fx.js';
+import { play, rectOf, lift, addToLayer, addOnTop, settle, wait, coverFlap, threeFolds, SPRING, SOFT } from './fx.js';
 
 const FLAT_Y = [{ transform: 'none' }, { transform: 'scaleY(0)' }];
 const OPEN_Y = [{ transform: 'scaleY(0)' }, { transform: 'none' }];
@@ -24,6 +24,19 @@ function ghostShape(trackId, r) {
   const node = el('div', { class: 'ghost', style: `left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px` },
     svg('svg', { viewBox: '-40 -40 80 80', width: '100%', height: '100%', 'aria-hidden': 'true' }, shapeArt(trackId, true)));
   return addToLayer(node);
+}
+
+// A loose copy of a topic tab, label and all, over its viewport rect. The page's cover has no label,
+// so this copy fades in (or out) on top while the page is the size of the tab. Without it the label
+// would pop in or out at the end of the fold.
+function ghostTab(btn, r) {
+  const node = btn.cloneNode(true);
+  node.removeAttribute('style');
+  node.setAttribute('aria-hidden', 'true');
+  node.tabIndex = -1;
+  node.classList.add('ghost');
+  node.style.cssText = `left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px;margin:0`;
+  return addOnTop(node);
 }
 
 const q = (screen, sel) => screen.querySelector(sel);
@@ -98,6 +111,8 @@ export async function openTopic(ctx) {
   ctx.install();
 
   const F = rectOf(to.page.card);
+  // The tab's label stays on top for a moment, then fades, so it does not vanish the instant the fold starts.
+  play(ghostTab(from.ctl.tabs[row].btn, tab), [{ opacity: 1 }, { opacity: 0 }], { duration: 160, delay: 80, easing: 'linear' });
   // 0-380: the other tabs lie flat, Nib and the heading fold away, the sheet draws in toward the tab.
   from.ctl.foldTabs({ keep: row, gap: 30, dur: 180 });
   foldOut(oldHead);
@@ -127,7 +142,12 @@ export async function closeTopic(ctx) {
   coverFlap(from.page.cover, false, { delay: 60 });
   // 250-900: the page folds down into the tab's place; the sheet opens behind it.
   play(from.page.card, threeFolds(old, tab, true), { duration: 640, delay: 260 });
+  // 710-900: as the page reaches the tab's size, a copy of the tab with its label fades in on top of it,
+  // then the page drops away. Both look the same, so the real tab can take over with no jump.
+  play(ghostTab(to.ctl.tabs[row].btn, tab), [{ opacity: 0 }, { opacity: 1 }], { duration: 180, delay: 710, easing: 'linear' });
+  play(from.page.card, [{ opacity: 1 }, { opacity: 0 }], { duration: 1, delay: 895 });
   to.ctl.unfold(tab, { at: 200, dur: 620 });
-  to.ctl.popIn({ at: 200 + 620 * .62 + 40, gap: 45, dur: 300 });
-  await finish(ctx, 1000, () => to.ctl.hideTab(row, false));
+  const popAt = 200 + 620 * .62 + 40, gap = 45;
+  to.ctl.popIn({ at: popAt, gap, dur: 300 });
+  await finish(ctx, popAt + gap * (to.ctl.tabs.length - 1) + 330, () => to.ctl.hideTab(row, false));
 }

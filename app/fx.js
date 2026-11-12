@@ -9,6 +9,7 @@ export const SOFT = 'cubic-bezier(.3,1.2,.5,1)'; // a gentler overshoot for big 
 
 let live = [];
 let layer = null;
+let top = null; // a second overlay above the incoming screen, for loose copies that must stay visible
 
 export const rectOf = (node) => {
   const r = node.getBoundingClientRect();
@@ -31,6 +32,7 @@ export function settle() {
   for (const a of live) { try { a.cancel(); } catch { /* already gone */ } }
   live = [];
   if (layer) { layer.remove(); layer = null; }
+  if (top) { top.remove(); top = null; }
 }
 
 // Move the outgoing screen into a fixed layer exactly where it was, so it can keep animating
@@ -46,6 +48,12 @@ export function lift(screen, z = 1) {
 }
 
 export const addToLayer = (node) => { layer.append(node); return node; };
+
+export function addOnTop(node) {
+  if (!top) { top = el('div', { class: 'overlay', style: 'z-index:4' }); document.body.append(top); }
+  top.append(node);
+  return node;
+}
 
 // A transform (origin: top centre) that makes an element laid out as rect F look like rect R.
 // `tilt` leans the top-hinged element back, as paper does half way through a fold.
@@ -80,3 +88,23 @@ export const coverFlap = (cover, open, opts) => play(cover, open
 { duration: 260, easing: 'ease-in-out', ...opts });
 
 export const makeCover = () => el('div', { class: 'cover', 'aria-hidden': 'true' });
+
+// Turn the page inside a card: the current fold swings edge-on about its hinge, `swap()` puts the
+// next fold in, and that one swings open from the other side. dir 1 = forward (hinge on the left).
+// A newer turn cancels the one running; the cancelled turn still swaps, so the content is never stale.
+// With "reduce motion" on, the fold just fades in.
+export async function turnPage(node, dir, swap) {
+  node.getAnimations().forEach((a) => a.cancel());
+  if (!motionOK()) {
+    swap();
+    play(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 120, fill: 'none' });
+    return;
+  }
+  node.style.transformOrigin = dir > 0 ? '0 50%' : '100% 50%';
+  const edge = (sign) => ({ transform: `perspective(900px) rotateY(${sign * dir * 84}deg)`, opacity: .6 });
+  const shut = await play(node, [{ transform: 'none', opacity: 1 }, edge(-1)], { duration: 140, easing: 'ease-in', fill: 'forwards' });
+  if (!shut) { swap(); return; }
+  node.getAnimations().forEach((a) => a.cancel());
+  swap();
+  await play(node, [edge(1), { transform: 'none', opacity: 1 }], { duration: 300, easing: SPRING, fill: 'backwards' });
+}

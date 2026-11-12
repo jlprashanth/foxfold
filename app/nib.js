@@ -80,6 +80,18 @@ export function tilt(g, dir = -1) {
   ], { duration: 700, easing: 'ease-in-out' }, '100px 150px');
 }
 
+// Two quick nods: a right answer.
+export function nod(g) {
+  if (!motionOK()) return;
+  run(g.querySelector('.nib-tilt'), [
+    { transform: 'translateY(0) rotate(0deg)' },
+    { transform: 'translateY(7px) rotate(4deg)', offset: .22 },
+    { transform: 'translateY(0) rotate(0deg)', offset: .45 },
+    { transform: 'translateY(6px) rotate(-3deg)', offset: .68 },
+    { transform: 'translateY(0) rotate(0deg)' },
+  ], { duration: 620, easing: 'ease-in-out' }, '100px 150px');
+}
+
 // Tail flares out, as if releasing the paper strips.
 export function fanTail(g) {
   if (!motionOK()) return;

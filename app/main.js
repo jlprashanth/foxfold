@@ -1,11 +1,13 @@
 import { APP_NAME } from './config.js';
 import { loadIndex, loadFacts, loadRawTopic, loadTopic } from './content.js';
-import { el } from './dom.js';
+import { el, svg } from './dom.js';
 import { foldView } from './widgets.js';
 import { addStar, hasStar, getStars, takeIntro } from './progress.js';
 import { createStage } from './stage.js';
 import { buildTopics } from './topics.js';
-import { makeCover, motionOK, settle } from './fx.js';
+import { makeCover, motionOK, settle, turnPage } from './fx.js';
+import { nibArt, nod, tilt, hop } from './nib.js';
+import { starReward } from './reward.js';
 import * as flow from './flow.js';
 import { daysSince, REVIEW_DAYS } from './schema.js';
 
@@ -151,27 +153,52 @@ function stampView(topic) {
 async function topicView(nu, id) {
   const s = nu.screen;
   const topic = await loadTopic(id);
-  let i = 0;
+  const last = topic.folds.length - 1;
+  let i = 0;    // the fold on screen
+  let want = 0; // the fold we are turning to (taps can arrive faster than a turn finishes)
   const cover = makeCover();
   const body = el('div', { class: 'fold-body' });
   const card = el('div', { class: `fold t${topic.track}` }, body, cover);
-  const nav = el('div', { class: 'nav' });
   const star = el('span', { class: 'star', title: 'Star earned', hidden: hasStar(id) ? null : '' }, '★');
   const head = el('div', { class: 'page-head' }, backBtn(), el('h2', {}, topic.title, ' ', star));
+
+  // Nib sits between the buttons: it nods at a right answer, tilts its head at a miss, hops at the end.
+  const art = nibArt();
+  const react = { yes: () => nod(art), no: () => tilt(art, -1) };
+  const prevBtn = el('button', { class: 'tab', onclick: () => turn(want - 1) }, '‹ Prev');
+  const nextBtn = el('button', { class: 'tab', onclick: () => (want < last ? turn(want + 1) : history.back()) });
+  const count = el('span', { class: 'count' });
+  const nav = el('div', { class: 'nav' }, prevBtn,
+    el('div', { class: 'nav-mid' }, svg('svg', { class: 'nib-corner', viewBox: '-100 -100 200 200', width: 56, height: 56, 'aria-hidden': 'true' }, art), count), nextBtn);
   s.append(head, card, nav);
   nu.page = { card, cover, head, nav };
-  const earn = () => { addStar(id); star.hidden = false; };
 
-  const draw = () => {
-    body.replaceChildren(foldView(topic.folds[i], earn));
-    if (i === topic.folds.length - 1) body.append(stampView(topic));
-    nav.replaceChildren(
-      el('button', { class: 'tab', disabled: i === 0 ? '' : null, onclick: () => { i--; draw(); } }, '‹ Prev'),
-      el('span', {}, `${i + 1} / ${topic.folds.length}`),
-      i < topic.folds.length - 1
-        ? el('button', { class: 'tab', onclick: () => { i++; draw(); } }, 'Next ›')
-        : el('button', { class: 'tab', onclick: () => history.back() }, 'Done ✓'),
-    );
+  let rewarded = false; // some games report "done" more than once
+  const earn = () => {
+    if (rewarded) return;
+    rewarded = true;
+    const fresh = !hasStar(id);
+    addStar(id);
+    hop(art);
+    if (fresh) starReward(card, star);
+  };
+
+  const drawNav = () => {
+    prevBtn.disabled = want === 0;
+    nextBtn.textContent = want < last ? 'Next ›' : 'Done ✓';
+    count.textContent = `${want + 1} / ${topic.folds.length}`;
+    card.classList.toggle('more', want < last); // the page corner curls while there is more
+  };
+  const drawBody = () => {
+    body.replaceChildren(foldView(topic.folds[i], earn, react));
+    if (i === last) body.append(stampView(topic));
+  };
+  const turn = (n) => {
+    if (n < 0 || n > last || n === want) return;
+    const dir = n > want ? 1 : -1;
+    want = n;
+    drawNav();
+    turnPage(body, dir, () => { i = n; drawBody(); });
   };
 
   // Swipe between folds
@@ -181,10 +208,11 @@ async function topicView(nu, id) {
     if (x0 === null) return;
     const dx = e.changedTouches[0].clientX - x0;
     x0 = null;
-    if (dx < -50 && i < topic.folds.length - 1) { i++; draw(); }
-    else if (dx > 50 && i > 0) { i--; draw(); }
+    if (dx < -50) turn(want + 1);
+    else if (dx > 50) turn(want - 1);
   });
-  draw();
+  drawNav();
+  drawBody();
 }
 
 (async function start() {

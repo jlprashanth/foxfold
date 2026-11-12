@@ -1,7 +1,7 @@
 // Offline cache. Works from any subfolder (e.g. /foxfold/) because every URL is
 // resolved against this file's own location, never from "/".
 // Bump APP_VERSION whenever anything in SHELL changes; content updates need no bump.
-const APP_VERSION = 'v3';
+const APP_VERSION = 'v4';
 const APP_CACHE = `foxfold-app-${APP_VERSION}`;
 const CONTENT_CACHE = 'foxfold-content'; // network first, so edited JSON shows up when online
 
@@ -9,7 +9,7 @@ const SHELL = [
   './', 'index.html', 'manifest.webmanifest', 'app/style.css',
   'app/config.js', 'app/content.js', 'app/dom.js', 'app/facts.js', 'app/main.js',
   'app/progress.js', 'app/schema.js', 'app/widgets.js', 'app/nib.js', 'app/shapes.js', 'app/stage.js',
-  'app/fx.js', 'app/flow.js', 'app/topics.js',
+  'app/fx.js', 'app/flow.js', 'app/topics.js', 'app/reward.js',
   'assets/fonts/baloo2.woff2', 'assets/fonts/nunito.woff2',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
 ].map((p) => new URL(p, self.location).href);

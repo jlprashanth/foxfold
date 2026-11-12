@@ -1,5 +1,6 @@
-// Data-driven widgets: one function per fold type, plain form (no animation yet).
+// Data-driven widgets: one function per fold type.
 // Each takes the fold's JSON and returns an element. Fold text is already fact-resolved.
+// `done` earns the topic's star; `react.yes()` / `react.no()` make Nib nod or tilt its head.
 import { el, richText } from './dom.js';
 import { MASCOT_NAME } from './config.js';
 
@@ -19,7 +20,7 @@ function steps(f) {
   return el('ol', { class: 'steps' }, ...f.items.map((t) => el('li', {}, ...richText(t))));
 }
 
-function pick(f, done) {
+function pick(f, done, react) {
   const box = el('div', { class: 'pick' }, el('p', { class: 'q' }, ...richText(f.question)));
   const why = msg();
   const opts = f.options.map((opt, n) => {
@@ -30,10 +31,12 @@ function pick(f, done) {
         box.dataset.done = '1';
         b.classList.add('right');
         show(why, f.why || 'Correct.');
+        react.yes();
         done();
       } else {
         b.classList.add('wrong'); b.disabled = true; // retry as often as you like
         show(why, 'Not quite. Try another answer.');
+        react.no();
       }
     };
     return b;
@@ -43,7 +46,7 @@ function pick(f, done) {
 }
 
 // sort: one item at a time; tap the basket it belongs in.
-function sort(f, done) {
+function sort(f, done, react) {
   const box = el('div', { class: 'sort' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const card = el('div', { class: 'plane' });
   const note = msg();
@@ -70,8 +73,8 @@ function sort(f, done) {
     baskets.replaceChildren(...f.baskets.map((name) => el('button', { class: 'basket', onclick: () => {
       const item = f.items[n];
       if (!item) return;
-      if (item.basket === name) { n++; note.hidden = true; if (item.why) show(note, item.why); next(); }
-      else { misses++; card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); show(note, 'Not quite. Try another basket.'); }
+      if (item.basket === name) { n++; note.hidden = true; if (item.why) show(note, item.why); react.yes(); next(); }
+      else { misses++; card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); show(note, 'Not quite. Try another basket.'); react.no(); }
     } }, name)));
   };
   fill();
@@ -81,7 +84,7 @@ function sort(f, done) {
 }
 
 // flip: tap a card to turn it from weak to strong.
-function flip(f, done) {
+function flip(f, done, react) {
   const box = el('div', { class: 'flip' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const seen = new Set();
   for (const c of f.cards) {
@@ -95,14 +98,14 @@ function flip(f, done) {
     draw(false);
     box.append(el('button', { class: 'card', 'aria-label': 'Flip card', onclick: (e) => {
       strong = !strong; draw(strong); e.currentTarget.classList.toggle('strong', strong);
-      if (strong) { seen.add(c); if (seen.size === f.cards.length) done(); }
+      if (strong) { seen.add(c); react.yes(); if (seen.size === f.cards.length) done(); }
     } }, face));
   }
   return box;
 }
 
 // meter: drag a slider; the text changes with the stage reached.
-function meter(f, done) {
+function meter(f, done, react) {
   const d = f.data;
   const min = d.min ?? 0;
   const stages = [...d.stages].sort((a, b) => a.from - b.from);
@@ -110,12 +113,14 @@ function meter(f, done) {
   const text = el('p', { class: 'why' });
   const readout = el('span', {});
   const slider = el('input', { type: 'range', min, max: d.max, value: min, 'aria-label': d.label });
+  let reached = false;
   const update = () => {
     const v = Number(slider.value);
     fill.style.width = `${((v - min) / (d.max - min)) * 100}%`;
     readout.textContent = `${d.label}: ${v}${d.unit ? ' ' + d.unit : ''}`;
     const stage = [...stages].reverse().find((s) => v >= s.from) || stages[0];
     text.replaceChildren(...richText(stage.text));
+    if (v >= d.max && !reached) { reached = true; react.yes(); }
     if (v >= d.max) done();
   };
   slider.oninput = update;
@@ -124,7 +129,7 @@ function meter(f, done) {
 }
 
 // build: tap pieces in the right order; the correct next piece snaps into place.
-function build(f, done) {
+function build(f, done, react) {
   const box = el('div', { class: 'build' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const slots = el('ol', { class: 'slots' }, ...f.parts.map((p) => el('li', {}, el('small', {}, p.label))));
   const tray = el('div', { class: 'tray' });
@@ -137,10 +142,11 @@ function build(f, done) {
       if (p.i === n) {
         slots.children[n].append(el('span', {}, ...richText(p.text)));
         slots.children[n].classList.add('filled');
-        b.remove(); n++; note.hidden = true;
+        b.remove(); n++; note.hidden = true; react.yes();
         if (n === f.parts.length) { tray.remove(); done(); show(note, f.done || 'Built. That is the whole prompt.'); }
       } else {
         b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+        react.no();
         show(note, p.i === -1 ? 'That piece does not belong here.' : `Not yet. Which part comes next: ${f.parts[n].label}?`);
       }
     };
@@ -151,7 +157,7 @@ function build(f, done) {
 }
 
 // spot: tap the one made-up part.
-function spot(f, done) {
+function spot(f, done, react) {
   const box = el('div', { class: 'spot' }, el('p', { class: 'q' }, ...richText(f.prompt)));
   const note = msg();
   const wrap = el('p', { class: 'segments' });
@@ -160,9 +166,9 @@ function spot(f, done) {
     b.onclick = () => {
       if (box.dataset.done) return;
       if (s.fake) {
-        box.dataset.done = '1'; b.classList.add('right'); done();
+        box.dataset.done = '1'; b.classList.add('right'); react.yes(); done();
         show(note, f.why || 'Yes, that is the made-up part.');
-      } else { b.classList.add('wrong'); b.disabled = true; show(note, 'That part checks out. Keep looking.'); }
+      } else { b.classList.add('wrong'); b.disabled = true; react.no(); show(note, 'That part checks out. Keep looking.'); }
     };
     wrap.append(b, ' ');
   });
@@ -173,7 +179,8 @@ function spot(f, done) {
 const WIDGETS = { say, steps, pick, sort, flip, meter, build, spot };
 
 // `done` is called when a game fold is completed (it earns the topic's star).
-export function foldView(f, done = () => {}) {
+const NO_REACT = { yes() {}, no() {} };
+export function foldView(f, done = () => {}, react = NO_REACT) {
   const make = WIDGETS[f.type];
-  return make ? make(f, done) : el('p', {}, `(Unknown fold type "${f.type}".)`);
+  return make ? make(f, done, react) : el('p', {}, `(Unknown fold type "${f.type}".)`);
 }
