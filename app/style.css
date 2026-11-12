@@ -100,7 +100,6 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .sheet { fill: var(--paper); }
 .crease { fill: none; stroke: rgba(0,0,0,.3); stroke-width: 1.5; stroke-dasharray: 4 4; }
 .dot { fill: none; stroke: var(--paper); stroke-width: 2; }
-.stage .dot { display: none; } /* progress dots hidden for now */
 .dot.on { fill: var(--t1); stroke: #7a5a00; stroke-width: 1.5; }
 
 /* Nib colours: n1 lit, n2 shaded, n3 inner ear, nw white tip, nw2 shaded white */
@@ -108,8 +107,8 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .nw { fill: #fff8ea; } .nw2 { fill: #ebe3d0; } .ink { fill: #2b1d16; } .shadow { fill: rgba(0,0,0,.18); }
 
 /* Nib in the middle: large on Home, smaller on Tracks (springy). Positions are in stage units. */
-.nib-place { transform: translate(180px, 233px) scale(1.4); transition: transform .6s cubic-bezier(.34, 1.56, .64, 1); }
-.stage.tracks .nib-place { transform: translate(180px, 233px) scale(.6); }
+.nib-place { transform: translate(180px, 222px) scale(1.4); transition: transform .6s cubic-bezier(.34, 1.56, .64, 1); }
+.stage.tracks .nib-place { transform: translate(180px, 222px) scale(.6); }
 
 /* Idle loop: blink, ear twitch, tail swish, a slow head bob */
 .nib-tail { transform-origin: 132px 192px; animation: swish 3.4s ease-in-out infinite; }
