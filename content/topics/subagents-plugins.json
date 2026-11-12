@@ -1,0 +1,27 @@
+{
+  "id": "subagents-plugins",
+  "track": 5,
+  "title": "Subagents and plugins",
+  "reviewed": "2026-11-12",
+  "volatility": "fast",
+  "sources": [
+    { "title": "Create custom subagents", "url": "https://code.claude.com/docs/en/sub-agents" },
+    { "title": "Install and manage plugins", "url": "https://code.claude.com/docs/en/discover-plugins" },
+    { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
+  ],
+  "folds": [
+    { "type": "say", "text": "A **subagent** is a helper with its own context window. It does a side job, like searching a big codebase, and sends back only a short summary. Your main conversation stays tidy." },
+    { "type": "say", "text": "Claude can delegate on its own when a task matches a subagent's description, or you can ask for one by name. Claude Code also has built-in helpers for read-only search and planning." },
+    { "type": "say", "text": "You can limit what a subagent may do, such as read-only tools. Subagents are Markdown files, so you can ask Claude to write one for you. Their work still counts toward your usage." },
+    { "type": "say", "text": "A **plugin** bundles extras to install in one go. It can add skills, agents, hooks and MCP servers. Plugins come from **marketplaces**, which are catalogues of plugins." },
+    { "type": "say", "text": "Run `/plugin` to browse and manage them. A plugin can run hooks and servers, so read what it will install first, and be careful with sources you do not know." },
+    { "type": "sort", "prompt": "Subagent or plugin? Tap the basket.",
+      "baskets": ["Subagent", "Plugin"],
+      "items": [
+        { "text": "Search a huge codebase without filling my main chat", "basket": "Subagent", "why": "It works in its own window and returns a summary." },
+        { "text": "Install a ready-made bundle of skills and hooks", "basket": "Plugin", "why": "Plugins package extras for sharing." },
+        { "text": "A read-only reviewer that cannot edit files", "basket": "Subagent" },
+        { "text": "Add a team's shared tools from a marketplace", "basket": "Plugin" }
+      ] }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "tracks": [
     {
       "id": 1,
@@ -49,7 +49,10 @@
         "claude-code-first-session",
         "plan-permissions-auto",
         "essential-commands",
-        "plan-then-build"
+        "plan-then-build",
+        "hooks",
+        "subagents-plugins",
+        "git-safety-net"
       ]
     },
     {

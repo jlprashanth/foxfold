@@ -1,0 +1,26 @@
+{
+  "id": "hooks",
+  "track": 5,
+  "title": "Hooks",
+  "reviewed": "2026-11-12",
+  "volatility": "medium",
+  "sources": [
+    { "title": "Automate actions with hooks", "url": "https://code.claude.com/docs/en/hooks-guide" },
+    { "title": "Best practices for Claude Code", "url": "https://code.claude.com/docs/en/best-practices" }
+  ],
+  "folds": [
+    { "type": "say", "text": "A **hook** is a shell command that Claude Code runs automatically at a set moment, like after a file edit. Certain actions then always happen, instead of relying on Claude to remember." },
+    { "type": "say", "text": "Hooks attach to events. For example, one event fires before a tool runs and can block it. Another fires after a tool succeeds. Another fires when Claude needs your input." },
+    { "type": "say", "text": "Handy uses: tidy code after every edit, get a desktop notification when Claude is waiting for you, or stop edits to protected files before they happen." },
+    { "type": "say", "text": "You add hooks in a settings file. Type `/hooks` in a session to browse the ones you have. Hooks run commands on your machine, so only add ones you understand." },
+    { "type": "say", "text": "Hooks and **CLAUDE.md** differ. CLAUDE.md is guidance Claude may or may not follow. A hook is enforced by the program itself, so use one for rules that cannot have exceptions." },
+    { "type": "sort", "prompt": "CLAUDE.md or hook? Tap the basket.",
+      "baskets": ["CLAUDE.md", "Hook"],
+      "items": [
+        { "text": "Our project uses two-space indents", "basket": "CLAUDE.md", "why": "A convention to guide Claude fits a note." },
+        { "text": "Always run the formatter after every file edit", "basket": "Hook", "why": "A hook makes it happen every time." },
+        { "text": "Never let Claude edit the secrets file", "basket": "Hook" },
+        { "text": "Here is how to run this project's tests", "basket": "CLAUDE.md" }
+      ] }
+  ]
+}
