@@ -1,7 +1,7 @@
 // Offline cache. Works from any subfolder (e.g. /foxfold/) because every URL is
 // resolved against this file's own location, never from "/".
 // Bump APP_VERSION whenever anything in SHELL changes; content updates need no bump.
-const APP_VERSION = 'v7';
+const APP_VERSION = 'v10';
 const APP_CACHE = `foxfold-app-${APP_VERSION}`;
 const CONTENT_CACHE = 'foxfold-content'; // network first, so edited JSON shows up when online
 

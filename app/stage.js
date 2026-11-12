@@ -8,7 +8,7 @@ import { nibArt, hop, tilt, fanTail, foldUp, motionOK, NIB_CENTRE, NIB_TAIL_TIP 
 import { shapeArt } from './shapes.js';
 import { play, rectOf } from './fx.js';
 
-const W = 360, H = 440, CX = 180, CY = 222, RX = 100, RY = 130;
+const W = 360, H = 466, CX = 180, CY = 233, RX = 116, RY = 146, RY_SIDE = 112; // RY: top and bottom shapes; RY_SIDE: the four side shapes (closer together)
 const NIB_HOME_SCALE = 1.4;
 const STRIP_START = 120, STRIP_GAP = 90, STRIP_FLIGHT = 480; // ms; keep in step with style.css (.tracks .body)
 
@@ -49,7 +49,7 @@ export function createStage({ tracks, stars, mode = 'home', onTracks, onPick, en
 
   tracks.forEach((t, i) => {
     const a = (-90 + 60 * i) * Math.PI / 180;
-    const x = CX + RX * Math.cos(a), y = CY + RY * Math.sin(a);
+    const x = CX + RX * Math.cos(a), y = CY + (Math.abs(Math.sin(a)) === 1 ? RY : RY_SIDE * Math.sin(a) / .866);
     const upper = Math.sin(a) < 0; // upper shapes put the label above, lower ones below (away from Nib)
     const ready = t.topics.length > 0;
     const earned = t.topics.filter((id) => stars.includes(id)).length;
