@@ -12,12 +12,38 @@ const shuffle = (a) => {
 const msg = () => el('p', { class: 'why', hidden: '', 'aria-live': 'polite' });
 const show = (p, text) => { p.replaceChildren(...richText(text)); p.hidden = false; };
 
+// Optional card heading: a title with a small label chip beside it.
+const head = (f, kind) => (f.title || kind
+  ? [el('div', { class: 'card-head' },
+    ...(kind ? [el('span', { class: 'chip ex' }, kind)] : []),
+    ...(f.title ? [el('h3', {}, ...richText(f.title))] : []),
+    ...(f.tag ? [el('span', { class: 'chip' }, ...richText(f.tag))] : []))]
+  : []);
+const points = (items) => (items ? [el('ul', { class: 'points' }, ...items.map((t) => el('li', {}, ...richText(t))))] : []);
+const lead = (text) => (text ? [el('p', { class: 'lead' }, ...richText(text))] : []);
+
+// say: Nib explains. Either a short paragraph, or a titled card of points.
 function say(f) {
-  return el('div', { class: 'say' }, el('span', { class: 'mini-fox', title: MASCOT_NAME }, '🦊'), el('p', {}, ...richText(f.text)));
+  const fox = el('span', { class: 'mini-fox', title: MASCOT_NAME }, '🦊');
+  if (!f.title) return el('div', { class: 'say' }, fox, el('div', {}, ...lead(f.text), ...points(f.points)));
+  return el('div', { class: 'say titled' }, el('div', { class: 'card-head' }, fox, ...head(f)[0].children), ...lead(f.text), ...points(f.points));
 }
 
 function steps(f) {
-  return el('ol', { class: 'steps' }, ...f.items.map((t) => el('li', {}, ...richText(t))));
+  return el('div', { class: 'say titled' }, ...head(f), el('ol', { class: 'steps' }, ...f.items.map((t) => el('li', {}, ...richText(t)))));
+}
+
+// example: a worked example, as a short scenario, points, and/or a mini chat.
+// Chat lines: { "label": "Search on", "you": "...", "claude": "..." }; each part is optional.
+function example(f) {
+  const chat = (f.chat || []).flatMap((c) => [
+    ...(c.label ? [el('p', { class: 'ex-label' }, ...richText(c.label))] : []),
+    ...(c.you ? [el('p', { class: 'bubble you' }, el('small', {}, 'You'), ...richText(c.you))] : []),
+    ...(c.claude ? [el('p', { class: 'bubble claude' }, el('small', {}, 'Claude'), ...richText(c.claude))] : []),
+  ]);
+  return el('div', { class: 'example' }, ...head(f, 'Example'), ...lead(f.text), ...points(f.points),
+    ...(chat.length ? [el('div', { class: 'chat' }, ...chat)] : []),
+    ...(f.note ? [el('p', { class: 'why' }, ...richText(f.note))] : []));
 }
 
 function pick(f, done, react) {
@@ -176,7 +202,7 @@ function spot(f, done, react) {
   return box;
 }
 
-const WIDGETS = { say, steps, pick, sort, flip, meter, build, spot };
+const WIDGETS = { say, steps, example, pick, sort, flip, meter, build, spot };
 
 // `done` is called when a game fold is completed (it earns the topic's star).
 const NO_REACT = { yes() {}, no() {} };

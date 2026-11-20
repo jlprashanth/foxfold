@@ -1,12 +1,19 @@
 {
   "id": "how-models-are-trained", "track": 1, "title": "How models are trained",
-  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "Training starts with a model reading a huge amount of text and practising one task: guess the next word, again and again." },
-    { "type": "say", "text": "Each wrong guess nudges the model's settings a little. After many rounds, it picks up grammar, facts and how people write." },
-    { "type": "say", "text": "Then comes more training with human feedback, so the model learns to be helpful, honest and careful instead of just continuing text." },
-    { "type": "say", "text": "Once training is done, the model is fixed. It does not learn from your chat on its own. New knowledge needs new training or a search." },
-    { "type": "say", "text": "Example: tell Claude your dog is called Biscuit, and it uses that for the rest of the chat. In a new chat it will not know, unless memory is switched on or you say it again." },
+    { "type": "say", "title": "Step 1: reading",
+      "points": ["A model reads a huge amount of text.", "It practises one task again and again: guess the next word.", "Each wrong guess nudges its settings a little."] },
+    { "type": "say", "title": "Step 2: learning to help",
+      "points": ["After many rounds, it picks up grammar, facts and how people write.", "Then more training with human feedback teaches it to be helpful, honest and careful."] },
+    { "type": "say", "title": "After training",
+      "points": ["The model is fixed.", "It does not learn from your chat on its own.", "New knowledge needs new training or a search."] },
+    { "type": "example", "title": "Biscuit the dog",
+      "chat": [
+        { "you": "My dog is called Biscuit. Ideas for her birthday?", "claude": "A treat hunt for Biscuit!" },
+        { "label": "A new chat", "you": "Ideas for my dog's birthday?", "claude": "Happy to help! What's your dog's name?" }
+      ],
+      "note": "A new chat starts fresh, unless memory is on." },
     { "type": "flip", "prompt": "Tap each card to flip a myth into what really happens.",
       "cards": [
         { "weak": "Myth: Claude is searching a giant database of answers.", "strong": "It predicts new text from patterns it learned.", "note": "Nothing is copied out of a stored answer list." },

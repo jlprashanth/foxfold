@@ -40,6 +40,30 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 [hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .screen { animation-duration: .12s; animation-timing-function: linear; } }
 
+/* Titled cards: a heading with a label chip, then points with paper-diamond bullets in the track colour */
+.say.titled, .example { display: grid; gap: 10px; }
+.card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.card-head .mini-fox { font-size: 28px; line-height: 1; }
+.card-head h3 { font: 700 22px/1.2 'Baloo 2', system-ui, sans-serif; margin: 0; }
+.chip { display: inline-block; padding: 1px 10px; font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  background: var(--c1); color: var(--ink); border-bottom: 3px solid var(--c3); }
+.t6 .chip { color: #fff; }
+.chip.ex { background: var(--ink); color: var(--paper); border-bottom-color: var(--c1); }
+.lead { margin: 0; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.points li { position: relative; padding-left: 26px; }
+.points li::before { content: ''; position: absolute; left: 4px; top: .5em; width: 11px; height: 11px; background: var(--c1); border: 2px solid var(--c3); transform: rotate(45deg); }
+.say:not(.titled) .points { margin-top: 8px; }
+
+/* Example chat: your message on the right, Claude's on the left, small labels between turns */
+.chat { display: grid; gap: 6px; }
+.bubble { margin: 0; max-width: 88%; padding: 4px 10px 6px; background: #fff; border: 2px solid var(--ink); font-size: 16px; line-height: 1.35; }
+.bubble small { display: block; font-size: 11px; line-height: 1.5; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #5a5450; }
+.bubble.you { justify-self: end; background: var(--c4); border-bottom-right-width: 6px; }
+.bubble.claude { justify-self: start; border-bottom-left-width: 6px; }
+.ex-label { margin: 2px 0 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #5a5450; }
+.ex-label::before, .ex-label::after { content: ''; flex: 1; border-top: 2px dashed rgba(0,0,0,.25); }
+
 /* Widgets (plain form) */
 .steps { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; }
 .plane { background: #fff; border: 2px solid var(--ink); padding: 14px; margin: 10px 0; text-align: center; font-weight: 700; clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%, 0 88%); }
@@ -174,6 +198,8 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 
 /* Cover: coloured paper over a sheet or page while it is still folding; it flaps up to show the face */
 .fold { position: relative; transform-origin: 50% 0; } /* pose() in fx.js assumes a top-centre origin */
+/* A long card scrolls inside itself, so the Prev / Next buttons always stay on screen */
+.screen > .fold { flex: 0 1 auto; overflow-y: auto; overscroll-behavior: contain; }
 .cover { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: var(--c1); transform-origin: 50% 0;
   transform: perspective(700px) rotateX(-100deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .cover::before, .cover::after { content: ''; position: absolute; left: 0; right: 0; border-top: 2px dashed rgba(0,0,0,.25); }

@@ -1,12 +1,21 @@
 {
   "id": "using-ai-safely", "track": 1, "title": "Using AI safely",
-  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "Be careful what you paste into any AI tool. Treat a chat box like a public postcard, not a private diary." },
-    { "type": "say", "text": "Never paste passwords, API keys or secret tokens. If Claude needs to see the shape of one, use a placeholder like `YOUR_API_KEY`." },
-    { "type": "say", "text": "Think twice about other people's private details, customer data and company documents. Check your workplace or school rules first." },
-    { "type": "say", "text": "Safe habits: remove names and numbers you do not need, check settings for how your chats are used, and verify answers that matter." },
-    { "type": "say", "text": "Example: instead of \"I am Priya Shah, account 4471 2290, why was I charged twice?\", write \"My bank charged me twice for one purchase. How do I ask for a refund?\" You get the same help without sharing anything private." },
+    { "type": "say", "title": "A chat is a postcard",
+      "points": ["Be careful what you paste into any AI tool.", "Treat a chat box like a public postcard, not a private diary."] },
+    { "type": "say", "title": "Never paste secrets",
+      "points": ["No passwords, API keys or secret tokens.", "If Claude needs to see the shape of one, use a placeholder like `YOUR_API_KEY`."] },
+    { "type": "say", "title": "Think twice about",
+      "points": ["Other people's private details.", "Customer data and company documents.", "Check your workplace or school rules first."] },
+    { "type": "example", "title": "Same help, nothing private",
+      "chat": [
+        { "label": "Before", "you": "I'm Priya Shah, account 4471 2290. Why was I charged twice?" },
+        { "label": "After", "you": "My bank charged me twice for one purchase. How do I ask for a refund?" }
+      ],
+      "note": "Claude can help just as well with the second one." },
+    { "type": "steps", "title": "Safe habits",
+      "items": ["Remove names and numbers you do not need.", "Check settings for how your chats are used.", "Verify answers that matter."] },
     { "type": "sort", "prompt": "Fine to paste, or never paste?",
       "baskets": ["Fine to paste", "Never paste"],
       "items": [

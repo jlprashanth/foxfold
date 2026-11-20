@@ -1,12 +1,21 @@
 {
   "id": "what-is-a-model", "track": 1, "title": "What an AI model is",
-  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "An **AI model** is a program that learned patterns from huge amounts of text. It does not look answers up. It predicts what fits next." },
-    { "type": "say", "text": "Type \"The sky is\" and the most likely next word is probably `blue`. Claude does this one small piece at a time, very fast." },
-    { "type": "say", "text": "Strings of these predictions add up to emails, stories, summaries and code. It feels like understanding, but it is pattern-matching at a huge scale." },
-    { "type": "say", "text": "Because it predicts rather than looks things up, it can sound sure and still be wrong. That is why checking important answers matters." },
-    { "type": "say", "text": "Try it: ask Claude \"Write a short poem about Mondays\" twice. You get two different poems. Each word is a fresh prediction, not a stored answer pulled from a shelf." },
+    { "type": "say", "title": "What a model is",
+      "points": ["An **AI model** is a program that learned patterns from huge amounts of text.", "It does not look answers up.", "It predicts what fits next."] },
+    { "type": "say", "title": "One piece at a time",
+      "points": ["Type \"The sky is\" and the likely next word is `blue`.", "Claude predicts one small piece at a time, very fast.", "Strings of predictions add up to emails, stories and code."] },
+    { "type": "say", "title": "Why it can be wrong",
+      "points": ["It feels like understanding, but it is pattern-matching at a huge scale.", "So it can sound sure and still be wrong.", "Check the answers that matter."] },
+    { "type": "example", "title": "Ask twice",
+      "chat": [
+        { "you": "Write a short poem about Mondays." },
+        { "claude": "Monday yawns and stretches slow..." },
+        { "you": "Write a short poem about Mondays." },
+        { "claude": "Alarm bells and coffee steam..." }
+      ],
+      "note": "Same question, two poems. Each word is a fresh prediction, not a stored answer." },
     { "type": "pick", "question": "Complete it: \"Peanut butter and ...\"", "options": ["jelly", "tyres", "Tuesday"], "answer": 0, "why": "Right! The model picks what is most likely, based on patterns it learned." }
   ]
 }

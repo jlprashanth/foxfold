@@ -1,13 +1,22 @@
 {
   "id": "tokens-context", "track": 1, "title": "Tokens and the context window",
-  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "A **token** is a small piece of text, often a word or part of a word. Claude reads and writes in tokens." },
-    { "type": "say", "text": "Example: a long word like `unbelievable` may be split into a few tokens, while a short word like `cat` is usually one. That is why long messages and big files use up more of the desk." },
-    { "type": "say", "text": "Your message, Claude's reply and any files it reads all count as tokens. Usage limits are counted in them too." },
-    { "type": "say", "text": "The **context window** is Claude's desk for one chat. Everything in the chat has to fit on it, and Claude re-reads it all with each message." },
-    { "type": "say", "text": "When the desk is full, older parts get squeezed into a summary. Details can get lost, so restate anything important or start a fresh chat." },
-    { "type": "say", "text": "Example: early in a long recipe chat you say you are vegetarian. Many messages later, Claude suggests a chicken dish. Remind it, or start a fresh chat with the key facts at the top." },
+    { "type": "say", "title": "Tokens",
+      "points": ["A **token** is a small piece of text, often a word or part of one.", "Claude reads and writes in tokens.", "Your messages, Claude's replies and files all count.", "Usage limits are counted in tokens too."] },
+    { "type": "example", "title": "Words into tokens",
+      "points": ["`cat` is usually one token.", "`unbelievable` may be split into a few."],
+      "note": "So long messages and big files use more tokens." },
+    { "type": "say", "title": "The context window",
+      "points": ["The **context window** is Claude's desk for one chat.", "Everything in the chat has to fit on it.", "Claude re-reads it all with each message."] },
+    { "type": "say", "title": "When the desk is full",
+      "points": ["Older parts get squeezed into a summary.", "Small details can get lost.", "Restate anything important, or start a fresh chat."] },
+    { "type": "example", "title": "A crowded desk",
+      "chat": [
+        { "you": "I'm vegetarian. Help me plan a week of meals." },
+        { "label": "Many messages later", "claude": "How about roast chicken for Sunday?" }
+      ],
+      "note": "The early detail got lost. Remind Claude, or start a fresh chat with key facts at the top." },
     { "type": "meter", "prompt": "Drag to fill Claude's desk and watch what happens.",
       "data": { "label": "Desk full", "unit": "%", "min": 0, "max": 100,
         "stages": [

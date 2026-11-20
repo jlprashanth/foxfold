@@ -1,16 +1,22 @@
 {
   "id": "usage-limits", "track": 2, "title": "Usage limits and saving usage",
-  "reviewed": "2026-11-11", "volatility": "fast",
+  "reviewed": "2026-11-20", "volatility": "fast",
   "sources": [
     { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" },
     { "title": "Manage usage credits for paid Claude plans", "url": "https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans" }
   ],
   "folds": [
-    { "type": "say", "text": "Claude has a usage allowance, not a fixed number of messages. Typical limits: {{facts.limits}}. What you get depends on your plan." },
-    { "type": "say", "text": "The same allowance is shared across the web, desktop, mobile and Claude Code. You can see how much you have used in your settings." },
-    { "type": "say", "text": "What eats usage: long chats, big files, heavier models, high effort, and tools like research, web search and file creation." },
-    { "type": "say", "text": "Example: you have a 60-message chat about a holiday, and now you ask about your car. Claude carries all 60 messages along with that question. In a fresh chat it reads just one." },
-    { "type": "steps", "items": ["Start a new chat for a new topic.", "Put related questions into one clear message.", "Pick a lighter model for simple jobs.", "Use a project for documents you reuse.", "Be specific, so Claude needs fewer follow-ups."] },
+    { "type": "say", "title": "Your allowance",
+      "points": ["Claude has a usage allowance, not a fixed number of messages.", "Typical limits: {{facts.limits}}.", "What you get depends on your plan."] },
+    { "type": "say", "title": "One shared allowance",
+      "points": ["Shared across web, desktop, mobile and Claude Code.", "See how much you have used in your settings."] },
+    { "type": "say", "title": "What uses more",
+      "points": ["Long chats and big files.", "Heavier models and high effort.", "Tools like research, web search and file creation."] },
+    { "type": "example", "title": "The long chat",
+      "points": ["You have a 60-message chat about a holiday.", "Now you ask about your car in the same chat.", "Claude carries all 60 messages along with that question."],
+      "note": "In a fresh chat, it reads just one." },
+    { "type": "steps", "title": "Save usage",
+      "items": ["Start a new chat for a new topic.", "Put related questions into one clear message.", "Pick a lighter model for simple jobs.", "Use a project for documents you reuse.", "Be specific, so Claude needs fewer follow-ups."] },
     { "type": "pick", "question": "You have a new, unrelated question. Which habit saves more usage?",
       "options": ["Keep going in your long old chat", "Start a fresh chat", "Ask three small questions in a row"],
       "answer": 1,

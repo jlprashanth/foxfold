@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "tracks": [
     {
       "id": 1,
@@ -19,6 +19,7 @@
       "topics": [
         "claude-apps",
         "models-effort",
+        "effort",
         "usage-limits",
         "projects-memory-artifacts",
         "research-and-search"

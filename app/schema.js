@@ -3,20 +3,35 @@ import { resolveFacts } from './facts.js';
 
 export const MAX_WORDS = 45;
 export const MIN_FOLDS = 4;
-export const MAX_FOLDS = 7;
+export const MAX_FOLDS = 10;
 export const REVIEW_DAYS = { fast: 60, medium: 120, stable: 365 };
 export const GAME_TYPES = ['pick', 'sort', 'flip', 'meter', 'build', 'spot'];
-export const FOLD_TYPES = ['say', 'steps', ...GAME_TYPES];
+export const FOLD_TYPES = ['say', 'steps', 'example', ...GAME_TYPES];
 
 const isStr = (v) => typeof v === 'string' && v.trim() !== '';
 const isArr = (v, min = 1) => Array.isArray(v) && v.length >= min;
 const words = (...texts) => texts.filter(isStr).join(' ').split(/\s+/).filter(Boolean).length;
+const optStr = (f, k, err) => { if (f[k] !== undefined && !isStr(f[k])) err(`"${k}" must be text`); };
+const optPoints = (f, err) => { if (f.points !== undefined && !(isArr(f.points) && f.points.every(isStr))) err('"points" must be a list of strings'); };
 
 // Per-type checks. Each gets the fold (facts already resolved) and an `err(msg)` function.
 const CHECKS = {
-  say(f, err) { if (!isStr(f.text)) err('needs "text"'); },
+  say(f, err) {
+    if (!isStr(f.text) && f.points === undefined) err('needs "text" or "points"');
+    optStr(f, 'text', err); optStr(f, 'title', err); optStr(f, 'tag', err); optPoints(f, err);
+    if (f.tag !== undefined && !isStr(f.title)) err('"tag" needs a "title"');
+  },
   steps(f, err) {
     if (!isArr(f.items, 2) || !f.items.every(isStr)) err('needs "items": at least 2 strings');
+    optStr(f, 'title', err);
+  },
+  example(f, err) {
+    optStr(f, 'title', err); optStr(f, 'text', err); optStr(f, 'note', err); optPoints(f, err);
+    if (f.chat !== undefined && !(isArr(f.chat) && f.chat.every((c) => c && ['label', 'you', 'claude'].some((k) => isStr(c[k]))
+      && Object.keys(c).every((k) => ['label', 'you', 'claude'].includes(k) && isStr(c[k]))))) {
+      err('"chat" must be a list of { "label", "you", "claude" } (each optional text)');
+    }
+    if (!isStr(f.text) && !f.points && !f.chat) err('needs "text", "points" or "chat"');
   },
   pick(f, err) {
     if (!isStr(f.question)) err('needs "question"');
@@ -57,8 +72,12 @@ const CHECKS = {
 
 // The text a learner reads in one fold, for the word limit.
 function readText(f) {
-  if (f.type === 'say') return words(f.text);
-  if (f.type === 'steps') return words(...(Array.isArray(f.items) ? f.items : []));
+  const list = (v) => (Array.isArray(v) ? v : []);
+  if (f.type === 'say') return words(f.title, f.tag, f.text, ...list(f.points));
+  if (f.type === 'steps') return words(f.title, ...list(f.items));
+  if (f.type === 'example') {
+    return words(f.title, f.text, f.note, ...list(f.points), ...list(f.chat).flatMap((c) => (c ? [c.label, c.you, c.claude] : [])));
+  }
   return words(f.prompt, f.question);
 }
 

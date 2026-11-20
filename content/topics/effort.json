@@ -1,0 +1,30 @@
+{
+  "id": "effort", "track": 2, "title": "Effort",
+  "reviewed": "2026-11-20", "volatility": "fast",
+  "sources": [
+    { "title": "Effort", "url": "https://platform.claude.com/docs/en/build-with-claude/effort" },
+    { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" }
+  ],
+  "folds": [
+    { "type": "say", "title": "What effort means",
+      "points": ["**Effort** is how much work Claude puts into an answer.", "It covers how long Claude thinks and how carefully it checks.", "Higher effort is slower and uses more of your allowance."] },
+    { "type": "say", "title": "Lower or higher?",
+      "points": ["**Lower effort**: quick answers for simple jobs, like chat or short tasks.", "**Higher effort**: tricky problems, long tasks and careful work.", "For simple jobs, lower effort is faster and saves usage."] },
+    { "type": "example", "title": "Same model, different effort",
+      "chat": [
+        { "label": "Lower effort is fine", "you": "Suggest a name for my goldfish.", "claude": "How about Bubbles, Finn or Captain Splash?" },
+        { "label": "Higher effort helps", "you": "Plan a two-week trip on a tight budget.", "claude": "I compared routes, stays and costs, and kept some spare for surprises." }
+      ] },
+    { "type": "steps", "title": "How to choose",
+      "items": ["Start with the default model and effort.", "Answer too shallow? Step up the model or the effort.", "Quick, simple job? Step down to save usage.", "Change one thing at a time, so you see what helped."] },
+    { "type": "sort", "prompt": "Lower or higher effort? Tap the basket.",
+      "baskets": ["Lower effort", "Higher effort"],
+      "items": [
+        { "text": "Reply to a friendly hello", "basket": "Lower effort", "why": "Simple chat needs no deep thought." },
+        { "text": "Find a bug that has stumped you for days", "basket": "Higher effort", "why": "Hard problems are where extra effort pays off." },
+        { "text": "Turn a short list into a table", "basket": "Lower effort" },
+        { "text": "Weigh up three job offers against your plans", "basket": "Higher effort" },
+        { "text": "Translate one short sentence", "basket": "Lower effort" }
+      ] }
+  ]
+}

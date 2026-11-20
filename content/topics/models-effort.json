@@ -1,18 +1,50 @@
 {
-  "id": "models-effort", "track": 2, "title": "Models and effort",
+  "id": "models-effort", "track": 2, "title": "Meet the models",
   "reviewed": "2026-11-20", "volatility": "fast",
   "sources": [
     { "title": "Models overview", "url": "https://platform.claude.com/docs/en/models/overview" },
-    { "title": "Effort", "url": "https://platform.claude.com/docs/en/build-with-claude/effort" },
     { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" }
   ],
   "folds": [
-    { "type": "say", "text": "Claude comes in a family of models. From lightest to most capable: {{facts.models}}. Think of them as helpers of different sizes: lighter ones are quicker, bigger ones think deeper and use more of your allowance." },
-    { "type": "say", "text": "**Haiku** is the quickest, for short jobs you repeat a lot. Example: \"Sort these 50 comments into praise, complaints and questions.\" **Sonnet** mixes speed and smarts. Example: \"Summarise this article in five bullet points.\"" },
-    { "type": "say", "text": "**Opus** suits long coding and knowledge work. Example: \"Read these three reports and turn them into one plan.\" **Fable** is for the hardest reasoning and long, many-step work. Example: \"Find why this big project keeps breaking, then fix it.\"" },
-    { "type": "say", "text": "**Effort** is how much work Claude puts into an answer: how long it thinks and how carefully it checks. Higher effort helps on hard problems but is slower and uses more. Simple jobs do not need it." },
-    { "type": "say", "text": "Same model, different effort. \"Suggest a name for my goldfish\" needs no deep thought, so low effort is fine. \"Plan a two-week trip on a tight budget\" has many moving parts, and higher effort weighs more options before answering." },
-    { "type": "steps", "items": ["Start with the default model and effort.", "Answer too shallow? Step up the model or the effort.", "Quick, simple job? Step down to save usage.", "Change one thing at a time, so you can see what helped."] },
+    { "type": "say", "title": "Claude's model family",
+      "points": ["From lightest to most capable: {{facts.models}}.", "Lighter models are quicker.", "Bigger models think deeper, but use more of your allowance.", "Meet each one, then see it at work."] },
+
+    { "type": "say", "title": "Haiku", "tag": "Quickest",
+      "points": ["The fastest and lightest model.", "Made for short, simple jobs you repeat a lot.", "Uses the least of your allowance."] },
+    { "type": "example", "title": "Haiku at work",
+      "chat": [
+        { "you": "Sort these 50 comments into praise, complaints and questions." },
+        { "claude": "Done: 21 praise, 17 complaints and 12 questions, each in its own list." }
+      ],
+      "note": "A quick, repeat job. No deep thinking needed." },
+
+    { "type": "say", "title": "Sonnet", "tag": "All-rounder",
+      "points": ["The best mix of speed and smarts.", "Handles everyday writing, summaries and questions.", "Fast enough for easy back-and-forth chat."] },
+    { "type": "example", "title": "Sonnet at work",
+      "chat": [
+        { "you": "Summarise this article in five bullet points." },
+        { "claude": "Here are the five main points, in plain words." }
+      ],
+      "note": "Everyday work: quick, clear and good enough first time." },
+
+    { "type": "say", "title": "Opus", "tag": "Deep worker",
+      "points": ["Built for long coding and knowledge work.", "Keeps track of big tasks over a long session.", "Slower than Sonnet, and uses more of your allowance."] },
+    { "type": "example", "title": "Opus at work",
+      "chat": [
+        { "you": "Read these three reports and turn them into one plan." },
+        { "claude": "I found where the reports agree and where they clash. Here is one plan, with open questions marked." }
+      ],
+      "note": "Lots to read and connect." },
+
+    { "type": "say", "title": "Fable", "tag": "Most capable",
+      "points": ["For the hardest reasoning.", "Handles long jobs with many steps.", "Uses the most of your allowance, so save it for tough work."] },
+    { "type": "example", "title": "Fable at work",
+      "chat": [
+        { "you": "This big project keeps breaking. Find out why and fix it." },
+        { "claude": "I traced it to two parts that clash, fixed both, and checked the rest still works." }
+      ],
+      "note": "Hard and many steps: worth the most capable model." },
+
     { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
       "items": [
         { "text": "Sort a pile of messages into groups, fast", "basket": "Haiku", "why": "Quick, repetitive jobs suit the lightest model." },

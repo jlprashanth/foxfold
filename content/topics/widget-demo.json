@@ -3,6 +3,10 @@
   "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
   "folds": [
     { "type": "say", "text": "Models in the family: {{facts.models}}. This list comes from `facts.json`, so one edit updates every topic." },
+    { "type": "say", "title": "A titled card", "tag": "New", "points": ["Points instead of a paragraph.", "Each one short."] },
+    { "type": "example", "title": "An example card",
+      "chat": [ { "label": "A label", "you": "What the learner might type.", "claude": "A short reply from Claude." } ],
+      "note": "Why this example matters." },
     { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
       "items": [
         { "text": "Tidy a quick text message", "basket": "Haiku", "why": "Small jobs suit the light model." },

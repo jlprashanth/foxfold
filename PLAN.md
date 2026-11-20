@@ -101,7 +101,7 @@ mini-game. On finishing, the page folds into a paper star that flies back to the
 
 ## 5. Topic outline
 
-Limits per topic: 4 to 7 folds, at most 45 words per fold, one game. Volatility is how fast
+Limits per topic: 4 to 10 folds, at most 45 words per fold, one game. Volatility is how fast
 the facts change (S stable, M medium, F fast) and drives the review schedule in section 7.
 
 **Track 1, AI foundations**
@@ -182,7 +182,7 @@ One topic file:
 }
 ```
 
-- Fold types are `say` (Nib talks, with an optional small picture), `steps`, and the six games.
+- Fold types are `say` (Nib talks: a short paragraph, or a `title` with an optional `tag` chip and `points`), `steps` (optional `title`), `example` (a worked example: `text`, `points` and/or a `chat` of `{label, you, claude}` lines, plus a `note`), and the six games.
 - Text allows only bold and inline code. No HTML in content files.
 - `facts.json` holds the model list (name, one-line strength, relative usage cost), the app
   list and the names of the limits. Folds refer to it with `{{facts.models}}`, and the model

@@ -1,12 +1,19 @@
 {
   "id": "cutoff-and-search", "track": 1, "title": "Knowledge cutoff and web search",
-  "reviewed": "2026-11-11", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "Claude learned from text collected up to a certain date, called its **knowledge cutoff**. Anything newer is not in its head." },
-    { "type": "say", "text": "So it may not know about last week's news, a new phone, or the latest version of an app or tool." },
-    { "type": "say", "text": "When **web search** is available, Claude can look things up and read current pages. Without it, Claude only has what it learned." },
-    { "type": "say", "text": "For anything that changes, ask it to search, or tell it the version or date you mean. Then check the sources it gives." },
-    { "type": "say", "text": "Example: ask \"What is the newest model of my phone?\" Without search, Claude may name an older one, because that was the newest in what it learned. With search on, it can check current pages." },
+    { "type": "say", "title": "Knowledge cutoff",
+      "points": ["Claude learned from text collected up to a certain date: its **knowledge cutoff**.", "Anything newer is not in its head.", "Like last week's news, a new phone, or the latest version of an app."] },
+    { "type": "say", "title": "Web search",
+      "points": ["With **web search** on, Claude can look things up and read current pages.", "Without it, Claude only has what it learned."] },
+    { "type": "example", "title": "Without and with search",
+      "chat": [
+        { "label": "Search off", "you": "What's the newest model of my phone?", "claude": "As far as I know, it's the Model 5." },
+        { "label": "Search on", "claude": "I checked the maker's site: it's now the Model 7." }
+      ],
+      "note": "Without search, Claude only knows what it learned." },
+    { "type": "steps", "title": "For anything that changes",
+      "items": ["Ask Claude to search.", "Or tell it the version or date you mean.", "Then check the sources it gives."] },
     { "type": "sort", "prompt": "Does this need a web search, or can Claude just answer?",
       "baskets": ["Needs search", "Fine without"],
       "items": [
