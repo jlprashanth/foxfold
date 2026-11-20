@@ -1,19 +1,23 @@
 {
   "id": "models-effort", "track": 2, "title": "Models and effort",
-  "reviewed": "2026-11-11", "volatility": "fast",
+  "reviewed": "2026-11-20", "volatility": "fast",
   "sources": [
     { "title": "Models overview", "url": "https://platform.claude.com/docs/en/models/overview" },
+    { "title": "Effort", "url": "https://platform.claude.com/docs/en/build-with-claude/effort" },
     { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" }
   ],
   "folds": [
-    { "type": "say", "text": "Claude comes in a family of models. From lightest to most capable: {{facts.models}}. Each is a different trade of speed, depth and usage." },
-    { "type": "say", "text": "**Haiku** is the fastest and lightest. **Sonnet** is the best mix of speed and smarts, a good default for most jobs." },
-    { "type": "say", "text": "**Opus** suits long coding and knowledge work. **Fable** is for the hardest reasoning and long multi-step jobs. Bigger models usually use more of your allowance." },
-    { "type": "say", "text": "**Effort** is how hard Claude thinks before it answers. Higher effort helps on tricky problems, but takes longer and uses more. Simple jobs do not need it." },
+    { "type": "say", "text": "Claude comes in a family of models. From lightest to most capable: {{facts.models}}. Think of them as helpers of different sizes: lighter ones are quicker, bigger ones think deeper and use more of your allowance." },
+    { "type": "say", "text": "**Haiku** is the quickest, for short jobs you repeat a lot. Example: \"Sort these 50 comments into praise, complaints and questions.\" **Sonnet** mixes speed and smarts. Example: \"Summarise this article in five bullet points.\"" },
+    { "type": "say", "text": "**Opus** suits long coding and knowledge work. Example: \"Read these three reports and turn them into one plan.\" **Fable** is for the hardest reasoning and long, many-step work. Example: \"Find why this big project keeps breaking, then fix it.\"" },
+    { "type": "say", "text": "**Effort** is how much work Claude puts into an answer: how long it thinks and how carefully it checks. Higher effort helps on hard problems but is slower and uses more. Simple jobs do not need it." },
+    { "type": "say", "text": "Same model, different effort. \"Suggest a name for my goldfish\" needs no deep thought, so low effort is fine. \"Plan a two-week trip on a tight budget\" has many moving parts, and higher effort weighs more options before answering." },
+    { "type": "steps", "items": ["Start with the default model and effort.", "Answer too shallow? Step up the model or the effort.", "Quick, simple job? Step down to save usage.", "Change one thing at a time, so you can see what helped."] },
     { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
       "items": [
         { "text": "Sort a pile of messages into groups, fast", "basket": "Haiku", "why": "Quick, repetitive jobs suit the lightest model." },
         { "text": "Summarise an article and tidy an email", "basket": "Sonnet", "why": "Everyday work suits the all-rounder." },
+        { "text": "Turn a long list of receipts into a table of dates and amounts", "basket": "Haiku" },
         { "text": "Work through a big coding task over a long session", "basket": "Opus" },
         { "text": "Untangle a very hard problem with many steps", "basket": "Fable", "why": "Save the most capable model for the toughest jobs." }
       ] }

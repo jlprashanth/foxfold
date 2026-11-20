@@ -1,6 +1,6 @@
 # Draft: examples before the quiz (Tracks 1 and 2)
 
-Status: **draft for review**. Nothing in `content/` has changed yet.
+Status: **applied to `content/`** (Sonnet default and effort level names still open).
 
 How to read this:
 - Lines marked **NEW** are added folds. **CHANGED** replaces an existing fold. Anything not listed stays as it is.

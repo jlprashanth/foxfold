@@ -6,6 +6,7 @@
     { "type": "say", "text": "So it may not know about last week's news, a new phone, or the latest version of an app or tool." },
     { "type": "say", "text": "When **web search** is available, Claude can look things up and read current pages. Without it, Claude only has what it learned." },
     { "type": "say", "text": "For anything that changes, ask it to search, or tell it the version or date you mean. Then check the sources it gives." },
+    { "type": "say", "text": "Example: ask \"What is the newest model of my phone?\" Without search, Claude may name an older one, because that was the newest in what it learned. With search on, it can check current pages." },
     { "type": "sort", "prompt": "Does this need a web search, or can Claude just answer?",
       "baskets": ["Needs search", "Fine without"],
       "items": [

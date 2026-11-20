@@ -40,6 +40,10 @@
       "text": "To change how Claude sounds, use **skills**. Claude's help page lists them for adjusting the tone and format of replies, or following your own writing patterns."
     },
     {
+      "type": "say",
+      "text": "Example: in a \"Kitchen makeover\" project you add your floor plan and budget. Every chat in it starts out knowing them. Ask for a shopping list, and Claude can make it an artifact you keep and share."
+    },
+    {
       "type": "sort",
       "prompt": "Which feature fits this need? Tap the basket.",
       "baskets": [

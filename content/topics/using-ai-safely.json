@@ -6,6 +6,7 @@
     { "type": "say", "text": "Never paste passwords, API keys or secret tokens. If Claude needs to see the shape of one, use a placeholder like `YOUR_API_KEY`." },
     { "type": "say", "text": "Think twice about other people's private details, customer data and company documents. Check your workplace or school rules first." },
     { "type": "say", "text": "Safe habits: remove names and numbers you do not need, check settings for how your chats are used, and verify answers that matter." },
+    { "type": "say", "text": "Example: instead of \"I am Priya Shah, account 4471 2290, why was I charged twice?\", write \"My bank charged me twice for one purchase. How do I ask for a refund?\" You get the same help without sharing anything private." },
     { "type": "sort", "prompt": "Fine to paste, or never paste?",
       "baskets": ["Fine to paste", "Never paste"],
       "items": [

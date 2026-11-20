@@ -32,6 +32,10 @@
       "text": "**Research** is for big questions. Claude runs several searches that build on each other and writes an in-depth answer. It takes longer and can use your limits faster, so save it for jobs that need it."
     },
     {
+      "type": "say",
+      "text": "Same topic, three tools. \"Is the museum open today?\" is web search. \"Plan a fair way to split chores among four flatmates\" is extended thinking. \"Find and sum up what experts say about four-day work weeks\" is research."
+    },
+    {
       "type": "pick",
       "question": "You want a detailed comparison of several phone plans from many sources. What fits best?",
       "options": [

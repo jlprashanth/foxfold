@@ -40,6 +40,10 @@
       "text": "**Chrome and Google Workspace** put Claude beside the page or file you have open, so you do not copy and paste. **Excel and PowerPoint** have Claude extensions too."
     },
     {
+      "type": "say",
+      "text": "Example day: you ask Claude something on your phone at the bus stop, then pick up the same chat on your laptop at home. Later, the Chrome extension helps you with the web page you have open."
+    },
+    {
       "type": "sort",
       "prompt": "Which app fits the job? Tap the basket.",
       "baskets": [

@@ -6,6 +6,7 @@
     { "type": "say", "text": "Each wrong guess nudges the model's settings a little. After many rounds, it picks up grammar, facts and how people write." },
     { "type": "say", "text": "Then comes more training with human feedback, so the model learns to be helpful, honest and careful instead of just continuing text." },
     { "type": "say", "text": "Once training is done, the model is fixed. It does not learn from your chat on its own. New knowledge needs new training or a search." },
+    { "type": "say", "text": "Example: tell Claude your dog is called Biscuit, and it uses that for the rest of the chat. In a new chat it will not know, unless memory is switched on or you say it again." },
     { "type": "flip", "prompt": "Tap each card to flip a myth into what really happens.",
       "cards": [
         { "weak": "Myth: Claude is searching a giant database of answers.", "strong": "It predicts new text from patterns it learned.", "note": "Nothing is copied out of a stored answer list." },
