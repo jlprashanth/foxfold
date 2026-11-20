@@ -1,11 +1,22 @@
 {
   "id": "fixing-bad-answers", "track": 3, "title": "Fixing bad answers",
-  "reviewed": "2026-11-12", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "Sometimes the answer misses. That is normal, and it is rarely a reason to give up. Most misses can be fixed with one good follow-up." },
-    { "type": "say", "text": "First, work out what went wrong. Was it the wrong tone, too long, missing something, or just incorrect? Naming the problem is half the fix." },
-    { "type": "steps", "items": ["Say exactly what is wrong: \"too formal\", \"you skipped the second question\".", "Say what you want instead.", "Add the context you left out the first time.", "Still stuck? Start a fresh chat with a better first prompt."] },
-    { "type": "say", "text": "If an answer seems factually wrong, ask Claude to check again and give its source, then verify it yourself. Do not just ask for the same thing a third time." },
+    { "type": "say", "title": "Misses are normal",
+      "points": ["Sometimes the answer misses.", "That is rarely a reason to give up.", "Most misses can be fixed with one good follow-up."] },
+    { "type": "say", "title": "Name the problem",
+      "points": ["Wrong tone, too long, something missing, or just incorrect?", "Naming the problem is half the fix."] },
+    { "type": "steps", "title": "Then fix it",
+      "items": ["Say exactly what is wrong: \"too formal\", \"you skipped the second question\".", "Say what you want instead.", "Add the context you left out the first time.", "Still stuck? Start a fresh chat with a better first prompt."] },
+    { "type": "example", "title": "A good follow-up",
+      "chat": [
+        { "you": "Write a note asking my boss for Friday off." },
+        { "claude": "Dear Sir or Madam, I am writing to formally request..." },
+        { "you": "Too formal. We are friendly. Two short lines, please." },
+        { "claude": "Hi Sam, could I take Friday off? Happy to cover anything urgent first." }
+      ] },
+    { "type": "say", "title": "If it seems wrong",
+      "points": ["Ask Claude to check again and give its source.", "Then verify it yourself.", "Do not just ask for the same thing a third time."] },
     { "type": "pick", "question": "Claude wrote a 500-word summary, but you wanted something short. Which follow-up is best?",
       "options": ["That is wrong. Try again.", "Too long. Cut it to three bullet points, keeping the main decision.", "Summarise.", "Why did you write so much?"],
       "answer": 1,

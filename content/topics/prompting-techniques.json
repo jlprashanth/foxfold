@@ -1,12 +1,45 @@
 {
   "id": "prompting-techniques", "track": 3, "title": "Prompting techniques",
-  "reviewed": "2026-11-12", "volatility": "stable", "sources": [],
+  "reviewed": "2026-11-20", "volatility": "stable", "sources": [],
   "folds": [
-    { "type": "say", "text": "A few simple habits make most prompts better. None needs special words or tricks." },
-    { "type": "say", "text": "**Show an example.** Paste one sample of what you like, such as a past email, and say \"write it like this\". Claude copies the style far better than a description." },
-    { "type": "say", "text": "**Ask for steps.** For a tricky question or a budget, say \"work through it step by step\". Claude shows its working, so you can spot a wrong turn." },
-    { "type": "say", "text": "**Add structure.** Put long material in clear labelled blocks, such as \"Here is my draft:\" then \"Here is what I want changed:\". It stops Claude mixing them up." },
-    { "type": "say", "text": "**Iterate.** Your first prompt is a first try. Read the answer, then say what to change. Chatting back and forth is the normal way to work." },
+    { "type": "say", "title": "Four simple habits",
+      "points": ["A few habits make most prompts better.", "None needs special words or tricks.", "Meet each one, then see it at work."] },
+
+    { "type": "say", "title": "Show an example", "tag": "Habit 1",
+      "points": ["Paste one sample of what you like, such as a past email.", "Say \"write it like this\".", "Claude copies a style far better from an example than from a description."] },
+    { "type": "example", "title": "Showing an example",
+      "chat": [
+        { "you": "Write a book club invite. Match the tone of last year's: \"Books, snacks and gossip! Join us Friday at 7.\"" },
+        { "claude": "Pages, pastries and plot twists! Join us Saturday at 6." }
+      ],
+      "note": "Same playful tone, new details." },
+
+    { "type": "say", "title": "Ask for steps", "tag": "Habit 2",
+      "points": ["For a tricky question or a budget, say \"work through it step by step\".", "Claude shows its working.", "So you can spot a wrong turn."] },
+    { "type": "example", "title": "Asking for steps",
+      "chat": [
+        { "you": "I earn 2,000 a month and spend 1,700. Step by step: can I save 500?" },
+        { "claude": "1. That leaves 300. 2. 500 is 200 more. 3. Not yet: trim 200 of spending first." }
+      ],
+      "note": "Each step is easy to check." },
+
+    { "type": "say", "title": "Add structure", "tag": "Habit 3",
+      "points": ["Put long material in clear, labelled blocks.", "Like \"Here is my draft:\" then \"Here is what I want changed:\".", "It stops Claude mixing them up."] },
+    { "type": "example", "title": "Adding structure",
+      "points": ["**My draft:** paste the letter here.", "**What to change:** shorter and friendlier.", "**Keep:** the date and the address."],
+      "note": "Claude knows which part is which." },
+
+    { "type": "say", "title": "Iterate", "tag": "Habit 4",
+      "points": ["Your first prompt is a first try.", "Read the answer, then say what to change.", "Chatting back and forth is the normal way to work."] },
+    { "type": "example", "title": "Iterating",
+      "chat": [
+        { "you": "Suggest a name for my bakery." },
+        { "claude": "How about The Daily Crumb?" },
+        { "you": "Nice! Something warmer, with my name, Rosa." },
+        { "claude": "How about Rosa's Warm Oven?" }
+      ],
+      "note": "Each round gets closer." },
+
     { "type": "flip", "prompt": "Tap each card to flip it from weak to strong.",
       "cards": [
         { "weak": "Write an email to my landlord.", "strong": "Write a polite email to my landlord about a leaking tap. Here is an email I wrote before, copy its friendly tone: ...", "note": "Adds an example." },
