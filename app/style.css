@@ -62,6 +62,11 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .bubble.you { justify-self: end; background: var(--c4); border-bottom-right-width: 6px; }
 .bubble.claude { justify-self: start; border-bottom-left-width: 6px; }
 .ex-label { margin: 2px 0 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #5a5450; }
+.ex-more-btn { justify-self: start; background: var(--c4); border: 0; border-bottom: 4px solid var(--c2); padding: 8px 14px; min-height: 44px; font-weight: 800; }
+.t6 .ex-more-btn { color: var(--ink); }
+.ex-more { display: grid; gap: 10px; }
+.ex-more[hidden] { display: none; }
+.ex-more-label { margin: 6px 0 0; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,.25); font: 700 18px/1.2 'Baloo 2', system-ui, sans-serif; }
 .ex-label::before, .ex-label::after { content: ''; flex: 1; border-top: 2px dashed rgba(0,0,0,.25); }
 
 /* Widgets (plain form) */
@@ -223,6 +228,7 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .page-head .star[hidden] { display: none; }
 /* The bottom-right corner is folded over: the mat shows where it was, a darker flap lies on the page. */
 .fold.more { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%); }
-.fold.more::after { content: ''; position: absolute; right: 0; bottom: 0; width: 30px; height: 30px; background: #d9d0b9; clip-path: polygon(0 0, 100% 0, 0 100%); pointer-events: none; }
+/* The flap is a background, so it stays in the corner when a long card scrolls */
+.fold.more { background: linear-gradient(to bottom right, #d9d0b9 50%, transparent 50%) right bottom / 30px 30px no-repeat, var(--paper); }
 .reward { position: fixed; z-index: 6; pointer-events: none; opacity: 0; }
 .reward svg { display: block; overflow: visible; }

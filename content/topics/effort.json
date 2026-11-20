@@ -14,6 +14,10 @@
       "chat": [
         { "label": "Lower effort is fine", "you": "Suggest a name for my goldfish.", "claude": "How about Bubbles, Finn or Captain Splash?" },
         { "label": "Higher effort helps", "you": "Plan a two-week trip on a tight budget.", "claude": "I compared routes, stays and costs, and kept some spare for surprises." }
+      ],
+      "more": [
+        { "chat": [ { "label": "Lower effort is fine", "you": "What's the capital of Japan?", "claude": "Tokyo." }, { "label": "Higher effort helps", "you": "Should I rent or buy, given these numbers?", "claude": "I compared five years of costs both ways. Buying only wins if you stay more than four years." } ] },
+        { "chat": [ { "label": "Lower effort is fine", "you": "Fix the typos in this paragraph.", "claude": "Fixed three typos. Here it is." }, { "label": "Higher effort helps", "you": "Find the flaw in this argument.", "claude": "Step two assumes what it is trying to prove, so the conclusion does not follow." } ] }
       ] },
     { "type": "steps", "title": "How to choose",
       "items": ["Start with the default model and effort.", "Answer too shallow? Step up the model or the effort.", "Quick, simple job? Step down to save usage.", "Change one thing at a time, so you see what helped."] },

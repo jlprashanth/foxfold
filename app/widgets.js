@@ -35,15 +35,37 @@ function steps(f) {
 
 // example: a worked example, as a short scenario, points, and/or a mini chat.
 // Chat lines: { "label": "Search on", "you": "...", "claude": "..." }; each part is optional.
-function example(f) {
-  const chat = (f.chat || []).flatMap((c) => [
+// "more": extra samples of the same shape, listed under a "More examples" button.
+function exampleBody(x) {
+  const chat = (x.chat || []).flatMap((c) => [
     ...(c.label ? [el('p', { class: 'ex-label' }, ...richText(c.label))] : []),
     ...(c.you ? [el('p', { class: 'bubble you' }, el('small', {}, 'You'), ...richText(c.you))] : []),
     ...(c.claude ? [el('p', { class: 'bubble claude' }, el('small', {}, 'Claude'), ...richText(c.claude))] : []),
   ]);
-  return el('div', { class: 'example' }, ...head(f, 'Example'), ...lead(f.text), ...points(f.points),
+  return [...lead(x.text), ...points(x.points),
     ...(chat.length ? [el('div', { class: 'chat' }, ...chat)] : []),
-    ...(f.note ? [el('p', { class: 'why' }, ...richText(f.note))] : []));
+    ...(x.note ? [el('p', { class: 'why' }, ...richText(x.note))] : [])];
+}
+
+function example(f) {
+  const box = el('div', { class: 'example' }, ...head(f, 'Example'), ...exampleBody(f));
+  if (!f.more || !f.more.length) return box;
+  const list = el('div', { class: 'ex-more', hidden: '' },
+    ...f.more.flatMap((x, n) => [el('p', { class: 'ex-more-label' }, `Example ${n + 2}`), ...exampleBody(x)]));
+  const label = (open) => (open ? 'Hide examples ▴' : `More examples (${f.more.length}) ▾`);
+  const btn = el('button', { class: 'ex-more-btn', 'aria-expanded': 'false', onclick: () => {
+    const open = list.hidden;
+    list.hidden = !open;
+    btn.textContent = label(open);
+    btn.setAttribute('aria-expanded', String(open));
+    const fold = box.closest('.fold');
+    if (open && fold) { // bring the list into view inside the card, keeping the button just above it
+      const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      fold.scrollBy({ top: btn.getBoundingClientRect().top - fold.getBoundingClientRect().top - 12, behavior: smooth ? 'smooth' : 'auto' });
+    }
+  } }, label(false));
+  box.append(btn, list);
+  return box;
 }
 
 function pick(f, done, react) {

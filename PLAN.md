@@ -182,7 +182,7 @@ One topic file:
 }
 ```
 
-- Fold types are `say` (Nib talks: a short paragraph, or a `title` with an optional `tag` chip and `points`), `steps` (optional `title`), `example` (a worked example: `text`, `points` and/or a `chat` of `{label, you, claude}` lines, plus a `note`), and the six games.
+- Fold types are `say` (Nib talks: a short paragraph, or a `title` with an optional `tag` chip and `points`), `steps` (optional `title`), `example` (a worked example: `text`, `points` and/or a `chat` of `{label, you, claude}` lines, plus a `note`, and optional `more`: extra samples of the same shape behind a "More examples" button), and the six games.
 - Text allows only bold and inline code. No HTML in content files.
 - `facts.json` holds the model list (name, one-line strength, relative usage cost), the app
   list and the names of the limits. Folds refer to it with `{{facts.models}}`, and the model

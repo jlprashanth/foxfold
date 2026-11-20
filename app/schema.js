@@ -14,6 +14,18 @@ const words = (...texts) => texts.filter(isStr).join(' ').split(/\s+/).filter(Bo
 const optStr = (f, k, err) => { if (f[k] !== undefined && !isStr(f[k])) err(`"${k}" must be text`); };
 const optPoints = (f, err) => { if (f.points !== undefined && !(isArr(f.points) && f.points.every(isStr))) err('"points" must be a list of strings'); };
 
+const CHAT_KEYS = ['label', 'you', 'claude'];
+function exampleParts(x, err) {
+  optStr(x, 'text', err); optStr(x, 'note', err); optPoints(x, err);
+  if (x.chat !== undefined && !(isArr(x.chat) && x.chat.every((c) => c && CHAT_KEYS.some((k) => isStr(c[k]))
+    && Object.keys(c).every((k) => CHAT_KEYS.includes(k) && isStr(c[k]))))) {
+    err('"chat" must be a list of { "label", "you", "claude" } (each optional text)');
+  }
+  if (!isStr(x.text) && !x.points && !x.chat) err('needs "text", "points" or "chat"');
+}
+const exampleWords = (x) => words(x.text, x.note, ...(Array.isArray(x.points) ? x.points : []),
+  ...(Array.isArray(x.chat) ? x.chat : []).flatMap((c) => (c ? [c.label, c.you, c.claude] : [])));
+
 // Per-type checks. Each gets the fold (facts already resolved) and an `err(msg)` function.
 const CHECKS = {
   say(f, err) {
@@ -26,12 +38,17 @@ const CHECKS = {
     optStr(f, 'title', err);
   },
   example(f, err) {
-    optStr(f, 'title', err); optStr(f, 'text', err); optStr(f, 'note', err); optPoints(f, err);
-    if (f.chat !== undefined && !(isArr(f.chat) && f.chat.every((c) => c && ['label', 'you', 'claude'].some((k) => isStr(c[k]))
-      && Object.keys(c).every((k) => ['label', 'you', 'claude'].includes(k) && isStr(c[k]))))) {
-      err('"chat" must be a list of { "label", "you", "claude" } (each optional text)');
+    optStr(f, 'title', err);
+    exampleParts(f, err);
+    if (f.more !== undefined) {
+      if (!isArr(f.more) || !f.more.every((x) => x && typeof x === 'object')) err('"more" must be a list of examples');
+      else f.more.forEach((x, n) => {
+        const at = (m) => err(`more ${n + 1}: ${m}`);
+        exampleParts(x, at);
+        const w = exampleWords(x);
+        if (w > MAX_WORDS) at(`${w} words; the limit is ${MAX_WORDS}`);
+      });
     }
-    if (!isStr(f.text) && !f.points && !f.chat) err('needs "text", "points" or "chat"');
   },
   pick(f, err) {
     if (!isStr(f.question)) err('needs "question"');
@@ -75,9 +92,7 @@ function readText(f) {
   const list = (v) => (Array.isArray(v) ? v : []);
   if (f.type === 'say') return words(f.title, f.tag, f.text, ...list(f.points));
   if (f.type === 'steps') return words(f.title, ...list(f.items));
-  if (f.type === 'example') {
-    return words(f.title, f.text, f.note, ...list(f.points), ...list(f.chat).flatMap((c) => (c ? [c.label, c.you, c.claude] : [])));
-  }
+  if (f.type === 'example') return words(f.title) + exampleWords(f); // each of "more" is checked on its own
   return words(f.prompt, f.question);
 }
 

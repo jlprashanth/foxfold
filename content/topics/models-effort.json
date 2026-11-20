@@ -16,7 +16,11 @@
         { "you": "Sort these 50 comments into praise, complaints and questions." },
         { "claude": "Done: 21 praise, 17 complaints and 12 questions, each in its own list." }
       ],
-      "note": "A quick, repeat job. No deep thinking needed." },
+      "note": "A quick, repeat job. No deep thinking needed.",
+      "more": [
+        { "chat": [ { "you": "Pull the names and dates out of these 30 emails." }, { "claude": "Here is a table: 30 rows, each with a name and a date." } ], "note": "Simple pulling-out work, done fast." },
+        { "chat": [ { "you": "Is each of these 200 reviews positive or negative?" }, { "claude": "158 positive, 42 negative. Here is the list, with a label on each." } ], "note": "The same small job, many times over." }
+      ] },
 
     { "type": "say", "title": "Sonnet", "tag": "All-rounder",
       "points": ["The best mix of speed and smarts.", "Handles everyday writing, summaries and questions.", "Fast enough for easy back-and-forth chat."] },
@@ -25,7 +29,11 @@
         { "you": "Summarise this article in five bullet points." },
         { "claude": "Here are the five main points, in plain words." }
       ],
-      "note": "Everyday work: quick, clear and good enough first time." },
+      "note": "Everyday work: quick, clear and good enough first time.",
+      "more": [
+        { "chat": [ { "you": "Make this email sound friendlier." }, { "claude": "Here is a warmer version. I kept your main point and softened the opening." } ], "note": "Everyday writing help." },
+        { "chat": [ { "you": "Explain how a mortgage works, simply." }, { "claude": "A mortgage is a loan to buy a home. You pay it back every month, with interest, over many years." } ], "note": "A clear explanation, quickly." }
+      ] },
 
     { "type": "say", "title": "Opus", "tag": "Deep worker",
       "points": ["Built for long coding and knowledge work.", "Keeps track of big tasks over a long session.", "Slower than Sonnet, and uses more of your allowance."] },
@@ -34,7 +42,11 @@
         { "you": "Read these three reports and turn them into one plan." },
         { "claude": "I found where the reports agree and where they clash. Here is one plan, with open questions marked." }
       ],
-      "note": "Lots to read and connect." },
+      "note": "Lots to read and connect.",
+      "more": [
+        { "chat": [ { "you": "Go through this 40-page contract and list anything unusual." }, { "claude": "I found four unusual clauses. The biggest: you pay for all repairs. Here is each one, with its page." } ], "note": "Long, careful reading." },
+        { "chat": [ { "you": "Update this app so users can reset their password." }, { "claude": "I changed four files, added the reset email and tested the new steps." } ], "note": "A long coding task across many files." }
+      ] },
 
     { "type": "say", "title": "Fable", "tag": "Most capable",
       "points": ["For the hardest reasoning.", "Handles long jobs with many steps.", "Uses the most of your allowance, so save it for tough work."] },
@@ -43,7 +55,11 @@
         { "you": "This big project keeps breaking. Find out why and fix it." },
         { "claude": "I traced it to two parts that clash, fixed both, and checked the rest still works." }
       ],
-      "note": "Hard and many steps: worth the most capable model." },
+      "note": "Hard and many steps: worth the most capable model.",
+      "more": [
+        { "chat": [ { "you": "Check this business plan from every angle and find its weak spots." }, { "claude": "Three weak spots: costs grow faster than sales, one client brings most income, and there is no backup supplier." } ], "note": "Deep reasoning from many sides." },
+        { "chat": [ { "you": "Plan how to move our software to a new system." }, { "claude": "Here is a plan in six stages, with the risks, checks and a way back at each stage." } ], "note": "A long job with many steps." }
+      ] },
 
     { "type": "sort", "prompt": "Which model fits the job? Tap the basket.", "baskets": "{{facts.models}}",
       "items": [
