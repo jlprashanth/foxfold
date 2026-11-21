@@ -13,7 +13,11 @@
         { "label": "Before", "you": "I'm Priya Shah, account 4471 2290. Why was I charged twice?" },
         { "label": "After", "you": "My bank charged me twice for one purchase. How do I ask for a refund?" }
       ],
-      "note": "Claude can help just as well with the second one." },
+      "note": "Claude can help just as well with the second one.",
+      "more": [
+        { "chat": [ { "label": "Before", "you": "I'm Anna Berg of 12 Elm Road, and my rash won't go away. What is it?" }, { "label": "After", "you": "What can cause an itchy rash that lasts two weeks?" } ], "note": "No name or address needed. For health worries, also see a doctor." },
+        { "chat": [ { "label": "Before", "you": "Rewrite my email to Mark Davis at Sunrise Ltd about his overdue invoice 2231." }, { "label": "After", "you": "Rewrite my email to a client about an overdue invoice. Polite but firm." } ], "note": "Swap real names and numbers for general words." }
+      ] },
     { "type": "steps", "title": "Safe habits",
       "items": ["Remove names and numbers you do not need.", "Check settings for how your chats are used.", "Verify answers that matter."] },
     { "type": "sort", "prompt": "Fine to paste, or never paste?",

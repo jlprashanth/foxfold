@@ -14,6 +14,10 @@
         { "claude": "Dear Sir or Madam, I am writing to formally request..." },
         { "you": "Too formal. We are friendly. Two short lines, please." },
         { "claude": "Hi Sam, could I take Friday off? Happy to cover anything urgent first." }
+      ],
+      "more": [
+        { "chat": [ { "you": "What should I pack for a beach trip? And what should I read there?" }, { "claude": "Pack sunscreen, a hat, a towel and water." }, { "you": "You skipped my second question: what to read?" }, { "claude": "Sorry! Try a light mystery or a book of short stories." } ] },
+        { "chat": [ { "you": "Explain what a budget is." }, { "claude": "A budget is a financial plan that allocates expected income across spending categories..." }, { "you": "This is for a 10-year-old. Simpler, please." }, { "claude": "A budget is a plan for your money, so it does not all go at once." } ] }
       ] },
     { "type": "say", "title": "If it seems wrong",
       "points": ["Ask Claude to check again and give its source.", "Then verify it yourself.", "Do not just ask for the same thing a third time."] },

@@ -11,7 +11,11 @@
         { "label": "Search off", "you": "What's the newest model of my phone?", "claude": "As far as I know, it's the Model 5." },
         { "label": "Search on", "claude": "I checked the maker's site: it's now the Model 7." }
       ],
-      "note": "Without search, Claude only knows what it learned." },
+      "note": "Without search, Claude only knows what it learned.",
+      "more": [
+        { "chat": [ { "label": "Search off", "you": "What's the latest version of my photo app?", "claude": "The latest I know of is version 4." }, { "label": "Search on", "claude": "I checked the app's page: it's now version 6." } ], "note": "Versions change after Claude's cutoff." },
+        { "chat": [ { "label": "Search off", "you": "What's today's exchange rate for euros to dollars?", "claude": "I can't know today's rate without checking." }, { "label": "Search on", "claude": "I found today's rate on a currency site, with the time it was updated." } ], "note": "Rates change every day." }
+      ] },
     { "type": "steps", "title": "For anything that changes",
       "items": ["Ask Claude to search.", "Or tell it the version or date you mean.", "Then check the sources it gives."] },
     { "type": "sort", "prompt": "Does this need a web search, or can Claude just answer?",

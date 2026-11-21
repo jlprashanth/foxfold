@@ -12,7 +12,11 @@
         { "you": "Write a book club invite. Match the tone of last year's: \"Books, snacks and gossip! Join us Friday at 7.\"" },
         { "claude": "Pages, pastries and plot twists! Join us Saturday at 6." }
       ],
-      "note": "Same playful tone, new details." },
+      "note": "Same playful tone, new details.",
+      "more": [
+        { "chat": [ { "you": "Describe my blue mug in the same style as this: \"Sunny yellow, holds a big coffee, loves a slow morning.\"" }, { "claude": "Ocean blue, holds a hot tea, loves a quiet evening." } ], "note": "Same rhythm and feel." },
+        { "chat": [ { "you": "Here are last week's meeting notes. Write this week's in the same format." }, { "claude": "Done: the same headings, Decisions, Actions and Next steps, with this week's points." } ], "note": "An example shows a format faster than a description." }
+      ] },
 
     { "type": "say", "title": "Ask for steps", "tag": "Habit 2",
       "points": ["For a tricky question or a budget, say \"work through it step by step\".", "Claude shows its working.", "So you can spot a wrong turn."] },
@@ -21,13 +25,21 @@
         { "you": "I earn 2,000 a month and spend 1,700. Step by step: can I save 500?" },
         { "claude": "1. That leaves 300. 2. 500 is 200 more. 3. Not yet: trim 200 of spending first." }
       ],
-      "note": "Each step is easy to check." },
+      "note": "Each step is easy to check.",
+      "more": [
+        { "chat": [ { "you": "Dinner cost 90. Sam pays 10 extra for wine. Split the rest between three of us, step by step." }, { "claude": "1. 90 minus 10 is 80. 2. 80 split three ways is about 26.67 each. 3. Sam pays about 36.67." } ], "note": "You can check each step." },
+        { "chat": [ { "you": "Can I paint two rooms this weekend? Each takes 6 hours, plus 2 to dry. Step by step." }, { "claude": "1. Painting takes 12 hours. 2. One room dries while you paint the other. 3. Yes, if you start early Saturday." } ], "note": "Steps show how Claude got there." }
+      ] },
 
     { "type": "say", "title": "Add structure", "tag": "Habit 3",
       "points": ["Put long material in clear, labelled blocks.", "Like \"Here is my draft:\" then \"Here is what I want changed:\".", "It stops Claude mixing them up."] },
     { "type": "example", "title": "Adding structure",
       "points": ["**My draft:** paste the letter here.", "**What to change:** shorter and friendlier.", "**Keep:** the date and the address."],
-      "note": "Claude knows which part is which." },
+      "note": "Claude knows which part is which.",
+      "more": [
+        { "points": ["**My CV:** paste it here.", "**The job ad:** paste it here.", "**What I want:** three ways to make my CV fit this job."], "note": "Two long texts, clearly kept apart." },
+        { "points": ["**Meeting notes:** paste them here.", "**Questions:** What did we decide? Who does what by Friday?", "**Format:** a short list."], "note": "Claude answers from the notes, not from guesses." }
+      ] },
 
     { "type": "say", "title": "Iterate", "tag": "Habit 4",
       "points": ["Your first prompt is a first try.", "Read the answer, then say what to change.", "Chatting back and forth is the normal way to work."] },
@@ -38,7 +50,11 @@
         { "you": "Nice! Something warmer, with my name, Rosa." },
         { "claude": "How about Rosa's Warm Oven?" }
       ],
-      "note": "Each round gets closer." },
+      "note": "Each round gets closer.",
+      "more": [
+        { "chat": [ { "you": "Gift ideas for my dad." }, { "claude": "A watch, a book or a nice wallet?" }, { "you": "He loves gardening and hates clutter." }, { "claude": "A garden centre voucher, or a day out at a famous garden?" } ], "note": "Each round adds what Claude needs to know." },
+        { "chat": [ { "you": "A slogan for my bike repair shop." }, { "claude": "Expert bike repairs at fair prices." }, { "you": "Shorter and friendlier, please." }, { "claude": "We keep you rolling." } ], "note": "Say what to change, then try again." }
+      ] },
 
     { "type": "flip", "prompt": "Tap each card to flip it from weak to strong.",
       "cards": [

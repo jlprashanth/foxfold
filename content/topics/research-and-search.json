@@ -19,6 +19,10 @@
         { "label": "Web search", "you": "Is the museum open today?" },
         { "label": "Extended thinking", "you": "Plan a fair way to split chores among four flatmates." },
         { "label": "Research", "you": "Find and sum up what experts say about four-day work weeks." }
+      ],
+      "more": [
+        { "chat": [ { "label": "Web search", "you": "What time does the station café close today?" }, { "label": "Extended thinking", "you": "Help me choose between two job offers, using these pros and cons." }, { "label": "Research", "you": "Compare what studies say about learning a language with apps." } ] },
+        { "chat": [ { "label": "Web search", "you": "Who is the mayor of my city now?" }, { "label": "Extended thinking", "you": "Find the bug in this short piece of code." }, { "label": "Research", "you": "Write a report on the ways to charge an electric car in my country." } ] }
       ] },
     { "type": "pick", "question": "You want a detailed comparison of several phone plans from many sources. What fits best?",
       "options": ["Web search", "Extended thinking", "Research"],

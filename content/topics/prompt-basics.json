@@ -13,7 +13,11 @@
         { "label": "Vague", "you": "Help me with my trip." },
         { "label": "Clear", "you": "Plan a 3-day trip to Lisbon for two adults who love food and hate crowds. Give me a day-by-day list." }
       ],
-      "note": "Clear prompts need fewer follow-ups." },
+      "note": "Clear prompts need fewer follow-ups.",
+      "more": [
+        { "chat": [ { "label": "Vague", "you": "Plan a birthday party." }, { "label": "Clear", "you": "Plan a garden party for my son's 8th birthday. Twelve kids, two hours, small budget. Give me a timetable and a shopping list." } ], "note": "Who, how many, how long, and what you need back." },
+        { "chat": [ { "label": "Vague", "you": "Write my cover letter." }, { "label": "Clear", "you": "Write a cover letter for a junior designer job. I have two years of freelance work. Friendly, one page, three short paragraphs." } ], "note": "The clear one gives Claude what it needs." }
+      ] },
     { "type": "build", "prompt": "Build a prompt. Tap the pieces in order: what, context, constraints, format.",
       "parts": [
         { "label": "What", "text": "Write a thank-you email to my neighbour." },
