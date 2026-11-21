@@ -19,7 +19,11 @@
       "points": ["`/rewind` rolls the code, the conversation, or both back to an earlier point.", "Press `Esc` twice for the same menu.", "It works alongside git, not instead of it."] },
     { "type": "example", "title": "A day of commands",
       "points": ["**New task:** `/clear`, then describe it.", "**Long session:** `/compact`, and say what to keep.", "**Bad edit:** `/rewind` to just before it.", "**Forgot a command:** type `/` and look."],
-      "note": "A few commands cover most days." },
+      "note": "A few commands cover most days.",
+      "more": [
+        { "points": ["**From fixing bugs to writing docs:** `/clear`.", "**Wondering what fills the context:** `/context`.", "**Want yesterday's conversation back:** `/resume`."], "note": "Each command answers one everyday need." },
+        { "points": ["**New project, no notes yet:** `/init`.", "**Update the project notes:** `/memory`.", "**Big change ahead:** `/plan` first."], "note": "Set up once, then plan before big changes." }
+      ] },
     { "type": "sort", "prompt": "Which command fits? Tap the basket.",
       "baskets": ["/clear", "/compact", "/rewind"],
       "items": [

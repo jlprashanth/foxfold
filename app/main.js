@@ -1,6 +1,6 @@
 import { APP_NAME } from './config.js';
 import { loadIndex, loadFacts, loadRawTopic, loadTopic } from './content.js';
-import { el, svg } from './dom.js';
+import { el, svg, scrollIntoCard } from './dom.js';
 import { foldView } from './widgets.js';
 import { addStar, hasStar, getStars, takeIntro } from './progress.js';
 import { createStage } from './stage.js';
@@ -143,9 +143,19 @@ function stampView(topic) {
   if (age > (REVIEW_DAYS[topic.volatility] ?? REVIEW_DAYS.fast)) {
     box.append(el('p', { class: 'stale' }, 'This may have changed. Check the official page.'));
   }
-  if (topic.sources.length) {
-    box.append(el('ul', { class: 'sources' }, ...topic.sources.map((s) =>
-      el('li', {}, el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.title)))));
+  if (topic.sources.length) { // the links sit behind a button, so the game above keeps the room
+    const list = el('ul', { class: 'sources', hidden: '' }, ...topic.sources.map((s) =>
+      el('li', {}, el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.title))));
+    const label = (open) => (open ? 'Hide sources ▴' : `Sources (${topic.sources.length}) ▾`);
+    const btn = el('button', { class: 'toggle-btn', 'aria-expanded': 'false', onclick: () => {
+      const open = list.hidden;
+      list.hidden = !open;
+      btn.textContent = label(open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) scrollIntoCard(btn);
+    } }, label(false));
+    box.firstChild.after(btn);
+    box.append(list);
   }
   return box;
 }

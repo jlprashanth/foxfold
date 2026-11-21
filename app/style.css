@@ -27,7 +27,7 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
 .list { display: grid; gap: 12px; margin-top: 12px; }
 .track-1 { background: var(--t1); } .track-2 { background: var(--t2); } .track-3 { background: var(--t3); }
 .track-4 { background: var(--t4); } .track-5 { background: var(--t5); } .track-6 { background: var(--t6); color: #dfe4f0; }
-.fold { background: var(--paper); padding: 20px; margin: 12px 0; min-height: 220px; border-bottom: 6px solid rgba(0,0,0,.2); }
+.fold { background: var(--paper); padding: 18px 20px; margin: 12px 0; min-height: 220px; border-bottom: 6px solid rgba(0,0,0,.2); }
 .nav { display: flex; justify-content: space-between; align-items: center; color: #fff; }
 .say { display: flex; gap: 12px; align-items: flex-start; }
 .mini-fox { font-size: 36px; } .say p, .q { margin: 0; }
@@ -62,8 +62,8 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .bubble.you { justify-self: end; background: var(--c4); border-bottom-right-width: 6px; }
 .bubble.claude { justify-self: start; border-bottom-left-width: 6px; }
 .ex-label { margin: 2px 0 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #5a5450; }
-.ex-more-btn { justify-self: start; background: var(--c4); border: 0; border-bottom: 4px solid var(--c2); padding: 8px 14px; min-height: 44px; font-weight: 800; }
-.t6 .ex-more-btn { color: var(--ink); }
+.toggle-btn { justify-self: start; background: var(--c4); border: 0; border-bottom: 4px solid var(--c2); padding: 8px 14px; min-height: 44px; font-weight: 800; }
+.t6 .toggle-btn { color: var(--ink); }
 .ex-more { display: grid; gap: 10px; }
 .ex-more[hidden] { display: none; }
 .ex-more-label { margin: 6px 0 0; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,.25); font: 700 18px/1.2 'Baloo 2', system-ui, sans-serif; }
@@ -98,11 +98,15 @@ code { background: rgba(0,0,0,.08); padding: 0 4px; }
 .star { color: #f6c23e; text-shadow: 0 2px 0 rgba(0,0,0,.25); }
 
 /* Freshness stamp and notes */
-.stamp-row { margin-top: 16px; padding-top: 12px; border-top: 2px dashed rgba(0,0,0,.25); font-size: 16px; }
-.stamp { display: inline-block; padding: 2px 12px; border: 3px dashed var(--t3); color: #9a2f2f; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; transform: rotate(-2deg); }
+.stamp-row { margin-top: 12px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,.25); font-size: 16px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.stamp-row .stale, .stamp-row .sources { flex-basis: 100%; }
+.stamp { display: inline-block; padding: 1px 10px; border: 3px dashed var(--t3); color: #9a2f2f; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; transform: rotate(-2deg); }
+.stamp-row .toggle-btn { padding: 6px 12px; font-size: 15px; }
 .stale { margin: 8px 0 0; padding: 6px 10px; background: #fff0c2; border-left: 5px solid var(--t1); }
-.sources { margin: 8px 0 0; padding-left: 1.2em; }
-.sources a { color: #0b5a8a; display: inline-block; padding: 10px 0; min-height: 44px; }
+.sources { margin: 0; padding-left: 1.2em; }
+.sources[hidden] { display: none; }
+.sources a { color: #0b5a8a; display: block; padding: 10px 0; min-height: 44px; }
 
 /* Home and tracks: Nib and the ring of shapes (one shared SVG stage) */
 .stage-head { display: flex; align-items: center; gap: 20px; min-height: 60px; }

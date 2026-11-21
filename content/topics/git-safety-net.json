@@ -18,7 +18,11 @@
         { "you": "Write a commit message for it." },
         { "claude": "\"Fix the login error message and add a test.\" Shall I commit?" }
       ],
-      "note": "Read what it proposes before you approve." },
+      "note": "Read what it proposes before you approve.",
+      "more": [
+        { "chat": [ { "you": "Make a new branch to try a different layout." }, { "claude": "Done: the branch `new-layout`. Your main copy is untouched." }, { "you": "That didn't work. Go back to main." }, { "claude": "Switched back. The old layout is just as you left it." } ], "note": "Branches make experiments safe." },
+        { "chat": [ { "you": "Commit everything before we start the big change." }, { "claude": "Committed: \"Save point before the big change.\"" }, { "you": "Show me what has changed since then." }, { "claude": "Three files changed. Here is a short summary of each." } ], "note": "A save point makes a big change less scary." }
+      ] },
     { "type": "say", "title": "Checkpoints",
       "points": ["Claude Code keeps **checkpoints** of files it edits.", "`/rewind` can restore them.", "They are quick session undo, not a replacement for git."] },
     { "type": "say", "title": "What checkpoints miss",

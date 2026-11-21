@@ -18,7 +18,7 @@
         { "chat": [ { "label": "Vague", "you": "Plan a birthday party." }, { "label": "Clear", "you": "Plan a garden party for my son's 8th birthday. Twelve kids, two hours, small budget. Give me a timetable and a shopping list." } ], "note": "Who, how many, how long, and what you need back." },
         { "chat": [ { "label": "Vague", "you": "Write my cover letter." }, { "label": "Clear", "you": "Write a cover letter for a junior designer job. I have two years of freelance work. Friendly, one page, three short paragraphs." } ], "note": "The clear one gives Claude what it needs." }
       ] },
-    { "type": "build", "prompt": "Build a prompt. Tap the pieces in order: what, context, constraints, format.",
+    { "type": "build", "prompt": "Tap the pieces in order to build a prompt.",
       "parts": [
         { "label": "What", "text": "Write a thank-you email to my neighbour." },
         { "label": "Context", "text": "She watered my plants while I was away for a week." },

@@ -25,9 +25,9 @@
       "points": ["Watch the first minute, and press `Esc` if Claude drifts.", "Small changes in plain steps need no plan.", "Bigger ones are worth it."] },
     { "type": "build", "prompt": "Put the workflow in order.",
       "parts": [
-        { "label": "Explore", "text": "Let Claude read the code and answer questions" },
+        { "label": "Explore", "text": "Let Claude read and explain the code" },
         { "label": "Plan", "text": "Review a proposed plan in plan mode" },
-        { "label": "Build", "text": "Approve it and let Claude make the changes" },
+        { "label": "Build", "text": "Approve it and let Claude build" },
         { "label": "Check", "text": "Run the tests to verify the result" }
       ],
       "extras": ["Skip straight to deleting files"] }

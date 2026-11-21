@@ -28,3 +28,11 @@ export function richText(text) {
       : p.startsWith('`') ? el('code', {}, p.slice(1, -1))
       : p);
 }
+
+// Scroll the card (a .fold that scrolls inside itself) so `anchor` sits near its top.
+export function scrollIntoCard(anchor) {
+  const fold = anchor.closest('.fold');
+  if (!fold) return;
+  const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  fold.scrollBy({ top: anchor.getBoundingClientRect().top - fold.getBoundingClientRect().top - 12, behavior: smooth ? 'smooth' : 'auto' });
+}

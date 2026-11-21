@@ -1,7 +1,7 @@
 // Data-driven widgets: one function per fold type.
 // Each takes the fold's JSON and returns an element. Fold text is already fact-resolved.
 // `done` earns the topic's star; `react.yes()` / `react.no()` make Nib nod or tilt its head.
-import { el, richText } from './dom.js';
+import { el, richText, scrollIntoCard } from './dom.js';
 import { MASCOT_NAME } from './config.js';
 
 const shuffle = (a) => {
@@ -53,16 +53,12 @@ function example(f) {
   const list = el('div', { class: 'ex-more', hidden: '' },
     ...f.more.flatMap((x, n) => [el('p', { class: 'ex-more-label' }, `Example ${n + 2}`), ...exampleBody(x)]));
   const label = (open) => (open ? 'Hide examples ▴' : `More examples (${f.more.length}) ▾`);
-  const btn = el('button', { class: 'ex-more-btn', 'aria-expanded': 'false', onclick: () => {
+  const btn = el('button', { class: 'toggle-btn', 'aria-expanded': 'false', onclick: () => {
     const open = list.hidden;
     list.hidden = !open;
     btn.textContent = label(open);
     btn.setAttribute('aria-expanded', String(open));
-    const fold = box.closest('.fold');
-    if (open && fold) { // bring the list into view inside the card, keeping the button just above it
-      const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
-      fold.scrollBy({ top: btn.getBoundingClientRect().top - fold.getBoundingClientRect().top - 12, behavior: smooth ? 'smooth' : 'auto' });
-    }
+    if (open) scrollIntoCard(btn); // bring the list into view, keeping the button just above it
   } }, label(false));
   box.append(btn, list);
   return box;

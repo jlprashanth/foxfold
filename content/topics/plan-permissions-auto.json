@@ -20,7 +20,11 @@
         { "you": "Add a dark mode switch to the settings page." },
         { "claude": "Plan: 1. Add a switch to settings. 2. Save the choice. 3. Swap the colours. Nothing is changed yet. Approve?" }
       ],
-      "note": "You see the plan before any file changes." },
+      "note": "You see the plan before any file changes.",
+      "more": [
+        { "chat": [ { "you": "Move our login over to the new sign-in service." }, { "claude": "Plan: 1. List every place login is used. 2. Switch them one at a time. 3. Run the tests after each. Nothing changed yet. Approve?" } ], "note": "A risky change: worth seeing the plan first." },
+        { "chat": [ { "you": "Rename the `users` table to `members`." }, { "claude": "Plan: 1. Find every file that uses `users`. 2. Rename it in each. 3. Run the tests. Nothing changed yet. Approve?" } ], "note": "You can spot a missed step before it happens." }
+      ] },
     { "type": "say", "title": "Auto mode", "tag": "Safety check",
       "points": ["A separate safety check reviews actions.", "It blocks risky ones instead of asking you.", "Fewer prompts, but not a guarantee. Skip it for sensitive work."] },
     { "type": "say", "title": "Skipping all prompts", "tag": "Careful",

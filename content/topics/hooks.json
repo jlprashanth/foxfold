@@ -12,7 +12,11 @@
       "points": ["**Before a tool runs**: can block it.", "**After a tool succeeds**.", "**When Claude needs your input**."] },
     { "type": "example", "title": "Handy hooks",
       "points": ["**After every edit:** tidy the code.", "**When Claude is waiting for you:** get a desktop notification.", "**Before an edit:** stop changes to protected files."],
-      "note": "Each one happens every time, with no reminders needed." },
+      "note": "Each one happens every time, with no reminders needed.",
+      "more": [
+        { "points": ["**After every edit:** run the tests for that file.", "**Before a command runs:** block ones that delete files.", "**When Claude is waiting for you:** play a sound."], "note": "For things that must happen every time." },
+        { "points": ["**After every edit:** check the spelling in the docs.", "**Before an edit:** block changes to the file that holds your secrets.", "**When Claude needs your input:** send yourself a message."], "note": "Each one is a shell command you add in settings." }
+      ] },
     { "type": "say", "title": "Adding hooks",
       "points": ["You add hooks in a settings file.", "Type `/hooks` in a session to browse the ones you have.", "Hooks run commands on your machine, so only add ones you understand."] },
     { "type": "say", "title": "Hook or CLAUDE.md?",
