@@ -1,6 +1,6 @@
 {
   "id": "claude-apps", "track": 2, "title": "The Claude apps",
-  "reviewed": "2026-11-20", "volatility": "fast",
+  "reviewed": "2026-11-11", "volatility": "fast",
   "sources": [
     { "title": "Download Claude", "url": "https://claude.com/download" },
     { "title": "Get started with Claude Cowork", "url": "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" },

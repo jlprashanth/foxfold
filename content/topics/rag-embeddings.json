@@ -1,19 +1,22 @@
 {
-  "id": "rag-embeddings",
-  "track": 6,
-  "title": "RAG and embeddings",
-  "reviewed": "2026-11-12",
-  "volatility": "stable",
+  "id": "rag-embeddings", "track": 6, "title": "RAG and embeddings",
+  "reviewed": "2026-11-12", "volatility": "stable",
   "sources": [
     { "title": "Embeddings", "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings" },
     { "title": "Tool use with Claude", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
   ],
   "folds": [
-    { "type": "say", "text": "A model only knows what it learned in training plus what is in front of it. To answer from your own documents, you must put the right pieces in front of it." },
-    { "type": "say", "text": "An **embedding** turns text into a list of numbers that capture its meaning. Texts with similar meaning get similar numbers, so a program can measure how close two texts are." },
-    { "type": "say", "text": "That allows search by meaning, not just matching words. A question like \"when is the call?\" can find a note about a scheduled conference call." },
-    { "type": "say", "text": "**RAG** means retrieval-augmented generation. First retrieve the most relevant pieces of your documents, then give them to the model along with the question." },
-    { "type": "say", "text": "RAG helps with private or fresh information the model never saw. It can still go wrong if retrieval misses, so check important answers against the source." },
+    { "type": "say", "title": "The problem",
+      "points": ["A model only knows what it learned in training, plus what is in front of it.", "To answer from your own documents, you must put the right pieces in front of it."] },
+    { "type": "say", "title": "Embeddings",
+      "points": ["An **embedding** turns text into a list of numbers that capture its meaning.", "Similar meanings get similar numbers.", "So a program can measure how close two texts are."] },
+    { "type": "example", "title": "Search by meaning",
+      "points": ["**Question:** \"when is the call?\"", "**Found:** a note about a scheduled conference call.", "The words differ, but the meaning is close."],
+      "note": "That is search by meaning, not just matching words." },
+    { "type": "say", "title": "RAG",
+      "points": ["**RAG** means retrieval-augmented generation.", "**Retrieve**: find the most relevant pieces of your documents.", "**Generate**: give them to the model along with the question."] },
+    { "type": "say", "title": "When RAG helps",
+      "points": ["With private or fresh information the model never saw.", "It can still go wrong if retrieval misses.", "So check important answers against the source."] },
     { "type": "sort", "prompt": "Which step is it? Tap the basket.",
       "baskets": ["Retrieve", "Generate"],
       "items": [

@@ -1,20 +1,30 @@
 {
-  "id": "plan-permissions-auto",
-  "track": 5,
-  "title": "Plan mode, permissions and auto mode",
-  "reviewed": "2026-11-12",
-  "volatility": "fast",
+  "id": "plan-permissions-auto", "track": 5, "title": "Plan mode, permissions and auto mode",
+  "reviewed": "2026-11-12", "volatility": "fast",
   "sources": [
     { "title": "Choose a permission mode", "url": "https://code.claude.com/docs/en/permission-modes" },
     { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" },
     { "title": "Common workflows", "url": "https://code.claude.com/docs/en/common-workflows" }
   ],
   "folds": [
-    { "type": "say", "text": "A **permission mode** decides what Claude can do without asking you first. Press `Shift+Tab` in the terminal to cycle through the modes. Which ones you see can vary by setup." },
-    { "type": "say", "text": "**Manual** asks before edits and commands. **Accept edits** lets Claude change files and do simple file chores without asking, but still asks about other commands." },
-    { "type": "say", "text": "**Plan mode** makes Claude read and propose, but not edit your source files. Edits stay blocked until you approve the plan. It suits exploring before changing." },
-    { "type": "say", "text": "**Auto mode** lets a separate safety check review actions, blocking risky ones instead of asking you. It cuts down on prompts, but it is not a guarantee. Skip it for sensitive work." },
-    { "type": "say", "text": "A mode that skips all prompts exists too. The docs say to use it only in isolated environments like containers or virtual machines, never on your everyday machine." },
+    { "type": "say", "title": "Permission modes",
+      "points": ["A **permission mode** decides what Claude can do without asking you first.", "Press `Shift+Tab` in the terminal to cycle through the modes.", "Which ones you see can vary by setup."] },
+    { "type": "say", "title": "Manual", "tag": "Asks first",
+      "points": ["Asks before edits and commands.", "You approve each action yourself."] },
+    { "type": "say", "title": "Accept edits", "tag": "Edits freely",
+      "points": ["Changes files and does simple file chores without asking.", "Still asks about other commands."] },
+    { "type": "say", "title": "Plan mode", "tag": "Look first",
+      "points": ["Claude reads and proposes, but does not edit your source files.", "Edits stay blocked until you approve the plan.", "Good for exploring before changing."] },
+    { "type": "example", "title": "Plan mode at work",
+      "chat": [
+        { "you": "Add a dark mode switch to the settings page." },
+        { "claude": "Plan: 1. Add a switch to settings. 2. Save the choice. 3. Swap the colours. Nothing is changed yet. Approve?" }
+      ],
+      "note": "You see the plan before any file changes." },
+    { "type": "say", "title": "Auto mode", "tag": "Safety check",
+      "points": ["A separate safety check reviews actions.", "It blocks risky ones instead of asking you.", "Fewer prompts, but not a guarantee. Skip it for sensitive work."] },
+    { "type": "say", "title": "Skipping all prompts", "tag": "Careful",
+      "points": ["A mode that skips all prompts exists too.", "The docs say to use it only in isolated environments, like containers or virtual machines.", "Never on your everyday machine."] },
     { "type": "sort", "prompt": "Which mode fits? Tap the basket.",
       "baskets": ["Plan mode", "Manual", "Auto mode"],
       "items": [

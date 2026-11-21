@@ -1,18 +1,23 @@
 {
-  "id": "skills",
-  "track": 4,
-  "title": "Skills",
-  "reviewed": "2026-11-12",
-  "volatility": "medium",
+  "id": "skills", "track": 4, "title": "Skills",
+  "reviewed": "2026-11-12", "volatility": "medium",
   "sources": [
     { "title": "What are skills?", "url": "https://support.claude.com/en/articles/12512176-what-are-skills" }
   ],
   "folds": [
-    { "type": "say", "text": "A **skill** is a folder of instructions, and sometimes scripts and resources, that Claude loads when a task calls for it. Think of it as a recipe card Claude can pull out." },
-    { "type": "say", "text": "Claude checks which skills fit your request and loads only those. That keeps its desk, the context window, from filling up with instructions it does not need." },
-    { "type": "say", "text": "Some skills come from Anthropic, like making Word, Excel, PowerPoint or PDF files. Others are **custom skills** you or your organisation write for your own routines." },
-    { "type": "say", "text": "A simple skill is just written instructions in Markdown, so you do not need to code. Skills also work in Claude Code. To browse them in the app, open Customize, then Skills." },
-    { "type": "say", "text": "Skills can include scripts, so treat them like any app: review a skill before you rely on it, especially one that someone else wrote." },
+    { "type": "say", "title": "What a skill is",
+      "points": ["A **skill** is a folder of instructions, sometimes with scripts and resources.", "Claude loads it when a task calls for it.", "Think of it as a recipe card Claude can pull out."] },
+    { "type": "say", "title": "Only what is needed",
+      "points": ["Claude checks which skills fit your request.", "It loads only those.", "That keeps its desk, the context window, from filling up with instructions it does not need."] },
+    { "type": "say", "title": "Where skills come from",
+      "points": ["**From Anthropic**: like making Word, Excel, PowerPoint or PDF files.", "**Custom skills**: ones you or your organisation write for your own routines."] },
+    { "type": "say", "title": "Making and finding skills",
+      "points": ["A simple skill is just written instructions in Markdown. No coding needed.", "Skills also work in Claude Code.", "To browse them in the app, open Customize, then Skills."] },
+    { "type": "example", "title": "A team report skill",
+      "points": ["Your team writes a report every week, always in the same layout and tone.", "You put that routine in a custom skill.", "Now \"Write this week's report\" is enough. Claude loads the skill and follows it."],
+      "note": "No more repeating yourself." },
+    { "type": "say", "title": "Review before you trust",
+      "points": ["Skills can include scripts, so treat them like any app.", "Review a skill before you rely on it.", "Take extra care with one that someone else wrote."] },
     { "type": "sort", "prompt": "Skill or not? Tap the basket.",
       "baskets": ["Good skill", "Not a skill"],
       "items": [

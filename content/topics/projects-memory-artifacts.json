@@ -1,6 +1,6 @@
 {
   "id": "projects-memory-artifacts", "track": 2, "title": "Projects, memory, artifacts and skills",
-  "reviewed": "2026-11-20", "volatility": "medium",
+  "reviewed": "2026-11-11", "volatility": "medium",
   "sources": [
     { "title": "Use Claude's chat search and memory", "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context" },
     { "title": "What are artifacts and how do I use them?", "url": "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" },

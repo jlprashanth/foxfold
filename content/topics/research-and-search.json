@@ -1,6 +1,6 @@
 {
   "id": "research-and-search", "track": 2, "title": "Research and web search",
-  "reviewed": "2026-11-20", "volatility": "medium",
+  "reviewed": "2026-11-11", "volatility": "medium",
   "sources": [
     { "title": "When should I use web search, extended thinking, and research?", "url": "https://support.claude.com/en/articles/11095361-when-should-i-use-web-search-extended-thinking-and-research" },
     { "title": "Use research on Claude", "url": "https://support.claude.com/en/articles/11088861-use-research-on-claude" }

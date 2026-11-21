@@ -1,19 +1,22 @@
 {
-  "id": "what-is-an-agent",
-  "track": 6,
-  "title": "What an AI agent is",
-  "reviewed": "2026-11-12",
-  "volatility": "stable",
+  "id": "what-is-an-agent", "track": 6, "title": "What an AI agent is",
+  "reviewed": "2026-11-12", "volatility": "stable",
   "sources": [
     { "title": "Building effective agents", "url": "https://www.anthropic.com/engineering/building-effective-agents" },
     { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
   ],
   "folds": [
-    { "type": "say", "text": "A chatbot answers and stops. An **AI agent** keeps going: it decides its own steps, uses tools, looks at the results, and carries on until the job is done." },
-    { "type": "say", "text": "Anthropic separates two kinds of system. In a **workflow**, code lays out the steps in advance. In an **agent**, the model directs its own process and its use of tools." },
-    { "type": "say", "text": "Claude Code is an example. It gathers context, takes an action, checks the result, and repeats. You can interrupt it at any point to steer." },
-    { "type": "say", "text": "Agents suit open-ended jobs where you cannot predict the steps. They cost more in time and money, and mistakes can pile up, so test them with guardrails." },
-    { "type": "say", "text": "Anthropic's advice is to start simple. Use the plainest solution that works, and add an agent only when simpler options fall short." },
+    { "type": "say", "title": "Chatbot or agent?",
+      "points": ["A chatbot answers and stops.", "An **AI agent** keeps going: it decides its own steps and uses tools.", "It looks at the results and carries on until the job is done."] },
+    { "type": "say", "title": "Workflow or agent",
+      "points": ["Anthropic separates two kinds of system.", "**Workflow**: code lays out the steps in advance.", "**Agent**: the model directs its own process and its use of tools."] },
+    { "type": "example", "title": "Claude Code as an agent",
+      "points": ["**Gather context:** read the failing test.", "**Take action:** edit the code.", "**Check the result:** run the test again.", "**Repeat** until it passes."],
+      "note": "You can interrupt at any point to steer." },
+    { "type": "say", "title": "When agents fit",
+      "points": ["Open-ended jobs where you cannot predict the steps.", "They cost more in time and money.", "Mistakes can pile up, so test them with guardrails."] },
+    { "type": "say", "title": "Start simple",
+      "points": ["Anthropic's advice: use the plainest solution that works.", "Add an agent only when simpler options fall short."] },
     { "type": "sort", "prompt": "Workflow or agent? Tap the basket.",
       "baskets": ["Workflow", "Agent"],
       "items": [

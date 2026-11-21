@@ -1,20 +1,28 @@
 {
-  "id": "subagents-plugins",
-  "track": 5,
-  "title": "Subagents and plugins",
-  "reviewed": "2026-11-12",
-  "volatility": "fast",
+  "id": "subagents-plugins", "track": 5, "title": "Subagents and plugins",
+  "reviewed": "2026-11-12", "volatility": "fast",
   "sources": [
     { "title": "Create custom subagents", "url": "https://code.claude.com/docs/en/sub-agents" },
     { "title": "Install and manage plugins", "url": "https://code.claude.com/docs/en/discover-plugins" },
     { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
   ],
   "folds": [
-    { "type": "say", "text": "A **subagent** is a helper with its own context window. It does a side job, like searching a big codebase, and sends back only a short summary. Your main conversation stays tidy." },
-    { "type": "say", "text": "Claude can delegate on its own when a task matches a subagent's description, or you can ask for one by name. Claude Code also has built-in helpers for read-only search and planning." },
-    { "type": "say", "text": "You can limit what a subagent may do, such as read-only tools. Subagents are Markdown files, so you can ask Claude to write one for you. Their work still counts toward your usage." },
-    { "type": "say", "text": "A **plugin** bundles extras to install in one go. It can add skills, agents, hooks and MCP servers. Plugins come from **marketplaces**, which are catalogues of plugins." },
-    { "type": "say", "text": "Run `/plugin` to browse and manage them. A plugin can run hooks and servers, so read what it will install first, and be careful with sources you do not know." },
+    { "type": "say", "title": "Subagents", "tag": "Helpers",
+      "points": ["A **subagent** is a helper with its own context window.", "It does a side job, like searching a big codebase.", "It sends back only a short summary, so your main conversation stays tidy."] },
+    { "type": "say", "title": "Using subagents",
+      "points": ["Claude can delegate on its own when a task matches a subagent's description.", "Or you can ask for one by name.", "Built-in helpers handle read-only search and planning."] },
+    { "type": "say", "title": "Making subagents",
+      "points": ["Subagents are Markdown files, so you can ask Claude to write one.", "You can limit what one may do, such as read-only tools.", "Their work still counts toward your usage."] },
+    { "type": "example", "title": "A subagent at work",
+      "chat": [
+        { "you": "Use a subagent to find every place this app sends an email." },
+        { "claude": "The helper searched the whole codebase. Summary: emails go out from three files. Here they are." }
+      ],
+      "note": "The long search stayed out of your main chat." },
+    { "type": "say", "title": "Plugins", "tag": "Bundles",
+      "points": ["A **plugin** bundles extras to install in one go.", "It can add skills, agents, hooks and MCP servers.", "Plugins come from **marketplaces**, which are catalogues of plugins."] },
+    { "type": "say", "title": "Using plugins",
+      "points": ["Run `/plugin` to browse and manage them.", "A plugin can run hooks and servers.", "So read what it will install first, and be careful with sources you do not know."] },
     { "type": "sort", "prompt": "Subagent or plugin? Tap the basket.",
       "baskets": ["Subagent", "Plugin"],
       "items": [

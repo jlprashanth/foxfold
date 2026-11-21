@@ -1,18 +1,23 @@
 {
-  "id": "claude-md",
-  "track": 4,
-  "title": "CLAUDE.md, standing instructions",
-  "reviewed": "2026-11-12",
-  "volatility": "medium",
+  "id": "claude-md", "track": 4, "title": "CLAUDE.md, standing instructions",
+  "reviewed": "2026-11-12", "volatility": "medium",
   "sources": [
     { "title": "How Claude remembers your project", "url": "https://code.claude.com/docs/en/memory" }
   ],
   "folds": [
-    { "type": "say", "text": "Each Claude Code session starts with a fresh context window. A **CLAUDE.md** file is a note you write once so Claude reads your standing instructions every session." },
-    { "type": "say", "text": "It can live in your project folder, shared with your team, or in your own home folder for every project. A private local version is just for you." },
-    { "type": "say", "text": "Good contents: how to run and test the project, your conventions, and things Claude could not guess. Run `/init` to get a starter file, then refine it." },
-    { "type": "say", "text": "Keep it short and specific. Aim for under 200 lines, because longer files use more context and Claude follows them less reliably." },
-    { "type": "say", "text": "Claude treats CLAUDE.md as guidance, not a hard rule. To block an action for certain, use a hook instead. Claude also writes its own notes, called **auto memory**." },
+    { "type": "say", "title": "Standing instructions",
+      "points": ["Each Claude Code session starts with a fresh context window.", "A **CLAUDE.md** file is a note you write once.", "Claude reads your standing instructions from it every session."] },
+    { "type": "say", "title": "Where it lives",
+      "points": ["**Project folder**: shared with your team.", "**Home folder**: for every project you work on.", "**Local version**: private, just for you."] },
+    { "type": "say", "title": "What to put in it",
+      "points": ["How to run and test the project.", "Your conventions.", "Things Claude could not guess.", "Run `/init` to get a starter file, then refine it."] },
+    { "type": "example", "title": "A short CLAUDE.md",
+      "points": ["**Run:** `npm start`", "**Test:** `npm test` before every commit.", "**Style:** two-space indents.", "**Avoid:** editing anything in the `vendor` folder."],
+      "note": "Short, specific, and things Claude could not guess." },
+    { "type": "say", "title": "Keep it short",
+      "points": ["Aim for under 200 lines.", "Longer files use more context.", "And Claude follows them less reliably."] },
+    { "type": "say", "title": "Guidance, not rules",
+      "points": ["Claude treats CLAUDE.md as guidance, not a hard rule.", "To block an action for certain, use a hook instead.", "Claude also writes its own notes, called **auto memory**."] },
     { "type": "sort", "prompt": "Does it belong in CLAUDE.md? Tap the basket.",
       "baskets": ["Put it in", "Leave it out"],
       "items": [

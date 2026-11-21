@@ -1,19 +1,22 @@
 {
-  "id": "hooks",
-  "track": 5,
-  "title": "Hooks",
-  "reviewed": "2026-11-12",
-  "volatility": "medium",
+  "id": "hooks", "track": 5, "title": "Hooks",
+  "reviewed": "2026-11-12", "volatility": "medium",
   "sources": [
     { "title": "Automate actions with hooks", "url": "https://code.claude.com/docs/en/hooks-guide" },
     { "title": "Best practices for Claude Code", "url": "https://code.claude.com/docs/en/best-practices" }
   ],
   "folds": [
-    { "type": "say", "text": "A **hook** is a shell command that Claude Code runs automatically at a set moment, like after a file edit. Certain actions then always happen, instead of relying on Claude to remember." },
-    { "type": "say", "text": "Hooks attach to events. For example, one event fires before a tool runs and can block it. Another fires after a tool succeeds. Another fires when Claude needs your input." },
-    { "type": "say", "text": "Handy uses: tidy code after every edit, get a desktop notification when Claude is waiting for you, or stop edits to protected files before they happen." },
-    { "type": "say", "text": "You add hooks in a settings file. Type `/hooks` in a session to browse the ones you have. Hooks run commands on your machine, so only add ones you understand." },
-    { "type": "say", "text": "Hooks and **CLAUDE.md** differ. CLAUDE.md is guidance Claude may or may not follow. A hook is enforced by the program itself, so use one for rules that cannot have exceptions." },
+    { "type": "say", "title": "What a hook is",
+      "points": ["A **hook** is a shell command Claude Code runs automatically at a set moment, like after a file edit.", "So certain actions always happen, instead of relying on Claude to remember."] },
+    { "type": "say", "title": "Hooks attach to events",
+      "points": ["**Before a tool runs**: can block it.", "**After a tool succeeds**.", "**When Claude needs your input**."] },
+    { "type": "example", "title": "Handy hooks",
+      "points": ["**After every edit:** tidy the code.", "**When Claude is waiting for you:** get a desktop notification.", "**Before an edit:** stop changes to protected files."],
+      "note": "Each one happens every time, with no reminders needed." },
+    { "type": "say", "title": "Adding hooks",
+      "points": ["You add hooks in a settings file.", "Type `/hooks` in a session to browse the ones you have.", "Hooks run commands on your machine, so only add ones you understand."] },
+    { "type": "say", "title": "Hook or CLAUDE.md?",
+      "points": ["**CLAUDE.md** is guidance Claude may or may not follow.", "A **hook** is enforced by the program itself.", "Use a hook for rules that cannot have exceptions."] },
     { "type": "sort", "prompt": "CLAUDE.md or hook? Tap the basket.",
       "baskets": ["CLAUDE.md", "Hook"],
       "items": [

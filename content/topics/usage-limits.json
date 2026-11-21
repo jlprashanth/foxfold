@@ -1,6 +1,6 @@
 {
   "id": "usage-limits", "track": 2, "title": "Usage limits and saving usage",
-  "reviewed": "2026-11-20", "volatility": "fast",
+  "reviewed": "2026-11-11", "volatility": "fast",
   "sources": [
     { "title": "Usage limit best practices", "url": "https://support.claude.com/en/articles/9797557-usage-limit-best-practices" },
     { "title": "Manage usage credits for paid Claude plans", "url": "https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans" }

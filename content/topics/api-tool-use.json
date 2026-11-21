@@ -1,19 +1,22 @@
 {
-  "id": "api-tool-use",
-  "track": 6,
-  "title": "The API and tool use",
-  "reviewed": "2026-11-12",
-  "volatility": "medium",
+  "id": "api-tool-use", "track": 6, "title": "The API and tool use",
+  "reviewed": "2026-11-12", "volatility": "medium",
   "sources": [
     { "title": "API overview", "url": "https://platform.claude.com/docs/en/api/overview" },
     { "title": "Tool use with Claude", "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" }
   ],
   "folds": [
-    { "type": "say", "text": "An **API** lets a program talk to Claude directly, with no chat window. Developers use it to put Claude inside their own apps and tools. You need an account and a key to use it." },
-    { "type": "say", "text": "The main job is sending **messages** to Claude and getting a reply back. The apps you use are different products, but the idea is the same: you send text, Claude answers." },
-    { "type": "say", "text": "**Tool use** lets Claude ask for help. You describe a tool, such as a weather lookup. Claude decides when it is needed and returns a structured request for it." },
-    { "type": "say", "text": "Claude does not run your tool itself. The app runs it, sends the result back, and Claude uses it to answer. Some tools, like web search, are run for you." },
-    { "type": "say", "text": "This is why Claude can seem to check things or take actions. It is following a loop of asking, getting results, and replying." },
+    { "type": "say", "title": "The API",
+      "points": ["An **API** lets a program talk to Claude directly, with no chat window.", "Developers use it to put Claude inside their own apps and tools.", "You need an account and a key to use it."] },
+    { "type": "say", "title": "Messages",
+      "points": ["The main job: send **messages** to Claude and get a reply back.", "The apps you use are different products.", "But the idea is the same: you send text, Claude answers."] },
+    { "type": "say", "title": "Tool use",
+      "points": ["**Tool use** lets Claude ask for help.", "You describe a tool, such as a weather lookup.", "Claude decides when it is needed and returns a structured request for it."] },
+    { "type": "say", "title": "Who runs the tool?",
+      "points": ["Claude does not run your tool itself.", "The app runs it and sends the result back.", "Some tools, like web search, are run for you."] },
+    { "type": "example", "title": "The weather loop",
+      "points": ["**You:** \"Do I need an umbrella in Oslo today?\"", "**Claude:** asks to use the weather tool.", "**The app:** runs it and sends back \"rain\".", "**Claude:** \"Yes, rain is expected.\""],
+      "note": "This loop is why Claude can seem to check things." },
     { "type": "build", "prompt": "Put the tool use loop in order.",
       "parts": [
         { "label": "Ask", "text": "You ask a question that needs outside data" },

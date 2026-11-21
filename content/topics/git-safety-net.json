@@ -1,20 +1,28 @@
 {
-  "id": "git-safety-net",
-  "track": 5,
-  "title": "Git as a safety net",
-  "reviewed": "2026-11-12",
-  "volatility": "stable",
+  "id": "git-safety-net", "track": 5, "title": "Git as a safety net",
+  "reviewed": "2026-11-12", "volatility": "stable",
   "sources": [
     { "title": "Checkpointing", "url": "https://code.claude.com/docs/en/checkpointing" },
     { "title": "Claude Code quickstart", "url": "https://code.claude.com/docs/en/quickstart" },
     { "title": "How Claude Code works", "url": "https://code.claude.com/docs/en/how-claude-code-works" }
   ],
   "folds": [
-    { "type": "say", "text": "**Git** keeps a history of your project. Each **commit** is a save point you can return to. It is the best undo button for anything Claude changes." },
-    { "type": "say", "text": "Commit before a big task. If Claude goes the wrong way, you can compare to that clean save point and go back to it. A **branch** lets you try something without touching the main copy." },
-    { "type": "say", "text": "Claude Code works with git in plain language. You can ask it what changed, to write a commit message, or to make a new branch. Read what it proposes before you approve." },
-    { "type": "say", "text": "Claude Code also keeps **checkpoints** of files it edits, and `/rewind` can restore them. They are quick session undo, not a replacement for git." },
-    { "type": "say", "text": "Checkpoints miss files changed only by shell commands, and changes made outside the session. Git catches those, so commit often." },
+    { "type": "say", "title": "Git",
+      "points": ["**Git** keeps a history of your project.", "Each **commit** is a save point you can return to.", "It is the best undo button for anything Claude changes."] },
+    { "type": "say", "title": "Before a big task",
+      "points": ["Commit first.", "If Claude goes the wrong way, compare to that clean save point and go back to it.", "A **branch** lets you try something without touching the main copy."] },
+    { "type": "example", "title": "Git in plain language",
+      "chat": [
+        { "you": "What did you change?" },
+        { "claude": "I edited two files: the login page and its test." },
+        { "you": "Write a commit message for it." },
+        { "claude": "\"Fix the login error message and add a test.\" Shall I commit?" }
+      ],
+      "note": "Read what it proposes before you approve." },
+    { "type": "say", "title": "Checkpoints",
+      "points": ["Claude Code keeps **checkpoints** of files it edits.", "`/rewind` can restore them.", "They are quick session undo, not a replacement for git."] },
+    { "type": "say", "title": "What checkpoints miss",
+      "points": ["Files changed only by shell commands.", "Changes made outside the session.", "Git catches those, so commit often."] },
     { "type": "sort", "prompt": "Checkpoint or git? Tap the basket.",
       "baskets": ["Checkpoint", "Git"],
       "items": [
